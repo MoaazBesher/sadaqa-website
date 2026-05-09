@@ -68,7 +68,7 @@ The site is deployed on **Netlify**. Any push to the `main` branch triggers an a
 
 ## License
 
-All rights reserved. This project is a personal ongoing charity (Sadaqa Jariya) and is not licensed for commercial use.
+This project is licensed under the [MIT License](LICENSE).
 
 ## Author
 
