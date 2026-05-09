@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin page</title>
+    <link rel="stylesheet" href="style.css">
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
+
+</head>
+<body>
+	
+
+
+
+    <h1 style="text-align: center; color: #2fff00;">Admin page</h1>
+
+    <h2 class="section-title" onclick="window.location.href='contactCenter/index.html'"
+        style="text-align: center; color: #4CAF50; cursor: pointer;">
+        Contact Center
+    </h2>
+
+    
+<h2 class="section-title" onclick="toggleSection('update-notice')" style="text-align: center; color: #4CAF50;">Daily content</h2>
+<div id="update-notice" class="update-box toggle-section">
+    <textarea id="daily-content-input" class="update-box" style="display: none;"></textarea>
+    <p id="daily-content" class="update-box">Updating...</p>
+    <button id="edit-content" class="edit-button">Edit</button>
+</div>
+
+
+    <h2 class="section-title " onclick="toggleSection('suggestions-list')" style="text-align: center; color: #4CAF50;">Suggestions</h2>
+    <div id="suggestions-list" class="toggle-section"></div>
+
+    <h2 class="section-title" onclick="toggleSection('completed-suggestions')" style="text-align: center; color: #4CAF50;">Completed suggestions</h2>
+    <div id="completed-suggestions" class="toggle-section"></div>
+
+    <h2 class="section-title" onclick="toggleSection('visits-analysis')" style="text-align: center; color: #4CAF50;">Visits analysis</h2>
+    <div id="visits-analysis" class="toggle-section">
+    <div class="stats-wrapper">
+        <div class="stats-box">
+            <p>Users: <span id="unique-visitors">0</span></p>
+        </div>
+        <div class="stats-box">
+            <p>Main page visits: <span id="total-visits">0</span></p>
+        </div>
+        <div class="stats-box">
+            <p>Prayer Times Visits: <span id="prayer-times-visits">0</span></p>
+        </div>
+        <div class="stats-box">
+            <p>Morning Azkar Visits: <span id="morning-azkar-visits">0</span></p>
+        </div>
+        <div class="stats-box">
+            <p>Evening Azkar Visits: <span id="evening-azkar-visits">0</span></p>
+        </div>
+        <div class="stats-box">
+            <p>Doaa Page Visits: <span id="dua-visits">0</span></p>
+        </div>
+        <div class="stats-box">
+            <p>Quran Page Visits: <span id="quran-visits">0</span></p>
+        </div>
+        <div class="stats-box">
+            <p>Mushaf Page Visits: <span id="mushaf-visits">0</span></p>
+        </div>
+        <div class="stats-box">
+            <p>Masbaha Page Visits: <span id="misbaha-visits">0</span></p>
+        </div>
+        <div class="stats-box">
+            <p>Failed Login Attempts: <span id="failed-login-attempts">0</span></p>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleSection(id) {
+        let section = document.getElementById(id);
+        section.style.display = (section.style.display === "none" || section.style.display === "") ? "block" : "none";
+    }
+        document.addEventListener("DOMContentLoaded", function () {
+                // تعريف المسارات المحلية لكل صندوق إحصائي
+                const localPaths = {
+                    "unique-visitors": "/index.html",
+                    "failed-login-attempts": "/adminPage/index.html",
+                    "prayer-times-visits": "https://praynotify.web.app",
+                    "total-visits": "/index.html",
+                    "morning-azkar-visits": "/morningAzkar/index.html",
+                    "evening-azkar-visits": "/eveningAzkar/index.html",
+                    "dua-visits": "/doaa/index.html",
+                    "quran-visits": "/quran/index.html",
+                    "mushaf-visits": "/moshaf/index.html",
+                    "misbaha-visits": "/masbaha/index.html"
+                };
+
+                // جلب كل الصناديق وإضافة حدث النقر عليها
+                document.querySelectorAll(".stats-box").forEach(box => {
+                    let spanElement = box.querySelector("span"); // البحث عن العنصر الذي يحمل الـ ID
+
+                    if (spanElement && localPaths[spanElement.id]) {
+                        box.style.cursor = "pointer"; // تغيير المؤشر ليصبح قابلاً للنقر
+
+                        box.addEventListener("click", function () {
+                            window.location.href = localPaths[spanElement.id]; // يفتح الصفحة المحلية في نفس التبويب
+                        });
+
+                        // لو عايزها تفتح في تبويب جديد بدل ما تفتح بنفس الصفحة، استبدل السطر أعلاه بهذا:
+                        // window.open(localPaths[spanElement.id], "_blank");
+                    }
+                });
+            });
+
+    </script>
+
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, onValue, remove, set, get, update } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+        // ✅ إعداد Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyCmCecvEhU5Q2SaLzngnAM6AX9qeNOJE98",
+            authDomain: "praynotify.firebaseapp.com",
+            databaseURL: "https://praynotify-default-rtdb.firebaseio.com/",
+            projectId: "praynotify",
+            storageBucket: "praynotify.appspot.com",
+            messagingSenderId: "825282016133",
+            appId: "1:825282016133:web:2c3d64ddf1024ddadc8aec",
+            measurementId: "G-DKLRSZDEEY"
+        };
+
+        // ✅ تهيئة Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const suggestionsRef = ref(db, "suggestions");
+        const completedRef = ref(db, "completed_suggestions");
+        const visitsRef = ref(db, "visits");
+        const morningAzkarVisitsRef = ref(db, "page_visits/morning_azkar");
+        const eveningAzkarVisitsRef = ref(db, "page_visits/evening_azkar");
+        const prayerTimesVisitsRef = ref(db, "page_visits/prayer_times");
+        const duaVisitsRef = ref(db, "page_visits/dua");
+        const quranVisitsRef = ref(db, "page_visits/quran");
+        const mushafVisitsRef = ref(db, "page_visits/mushaf");
+        const misbahaVisitsRef = ref(db, "page_visits/misbaha");
+        const failedAttemptsRef = ref(db, "failed_login_attempts");
+        const dailyContentRef = ref(db, "daily_content");
+
+
+
+      // 🔄 تحميل المحتوى الحالي
+    function loadDailyContent() {
+        onValue(dailyContentRef, (snapshot) => {
+            let contentBox = document.getElementById("daily-content");
+            let textArea = document.getElementById("daily-content-input");
+
+            if (!contentBox || !textArea) {
+                console.error("❌ عنصر المحتوى غير موجود في الصفحة!");
+                return;
+            }
+
+            if (snapshot.exists()) {
+                contentBox.innerText = snapshot.val();
+                textArea.value = snapshot.val(); // تحديث التكست بوكس بالمحتوى
+            } else {
+                contentBox.innerText = "لا يوجد محتوى اليوم.";
+                textArea.value = "";
+            }
+        });
+    }
+
+
+        // ✏️ تعديل المحتوى
+    function editDailyContent() {
+        let textBox = document.getElementById("daily-content-input");
+        let textDisplay = document.getElementById("daily-content");
+        let editButton = document.getElementById("edit-content");
+
+        if (!textBox || !textDisplay || !editButton) {
+            console.error("❌ عنصر غير موجود في الصفحة!");
+            return;
+        }
+
+        if (editButton.innerText === "Edit") {
+            textBox.style.display = "block";
+            textDisplay.style.display = "none";
+            editButton.innerText = "Save";
+        } else {
+            let newContent = textBox.value.trim();
+            if (newContent !== "") {
+                set(dailyContentRef, newContent)
+                    .then(() => {
+                        textDisplay.innerText = newContent;
+                        textBox.style.display = "none";
+                        textDisplay.style.display = "block";
+                        editButton.innerText = "Edit";
+                        alert("✅ تم حفظ المحتوى بنجاح!");
+                    })
+                    .catch((error) => {
+                        console.error("❌ خطأ أثناء حفظ المحتوى:", error);
+                        alert("❌ حدث خطأ أثناء الحفظ!");
+                    });
+            }
+        }
+    }
+
+
+        // ✅ تحميل المحتوى عند فتح الصفحة
+        window.onload = function () {
+                setTimeout(() => {
+                    loadDailyContent();
+                    let editButton = document.getElementById("edit-content");
+                    if (editButton) {
+                        editButton.addEventListener("click", editDailyContent);
+                    } else {
+                        console.error("❌ زرار التعديل مش موجود في الصفحة!");
+                    }
+                }, 1000); // تأخير ثانية لضمان تحميل الصفحة بالكامل
+            };
+
+
+        // ✅ جلب عدد المحاولات الفاشلة وعرضه في صفحة الأدمن
+            onValue(failedAttemptsRef, (snapshot) => {
+                if (snapshot.exists()) {
+                    let data = snapshot.val();
+                    document.getElementById("failed-login-attempts").innerText = data.count || 0;
+                } else {
+                    document.getElementById("failed-login-attempts").innerText = "0";
+                }
+            }, (error) => {
+                console.error("❌ خطأ في جلب عدد المحاولات الفاشلة:", error);
+            });
+
+        // ✅ جلب عدد زيارات صفحة المسبحة وعرضها في الصفحة
+            onValue(misbahaVisitsRef, (snapshot) => {
+                if (snapshot.exists()) {
+                    let data = snapshot.val();
+                    document.getElementById("misbaha-visits").innerText = data.count || 0;
+                } else {
+                    document.getElementById("misbaha-visits").innerText = "0";
+                }
+            }, (error) => {
+                console.error("❌ خطأ في جلب عدد الزيارات:", error);
+            });
+
+        // ✅ جلب عدد زيارات صفحة المصحف الشريف وعرضها في الصفحة
+            onValue(mushafVisitsRef, (snapshot) => {
+                if (snapshot.exists()) {
+                    let data = snapshot.val();
+                    document.getElementById("mushaf-visits").innerText = data.count || 0;
+                } else {
+                    document.getElementById("mushaf-visits").innerText = "0";
+                }
+            }, (error) => {
+                console.error("❌ خطأ في جلب عدد الزيارات:", error);
+            });
+
+        // ✅ جلب عدد زيارات صفحة القرآن الكريم وعرضها في الصفحة
+            onValue(quranVisitsRef, (snapshot) => {
+                if (snapshot.exists()) {
+                    let data = snapshot.val();
+                    document.getElementById("quran-visits").innerText = data.count || 0;
+                } else {
+                    document.getElementById("quran-visits").innerText = "0";
+                }
+            }, (error) => {
+                console.error("❌ خطأ في جلب عدد الزيارات:", error);
+            });
+
+        // ✅ جلب عدد زيارات صفحة الأدعية وعرضها في الصفحة
+            onValue(duaVisitsRef, (snapshot) => {
+                if (snapshot.exists()) {
+                    let data = snapshot.val();
+                    document.getElementById("dua-visits").innerText = data.count || 0;
+                } else {
+                    document.getElementById("dua-visits").innerText = "0";
+                }
+            }, (error) => {
+                console.error("❌ خطأ في جلب عدد الزيارات:", error);
+            });
+
+        // ✅ جلب عدد زيارات مواعيد الصلاة وعرضها في الصفحة
+            onValue(prayerTimesVisitsRef, (snapshot) => {
+                if (snapshot.exists()) {
+                    let data = snapshot.val();
+                    document.getElementById("prayer-times-visits").innerText = data.count || 0;
+                } else {
+                    document.getElementById("prayer-times-visits").innerText = "0";
+                }
+            }, (error) => {
+                console.error("❌ خطأ في جلب عدد الزيارات:", error);
+            });
+
+        onValue(eveningAzkarVisitsRef, (snapshot) => {
+                if (snapshot.exists()) {
+                    let data = snapshot.val();
+                    document.getElementById("evening-azkar-visits").innerText = data.count || 0;
+                } else {
+                    document.getElementById("evening-azkar-visits").innerText = "0";
+                }
+            }, (error) => {
+                console.error("❌ خطأ في جلب عدد الزيارات:", error);
+            });
+            
+           onValue(morningAzkarVisitsRef, (snapshot) => {
+                if (snapshot.exists()) {
+                    let data = snapshot.val();
+                    document.getElementById("morning-azkar-visits").innerText = data.count || 0;
+                } else {
+                    document.getElementById("morning-azkar-visits").innerText = "0";
+                }
+            }, (error) => {
+                console.error("❌ خطأ في جلب عدد الزيارات:", error);
+            });
+        get(visitsRef).then(snapshot => {
+                if (snapshot.exists()) {
+                    let data = snapshot.val();
+                    let uniqueVisitorsElem = document.getElementById("unique-visitors");
+                    let totalVisitsElem = document.getElementById("total-visits");
+
+                    if (uniqueVisitorsElem) uniqueVisitorsElem.innerText = data.unique_visitors || 0;
+                    if (totalVisitsElem) totalVisitsElem.innerText = data.total_visits || 0;
+                }
+            }).catch(error => console.error("❌ خطأ في جلب البيانات:", error));
+
+        function loadSuggestions() {
+            onValue(suggestionsRef, (snapshot) => {
+                console.log("Raw Firebase data:", snapshot.val()); // نشوف البيانات الأصلية
+                const suggestionsList = document.getElementById("suggestions-list");
+                suggestionsList.innerHTML = "";
+                if (snapshot.exists()) {
+                    let suggestionsArray = Object.entries(snapshot.val()).map(([key, value]) => ({ key, ...value }));
+                    suggestionsArray = suggestionsArray.sort((a, b) => b.timestamp - a.timestamp).reverse();
+                    console.log(suggestionsArray); // علشان تتأكد من الترتيب
+                    suggestionsArray.forEach((suggestion) => {
+                        let suggestionItem = document.createElement("div");
+                        suggestionItem.classList.add("suggestion-item");
+                        suggestionItem.innerHTML = `
+                            <p>${suggestion.text}</p>
+                            <small>📅 ${new Date(suggestion.timestamp).toLocaleString()}</small>
+                        `;
+                        let doneBtn = document.createElement("button");
+                        doneBtn.classList.add("done-btn");
+                        doneBtn.textContent = "✔️";
+                        doneBtn.addEventListener("click", () => markAsDone(suggestion.key, suggestion.text, suggestion.timestamp));
+                        
+                        
+                        suggestionItem.appendChild(doneBtn);
+                        suggestionsList.appendChild(suggestionItem);
+                    });
+                } else {
+                    suggestionsList.innerHTML = "<p style='text-align: center;'>No suggestions now</p>";
+                }
+            });
+        }
+
+        function loadCompletedSuggestions() {
+            onValue(completedRef, (snapshot) => {
+                const completedList = document.getElementById("completed-suggestions");
+                completedList.innerHTML = "";
+                if (snapshot.exists()) {
+                    let completedArray = Object.entries(snapshot.val()).map(([key, value]) => ({ key, ...value }));
+                                        completedArray = completedArray.sort((a, b) => b.timestamp - a.timestamp).reverse() ;
+
+                    completedArray.forEach((suggestion) => {
+                        let completedItem = document.createElement("div");
+                        completedItem.classList.add("completed-item");
+                        completedItem.innerHTML = `
+                            <p>${suggestion.text}</p>
+                            <small>📅 ${new Date(suggestion.timestamp).toLocaleString()}</small>
+                        `;
+                        let restoreBtn = document.createElement("button");
+                        restoreBtn.classList.add("restore-btn");
+                        restoreBtn.textContent = "↩️";
+                        restoreBtn.addEventListener("click", () => restoreSuggestion(suggestion.key, suggestion.text, suggestion.timestamp));
+                        completedItem.appendChild(restoreBtn);
+                        completedList.appendChild(completedItem);
+                    });
+                } else {
+                    completedList.innerHTML = "<p style='text-align: center;'>✅No done sugeestions now</p>";
+                }
+            });
+        }
+
+        function deleteSuggestion(key) {
+            remove(ref(db, `suggestions/${key}`));
+        }
+
+        function deleteCompletedSuggestion(key) {
+            remove(ref(db, `completed_suggestions/${key}`));
+        }
+
+        function restoreSuggestion(key, text, timestamp) {
+                set(ref(db, `suggestions/${key}`), { text, timestamp }).then(() => {
+                    remove(ref(db, `completed_suggestions/${key}`));
+                });
+            }
+
+        function markAsDone(key, text, timestamp) {
+            set(ref(db, `completed_suggestions/${key}`), { text, timestamp }).then(() => {
+                deleteSuggestion(key);
+            });
+        }
+
+        loadSuggestions();
+        loadCompletedSuggestions();
+    </script>
+
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #222;
+            color: #FFF;
+            text-align: center;
+        }
+        #suggestions-list, #completed-suggestions {
+            max-width: 600px;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+        .suggestion-item, .completed-item {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            color: #16c91c;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .completed-item {
+            color: #16c91c;
+        }
+        .done-btn, .delete-btn {
+            padding: 5px 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .done-btn {
+            background-color: rgb(10, 240, 10);
+            color: white;
+        }
+        .delete-btn {
+            background-color: red;
+            color: white;
+        }
+        .restore-btn {
+            background-color: rgb(4, 237, 4);
+   
+        }
+.stats-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* المسافة بين الصناديق */
+    flex-wrap: wrap;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.stats-box {
+    background: rgba(0, 0, 0, 0.46); /* خلفية سوداء */
+    color: #00ff00ca; /* خط أخضر */
+    border-radius: 8px;
+    padding: 15px;
+    min-width: 200px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0px 0px 10px rgba(0, 255, 0, 0.3); /* ظل خفيف */
+    border: 1px solid rgba(0, 255, 0, 0.5); /* إطار أخضر رفيع */
+}
+
+
+    </style>
+
+</body>
+</html>

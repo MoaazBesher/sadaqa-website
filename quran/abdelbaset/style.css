@@ -1,0 +1,154 @@
+html {
+    scroll-behavior: smooth;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Amiri', serif;
+    line-height: 1.8;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light gray text */
+    direction: rtl;
+    text-align: center; /* جعل جميع العناصر في المنتصف */
+    overflow-x: hidden; /* يمنع التمدد الزائد أفقيًا */
+    position: relative;
+}
+@font-face {
+    font-family: 'Thuluth';
+    src: url('arfonts-decotype-thuluth-ii.ttf') format('truetype');
+}
+
+.islamic-header {
+    text-align: center;
+    padding: 10px; /* تصغير الترويسة */
+    font-size: 2.7rem; /* جعل الخط أصغر */
+    background: none; /* إزالة المربع الخلفي */
+    color: #ffd700;
+    margin-bottom: 10px;
+    box-shadow: none; /* إزالة الظل */
+    font-family: 'Thuluth', sans-serif;
+}
+
+ #searchBar {
+            padding: 12px;
+            font-size: 1.2rem;
+            width: 80%;
+            margin-bottom: 20px;
+            border: 2px solid #ffd700;
+            border-radius: 25px;
+            background-color: #252525;
+            color: #e0e0e0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
+            outline: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+
+section {
+        max-width: 90%;
+        margin: 0 auto 0 5%; /* تعديل إضافي لتحريكها أكثر إلى اليسار */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+	
+	
+.azkar-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+
+.azkar-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            background-color: #252525;
+            color: #ffd700;
+            text-decoration: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
+            transition: transform 0.3s ease, background-color 0.3s;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .azkar-item:hover {
+            transform: scale(1.1);
+            background-color: #333;
+        }
+		
+		
+		 #surahList {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            padding: 10px;
+        }
+
+@media (max-width: 768px) {
+	
+	
+    header {
+        font-size: 1.5rem;
+        padding: 15px;
+    }
+   
+	    .azkar-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    .azkar-count {
+        width: 60px;
+        height: 40px;
+        font-size: 0.9rem;
+        margin-top: 10px;
+    }
+	
+	
+	 section {
+        max-width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+}
+
+audio {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            background-color: #252525;
+            border: 2px solid #ffd700;
+            border-radius: 25px;
+            color: #e0e0e0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
+            outline: none;
+            transition: all 0.3s ease-in-out;
+        }
+		
+		.download-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #ffd700;
+            color: #252525;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 10px;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(255, 215, 0, 0.5);
+            transition: transform 0.3s ease, background-color 0.3s;
+        }
+        .download-button:hover {
+            transform: scale(1.05);
+            background-color: #e0c000;
+        }

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css"> 
+
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <!-- <i class="fas fa-praying-hands"></i> -->
+                    <span class="app-name">Sadaqa Jariya</span>
+                </div>
+                <div class="header-stats">
+
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- App Details Section -->
+    <div class="container">
+        <div class="app-details">
+            <div class="app-card">
+                <div class="app-icon-large">
+                <img src="resources/favicon.png" alt="Sadaqa Jariya Logo" class="app-logo">
+                </div>
+                <h1 class="app-title">صدقة جارية - Sadaqa Jariya</h1>
+                <!-- <p class="app-developer">مطور بواسطة: تقنية الصلاة</p> -->
+                
+<p class="app-description">
+    تطبيق صدقة جارية على روح:<br>
+    <strong>محمد أحمد أنور</strong><br>
+    <strong>محمد عزت حلمي</strong><br><br>
+    يضم كل ما يساعدك على ذكر الله بسهولة: 
+    <strong>أذكار الصباح والمساء</strong>، 
+    <strong>مصحف لقراءة القرآن</strong>، 
+    <strong>قرآن بصوت شيوخ</strong>، 
+    <strong>مواقيت الصلاة حسب موقعك الجغرافي</strong>، 
+    بالإضافة إلى <strong>أدعية</strong> و<strong>مسبحة إلكترونية</strong>.
+</p>
+
+                <!-- Features Slider -->
+                <div class="features-slider-container">
+                    <div class="features-slider" id="featuresSlider">
+                        <div class="feature-slide">
+                            <i class="fas fa-signal"></i>
+                            <h3>يعمل بدون إنترنت</h3>
+                            <p>يتميز التطبيق بأن أغلب مميزاته تعمل بدون الحاجة إلى اتصال بالإنترنت، مع أداء ثابت وكفاءة عالية على أجهزة الأندرويد طوال الوقت.</p>
+                        </div>
+
+                        <div class="feature-slide">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <h3>حسب الموقع</h3>
+                            <p>مواقيت الصلاة الدقيقة حسب موقعك الحالي أو أي مدينة تختارها. يدعم آلاف المدن حول العالم.</p>
+                        </div>
+
+                        <div class="feature-slide">
+                        <i class="fas fa-praying-hands"></i>
+                        <h3>أذكار الصباح والمساء</h3>
+                        <p>يضم التطبيق أذكار الصباح والمساء مع عدّادات مدمجة لكل ذكر، لتتابع تسبيحاتك بسهولة دون ارتباك. كما يمكنك إعادة ضبط العدّادات وتصفيرها في أي وقت بضغطة واحدة.</p>
+                    </div>
+                    <div class="feature-slide">
+                        <i class="fas fa-quran"></i>
+                        <h3>القرآن الكريم بصوت قراء متنوعين</h3>
+                        <p>يمكنك الاستماع للقرآن الكريم بصوت عدد كبير من القراء. الميزة تحتاج إلى اتصال بالإنترنت لضمان تحميل التلاوات وتشغيلها بسلاسة.</p>
+                    </div>
+                    <div class="feature-slide">
+                        <i class="fas fa-heart"></i>
+                        <h3>مزايا كثيرة أخرى</h3>
+                        <p>يضم التطبيق العديد من المميزات الأخرى التي يمكنك اكتشافها بنفسك. ولا تنسونا من جزيل دعاؤكم.</p>
+                    </div>
+
+                    </div>
+
+
+                    <button class="slider-arrow prev" id="prevSlide">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <button class="slider-arrow next" id="nextSlide">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    
+                    <div class="slider-nav" id="sliderNav">
+                        <!-- سيتم إنشاء نقاط التنقل ديناميكياً -->
+                    </div>
+                </div>
+                
+                <div class="download-section">
+                    <a href="#" class="download-btn pulse" id="downloadBtn">
+                        <i class="fas fa-download"></i>
+                        تحميل التطبيق
+                    </a>
+                    <div class="download-count">
+                        عدد التحميلات <span class="count-number" id="downloadCountText">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Screenshots Section -->
+        <div class="screenshots-section">
+            <h2 class="section-title">لقطات من التطبيق</h2>
+            <div class="app-screenshots">
+                <div class="screenshot" id="screenshot1"></div>
+                <div class="screenshot" id="screenshot2"></div>
+                <div class="screenshot" id="screenshot3"></div>
+                <div class="screenshot" id="screenshot4"></div>
+            </div>
+        </div>
+        
+        <!-- Comments Section -->
+        <div class="comments-section">
+            <h2 class="section-title">آراء المستخدمين</h2>
+            
+            <div class="comment-form">
+                <h3>أضف تعليقك</h3>
+                <textarea id="commentInput" placeholder="شاركنا رأيك حول التطبيق..."></textarea>
+                <button id="submitComment">نشر التعليق</button>
+            </div>
+            
+            <div class="comments-list" id="commentsList">
+                <!-- سيتم ملء التعليقات ديناميكياً من Firebase -->
+                <div class="no-comments">لا توجد تعليقات بعد. كن أول من يعلق!</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+<footer style=" text-align: center; font-family: 'Arial', sans-serif;">
+  <a href="https://moaaz-testing.netlify.app/" target="_blank" style="color: #555; text-decoration: none; font-size: 14px; transition: all 0.3s ease;">
+    Designed and developed by <span style="color: #c3ccd7; font-weight: 600;">Moaaz Ashraf</span>
+  </a>
+</footer>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, set, get, push, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCmCecvEhU5Q2SaLzngnAM6AX9qeNOJE98",
+            authDomain: "praynotify.firebaseapp.com",
+            databaseURL: "https://praynotify-default-rtdb.firebaseio.com",
+            projectId: "praynotify",
+            storageBucket: "praynotify.firebasestorage.app",
+            messagingSenderId: "825282016133",
+            appId: "1:825282016133:web:2c3d64ddf1024ddadc8aec",
+            measurementId: "G-DKLRSZDEEY"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Elements
+        const downloadBtn = document.getElementById('downloadBtn');
+        const downloadCount = document.getElementById('downloadCount');
+        const downloadCountText = document.getElementById('downloadCountText');
+        const commentInput = document.getElementById('commentInput');
+        const submitComment = document.getElementById('submitComment');
+        const commentsList = document.getElementById('commentsList');
+        
+        // Features Slider Elements
+        const featuresSlider = document.getElementById('featuresSlider');
+        const prevSlideBtn = document.getElementById('prevSlide');
+        const nextSlideBtn = document.getElementById('nextSlide');
+        const sliderNav = document.getElementById('sliderNav');
+        
+        // Screenshot Elements
+        const screenshot1 = document.getElementById('screenshot1');
+        const screenshot2 = document.getElementById('screenshot2');
+        const screenshot3 = document.getElementById('screenshot3');
+        const screenshot4 = document.getElementById('screenshot4');
+
+        // مسارات الصور الافتراضية - يمكنك تغييرها حسب احتياجك
+        const defaultImagePaths = {
+            screenshot1: 'resources/S4.jpg', // ضع المسار هنا
+            screenshot2: 'resources/S3.jpg', // ضع المسار هنا
+            screenshot3: 'resources/S2.jpg', // ضع المسار هنا
+            screenshot4: 'resources/S1.jpg', // ضع المسار هنا
+            downloadFile: 'صدقة جارية.apk' // ضع مسار ملف التحميل هنا
+        };
+
+        // Features Slider Functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.feature-slide');
+        let slidesPerView = window.innerWidth <= 768 ? 1 : 2; // واحدة في الموبايل، اتنين في الكمبيوتر
+        const totalSlides = slides.length - slidesPerView + 1;
+
+        // Create navigation dots
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('slider-dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(i));
+            sliderNav.appendChild(dot);
+        }
+        
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+
+            const slideWidth = slides[0].offsetWidth + 20; // الـ +20 للـ margin
+            const translateXValue = +(currentSlide * slideWidth);
+            featuresSlider.style.transform = `translateX(${translateXValue}px)`;
+
+            // تحديث النقاط
+            document.querySelectorAll('.slider-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        
+        prevSlideBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            goToSlide(currentSlide);
+        });
+        
+        nextSlideBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            goToSlide(currentSlide);
+        });
+        
+        // Auto-advance slides every 5 seconds
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            goToSlide(currentSlide);
+        }, 5000);
+
+        // تحميل الصور من المسارات المحددة
+        function loadScreenshotImages() {
+            // إذا كانت هناك مسارات محددة، قم بتحميل الصور
+            if (defaultImagePaths.screenshot1) {
+                screenshot1.style.backgroundImage = `url(${defaultImagePaths.screenshot1})`;
+            }
+            
+            if (defaultImagePaths.screenshot2) {
+                screenshot2.style.backgroundImage = `url(${defaultImagePaths.screenshot2})`;
+            }
+            
+            if (defaultImagePaths.screenshot3) {
+                screenshot3.style.backgroundImage = `url(${defaultImagePaths.screenshot3})`;
+            }
+            
+            if (defaultImagePaths.screenshot4) {
+                screenshot4.style.backgroundImage = `url(${defaultImagePaths.screenshot4})`;
+            }
+            
+            // تعيين مسار ملف التحميل
+            if (defaultImagePaths.downloadFile) {
+                downloadBtn.href = defaultImagePaths.downloadFile;
+            }
+        }
+        
+        // تحميل الصور من المسارات الافتراضية عند تحميل الصفحة
+        window.addEventListener('load', loadScreenshotImages);
+
+        // Download counter functionality
+        downloadBtn.addEventListener('click', () => {
+            // زيادة العداد بمجرد بدء التحميل
+            const downloadsRef = ref(database, 'app/downloads');
+            
+            get(downloadsRef).then((snapshot) => {
+                let currentCount = snapshot.val() || 0;
+                currentCount++;
+                
+                set(downloadsRef, currentCount).then(() => {
+                    downloadCount.textContent = currentCount;
+                    downloadCountText.textContent = currentCount;
+                    
+                    // إذا لم يكن هناك مسار محدد، عرض رسالة
+                    if (!defaultImagePaths.downloadFile) {
+                        alert('تم بدء تحميل التطبيق! سيتم تثبيته تلقائياً عند اكتمال التحميل.');
+                    }
+                });
+            });
+        });
+
+        // Load initial download count
+        const downloadsRef = ref(database, 'app/downloads');
+        onValue(downloadsRef, (snapshot) => {
+            const count = snapshot.val() || 0;
+            if (downloadCount) downloadCount.textContent = count;
+            if (downloadCountText) downloadCountText.textContent = count;
+        });
+
+        // Comments functionality
+        submitComment.addEventListener('click', () => {
+            const commentText = commentInput.value.trim();
+            
+            if (commentText) {
+                const commentsRef = ref(database, 'app/comments');
+                const newCommentRef = push(commentsRef);
+                
+                set(newCommentRef, {
+                    text: commentText,
+                    author: 'User',
+                    date: new Date().toLocaleDateString('En-Us')
+                }).then(() => {
+                    commentInput.value = '';
+                });
+            } else {
+                alert('يرجى كتابة تعليق قبل الإرسال');
+            }
+        });
+
+        // Load comments
+        const commentsRef = ref(database, 'app/comments');
+        onValue(commentsRef, (snapshot) => {
+            const commentsData = snapshot.val();
+            commentsList.innerHTML = '';
+            
+            if (commentsData) {
+                // تحويل البيانات إلى مصفوفة وعكسها لعرض أحدث التعليقات أولاً
+                const commentsArray = Object.values(commentsData);
+                commentsArray.reverse().forEach(comment => {
+                    const commentElement = document.createElement('div');
+                    commentElement.className = 'comment';
+                    commentElement.innerHTML = `
+                        <div class="comment-header">
+                            <div class="comment-author">${comment.author}</div>
+                            <div class="comment-date">${comment.date}</div>
+                        </div>
+                        <div class="comment-text">${comment.text}</div>
+                    `;
+                    commentsList.appendChild(commentElement);
+                });
+            } else {
+                commentsList.innerHTML = '<div class="no-comments">لا توجد تعليقات بعد. كن أول من يعلق!</div>';
+            }
+        });
+    </script>
+</body>
+</html>

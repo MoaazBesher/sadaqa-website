@@ -1,0 +1,1706 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css"> 
+    <title>قسم الدعاء</title>
+</head>
+<body>
+<header class="islamic-header">
+    <h1 class="animated-title">
+        <a style="color: inherit; text-decoration: none;">أدعية</a>
+    </h1>
+</header>
+    
+
+
+
+<div id="sidebar-container">
+    <style>
+/* Sidebar Styles - Modern Version */
+:root {
+    --primary: #ffd700;
+    --primary-dark: #e6c200;
+    --primary-light: rgba(255, 215, 0, 0.15);
+    --bg-dark: #0a0c0f;
+    --bg-card: #14181c;
+    --bg-card-hover: #1a1f24;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b7c0;
+    --border-color: rgba(255, 215, 0, 0.1);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+    --shadow-gold: 0 8px 24px rgba(255, 215, 0, 0.15);
+    --gradient-gold: linear-gradient(135deg, var(--primary) 0%, #b8860b 100%);
+    --gradient-sidebar: linear-gradient(145deg, #14181c 0%, #1e2429 100%);
+    --border-radius-md: 12px;
+    --border-radius-lg: 20px;
+    --transition-normal: 0.3s ease;
+}
+
+/* Menu Button - تصميم عصري */
+.menu-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    background: var(--gradient-sidebar);
+    color: var(--primary);
+    border: 1px solid var(--border-color);
+    padding: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+    z-index: 1100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-normal);
+    backdrop-filter: blur(10px);
+}
+
+.menu-btn:hover {
+    transform: rotate(90deg) scale(1.1);
+    background: var(--primary);
+    color: var(--bg-dark);
+    border-color: var(--primary);
+    box-shadow: var(--shadow-gold);
+}
+
+.menu-btn:active {
+    transform: rotate(90deg) scale(0.95);
+}
+
+/* Sidebar - تصميم أنيق */
+.sidebar {
+    position: fixed;
+    left: -320px;
+    top: 0;
+    width: 300px;
+    height: 100vh;
+    background: var(--gradient-sidebar);
+    color: var(--primary);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 80px 15px 20px;
+    box-shadow: var(--shadow-md);
+    border-left: 1px solid var(--border-color);
+    z-index: 1000;
+    overflow-y: auto;
+    backdrop-filter: blur(10px);
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+/* تزيين القائمة الجانبية */
+.sidebar::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top left, var(--primary-light), transparent 70%);
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* Header القائمة الجانبية */
+.sidebar-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.sidebar-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-family: 'Thuluth', 'Cairo', sans-serif;
+    color: var(--primary);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+/* أزرار القائمة الجانبية */
+.sidebar button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin: 8px 0;
+    padding: 14px 18px;
+    border: none;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-secondary);
+    text-align: right;
+    font-size: 1rem;
+    font-family: 'Cairo', sans-serif;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    border-radius: var(--border-radius-md);
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+/* إضافة أيقونات قبل النص (اختياري) */
+.sidebar button::before {
+    content: "•";
+    color: var(--primary);
+    font-size: 1.5rem;
+    opacity: 0.5;
+    transition: all var(--transition-normal);
+}
+
+.sidebar button:hover::before {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+.sidebar button:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+    border-color: rgba(255, 215, 0, 0.3);
+    transform: translateX(-5px);
+    box-shadow: var(--shadow-gold);
+}
+
+.sidebar button:active {
+    transform: translateX(-2px);
+}
+
+/* تأثير تموج عند الضغط */
+.sidebar button::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 215, 0, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.sidebar button:active::after {
+    width: 200px;
+    height: 200px;
+}
+
+/* زر إغلاق القائمة */
+.close-sidebar-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid var(--border-color);
+    color: var(--primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-normal);
+    z-index: 1001;
+}
+
+.close-sidebar-btn:hover {
+    background: var(--primary);
+    color: var(--bg-dark);
+    transform: rotate(90deg);
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    z-index: 999;
+    backdrop-filter: blur(3px);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+}
+
+.overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* تصميم متجاوب للشاشات الصغيرة */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 260px;
+        left: -280px;
+        padding: 70px 12px 15px;
+    }
+
+    .menu-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+        top: 15px;
+        left: 15px;
+    }
+
+    .sidebar button {
+        padding: 12px 15px;
+        font-size: 0.95rem;
+    }
+
+    .sidebar-header h3 {
+        font-size: 1.3rem;
+    }
+
+    .close-sidebar-btn {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .sidebar {
+        width: 220px;
+        left: -240px;
+    }
+
+    .menu-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .sidebar button {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+}
+
+/* دعم RTL للتأكد من الاتجاه */
+[dir="rtl"] .sidebar {
+    left: auto;
+    right: -320px;
+}
+
+[dir="rtl"] .sidebar.active {
+    left: auto;
+    right: 0;
+}
+
+[dir="rtl"] .menu-btn {
+    left: auto;
+    right: 20px;
+}
+
+[dir="rtl"] .sidebar button:hover {
+    transform: translateX(5px);
+}
+
+@media screen and (max-width: 768px) {
+    [dir="rtl"] .sidebar {
+        right: -280px;
+    }
+    
+    [dir="rtl"] .menu-btn {
+        right: 15px;
+    }
+}
+
+/* أنيميشن دخول القائمة */
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.sidebar.active {
+    animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* تخصيص شريط التمرير للقائمة الجانبية */
+.sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+    </style>
+
+
+    <!-- زرار فتح القائمة -->
+    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+
+<!-- القائمة الجانبية المطورة مع أيقونات -->
+<div class="sidebar" id="sidebar">
+    <button onclick="openLink('../prayTimes/index.html')">
+        <i class="fas fa-mosque"></i>
+        أوقات الصلاة
+    </button>
+    <button onclick="openLink('../sonan/index.html')">
+        <i class="fa-brands fa-ussunnah"></i>
+        السنن الرواتب
+    </button>
+    <button onclick="location.href='../morningAzkar/index.html'">
+        <i class="fas fa-sun"></i>
+        أذكار الصباح
+    </button>
+    <button onclick="location.href='../eveningAzkar/index.html'">
+        <i class="fas fa-moon"></i>
+        أذكار المساء
+    </button>
+    <button onclick="location.href='../quran/index.html'">
+        <i class="fa-solid fa-headphones"></i>
+        قرآن كريم
+    </button>
+
+    <button onclick="location.href='../moshaf/index.html'">
+        <i class="fas fa-book-quran"></i>
+        المصحف
+    </button>
+    <button onclick="location.href='../masbaha/index.html'">
+        <i class="fas fa-repeat"></i>
+        مسبحة
+    </button>
+    <button onclick="location.href='../index.html'">
+        <i class="fas fa-info-circle"></i>
+        عن الموقع
+    </button>
+</div>
+
+    <!-- محتوى الصفحة -->
+
+    <script>
+        function toggleSidebar() {
+            let sidebar = document.getElementById("sidebar");
+            let overlay = document.getElementById("overlay");
+            sidebar.classList.toggle("active");
+            overlay.classList.toggle("active");
+        }
+
+        function closeSidebar() {
+            document.getElementById("sidebar").classList.remove("active");
+            document.getElementById("overlay").classList.remove("active");
+        }
+
+        function toggleSurah(event, surahId) {
+                event.preventDefault();
+                document.querySelectorAll(".content").forEach(el => {
+                    if (el.id !== surahId) {
+                        el.style.display = "none";
+                    }
+                });
+                const contentDiv = document.getElementById(surahId);
+                if (contentDiv) {
+                    contentDiv.style.display = contentDiv.style.display === "block" ? "none" : "block";
+                }
+            }
+        function openLink(url) {
+            window.location.href = url;
+            closeSidebar();
+        }
+    </script>
+</div>
+
+
+<section  style="display: block;">
+    <div class="azkar-list">
+
+        <a href="#" class="azkar-title" onclick="toggleSurah(event,'s1')">أدعية للمتوفي</a>
+        <div class="content" id="s1">
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اغفر لحينا وميتنا، وصغيرنا وكبيرنا، وذكرنا وأنثانا، وشاهدنا وغائبنا، اللهم من أحييته
+                    منا فأحيه على الإسلام، ومن توفيته منا فتوفَّهُ على الإيمان، اللهم لا تحرمنا أجره ولا تضلنا بعده.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اغفر له وارحمه واعف عنه وعافه وأكرم نزله ووسع مدخله، واغسله بماء وثلج وبَرَد، ونَقِّهِ
+                    من الخطايا كما ينقى الثوب الأبيض من الدنس، وأبدله داراً خيراً من داره، وأهلاً خيراً من أهله، وزوجاً خيراً من
+                    زوجه، وقِهِ فتنة القبر وعذاب النار.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم آنس وحدتهم، وآنسهم في وحشتهم، وآنسهم في غربتهم، اللهم أنزلهم منزلًا مباركًا، وأنت خير
+                    المنزلين، وأنزلهم منازل الشهداء والصديقين، وحسن أولئك رفيقًا.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اجعل قبورهم روضةً من رياض الجنة، ولا تجعله حفرةً من حفر النار، اللهم افسح لهم في قبرهم
+                    مدّ بصرهم، وافرش قبرهم من فراش الجنّة.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إن عبادك في ذمتك وحبل جوارك، فقهم فتنة القبر، وعذاب النار، وأنت أهل الوفاء والحق،
+                    فاغفر لهم وارحمهم، إنك أنت الغفور الرحيم.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ آتهم برحمتك ورضاك، وقهِم فتنة القبر وعذابه، وآتهم برحمتك الأمن من عذابك حتّى تبعثهم
+                    إلى جنّتك يا أرحم الرّاحمين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اغفر لهم وارفع درجتهم في المهديين، وافسح لهم قبورهم، ونور لهم فيه، واجعل قبورهم روضة
+                    من رياض الجنة، واغفر لنا ولهم يا أرحم الراحمين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ أدخلهم الجنّة من غير مناقشة حسابٍ ولا سابقة عذابٍ.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ احم الموتى تحت الأرض، واسترهم يوم العرض، ولا تخزهم يوم يبعثون، يوم لا ينفع مالٌ ولا
+                    بنون إلّا من أتى الله بقلبٍ سليمٍ.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ اغفر له وارحمه وأدخله جنّات النّعيم.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ يا حنَّان، يا منَّان، يا واسع الغفران، اغفر له وارحمه، وعافه واعف عنه، وأكرم نزله،
+                    ووسّع مدخله، واغسله بالماء والثّلج والبرد، ونقِّه من الذّنوب والخطايا كما يُنقَّى الثوب الأبيض من الدّنس.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ أبدله داراً خيراً من داره، وأهلاً خيراً من أهله، وزوجاً خيراً من زوجه، وأدخله الجنّة،
+                    وأعزّه من عذاب القبر، ومن عذاب النّار.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ عامله بما أنت أهله، ولا تعامله بما هو أهله.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ قِهِ السيّئات، قال تعالى: "ومن تقِ السيّئات يومئذٍ فقد رحمته".</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ حلّ روحه محلّ الأبرار، وتغمَّده بالرّحمة أثناء الليل والنّهار، برحمتك يا أرحم
+                    الرّاحمين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ أوصل ثواب ما قرأناه من القرآن العظيم إليه، وضاعف رحمتك ورضوانك عليه.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ ارحمنا إذا أتانا اليقين، وعرق منّا الجبين، وكثر الأنين والحنين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ ارحمنا إذا اشتدّت السكرات، وتوالت الحسرات، وأطبقت الرّوعات، وفاضت العبرات، وتكشّفت
+                    العورات، وتعطّلت القوى والقدرات.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ ارحمنا إذا بلغت "التّراقي، وقيل من راق، وظنّ أنّه الفراق، والتفت السّاق بالساق، إلى
+                    ربّك يومئذٍ المساق"، وتأكّدت فجيعة الفراق للأهل والرّفاق، وقد حمَّ القضاء، فليس من واق.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ ارحمنا إذا حمِّلنا على الأعناق، وكان إليك يومئذٍ المساق، وداعاً أبديّاً للدور
+                    والأسواق، والأقلام والأوراق، إلى من تذلّ له الجباه والأعناق.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللَّهُمَّ اغْفِرْ له وَارْحَمْهُ، وَعَافِهِ وَاعْفُ عنْه، وَأَكْرِمْ نُزُلَهُ، وَوَسِّعْ
+                    مُدْخَلَهُ، وَاغْسِلْهُ بالمَاءِ وَالثَّلْجِ وَالْبَرَدِ، وَنَقِّهِ مِنَ الخَطَايَا كما نَقَّيْتَ الثَّوْبَ
+                    الأبْيَضَ مِنَ الدَّنَسِ، وَأَبْدِلْهُ دَارًا خَيْرًا مِن دَارِهِ، وَأَهْلًا خَيْرًا مِن أَهْلِهِ، وَزَوْجًا
+                    خَيْرًا مِن زَوْجِهِ، وَأَدْخِلْهُ الجَنَّةَ، وَأَعِذْهُ مِن عَذَابِ القَبْرِ، أَوْ مِن عَذَابِ النَّارِ.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللَّهُمَّ إِنَّ فُلَانَ ابْنَ فُلَانٍ فِي ذِمَّتِكَ وَحَبْلِ جِوَارِكَ فَقِهِ مِنْ فِتْنَةِ
+                    الْقَبْرِ وَعَذَابِ النَّارِ، وَأَنْتَ أَهْلُ الْوَفَاءِ وَالْحَقِّ، اللَّهُمَّ فَاغْفِرْ لَهُ وَارْحَمْهُ
+                    إِنَّكَ أَنْتَ الْغَفُورُ الرَّحِيمُ.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمَّ اغفرْ لحَيِّنَا وميِّتِنَا، وشاهِدِنا وغائِبِنا، وصغيرِنا وكبيرِنا، وذَكَرِنا
+                    وأُنْثَانا، اللهمَّ من أحْيَيْتَهُ منا فأَحْيِهِ على الإسلامِ، ومن تَوَفَّيْتَهُ منا فتَوَفَّهُ على الإيمانِ.
+                </div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللَّهُمَّ أَنْتَ رَبُّهَا، وَأَنْتَ خَلَقْتَهَا، وَأَنْتَ هَدَيْتَهَا لِلْإِسْلَامِ،
+                    وَأَنْتَ أَعْلَمُ بِسِرِّهَا وَعَلَانِيَتِهَا، جِئْنَا شُفَعَاءَ فَاغْفِرْ لَهَا.</div>
+            </div>
+        </div>
+
+        <a href="#" class="azkar-title" onclick="toggleSurah(event,'s2')">أدعية قصيرة لبداية اليوم</a>
+        <div class="content" id="s2">
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ يا منْ وزعت الأرزاق بفضلك وكرمك، وتنفس الصُبح بأمرك، ارزقنا خيري الدنيا والآخرة.
+                </div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم ارزقنا إجابة الدعاء وصلاح الأحوال.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم في هذا الصباح سخّر لنا من الدنيا ما تعلم أنه خيرٌ لنا، واصرف عنا كل ما فيه شر لنا.
+                </div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اجعل لنا من كل ضيق فرجاً، ومن كل هم مخرجاً، وارزقنا من حيث لا نحتسب.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">رب اشرح لي صدري، ويسر لي أمري، واحلل عقدة من لساني، يفقهوا قولي.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">رب إني فوضتك أمري كله فلا تكلني إلى نفسي طرفة عين ولا أقل من ذلك.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم لا تجعل ابتلائي في جسدي ولا في أهلي ولا في مالي، اللهم اصرف عني الشر كله، ومن علي
+                    بالصحة والعافية.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إني توكلت عليك فأعنّي، ووفقني، واجبر خاطري.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">يا رب، أدعوك بعزتك وجلالك، أن لا تصعّب لي حاجة، ولا تعظم علي أمراً، ولا تحنِ لي قامة، ولا
+                    تفضح لي سراً، ولا تكسر لي ظهراً.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اجعل دعواتنا لا ترد، واقض لنا حاجاتنا يارب العالمين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إن أمي ربتني خير تربية، ودلّتني عليك وعلى عبادتك، فارزقها عيشاً سعيداً، وقلبا مطمئنا،
+                    وراحة بالٍ لا تنقطع.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اجعلها من الشاكرين الذاكرين الطائعين لك، القائمين إليك.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اغفر لها جميع ذنوبها، واعصمها فيما تبقى من حياتها، وارزقها العمل الي يرضيك، وارضَ عنها
+                    وتولها في كلِّ أمرها.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم يا ذا الكرم والجود، امنن على والدتي بالخير، وارزقها من فضلك العظيم، وعطائك الذي لا
+                    ينضب، يا كريم.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم ارزق أمي الفردوس الأعلى من الجنة، واعتق رقبتها من النار.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اجعل أمي ممن يدخل الجنة من غير حساب، ولا سابق عذاب.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اجعل عافيتك تسري في جسد أمي، وابعد عنها التعب والكلل والنصب.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اجعل أبي ممن يدخل الجنة من غير حساب، ولا سابق عذاب.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إن أبي ما قصَّر في حقنا، فافتح له أبواب الرزق، واصبب عليه الحلال صباً، واجعل طريقه
+                    سالكةً سهلة.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم لا تجعل لأبي ذنبًا إلا غفرته، ولا همًا إلا فرجته، ولا حاجة إلا وقضيتها له، اللهم لا
+                    تُحجه لغيرك.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">ربِّ اغفر لي ولأبي يوم يقوم الحساب، وارزقه الجنة من غير حساب ولا سابق عذاب، وارزقه شربة من
+                    يد النبي -صلى الله عليه وسلم- عند الحوض.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم ارزق أبي العافية، وأطل في عمره بالخير والطاعة، واجعله من العابدين القانتين الطائعين.
+                </div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اغفر لوالدي، وارحمه، وأكرم نزله ووسع مدخله.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم ارضَ عن والدي، ويسِّره لكل عملٍ يُرضيك.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم افتح أبواب السعادة لأحبتي، واحفظهم من كلِّ شرٍ وسوء.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اهدِ أحبتي، وأدخل السكينة والطمأنينة على قلوبهم، واجعلهم من الأخيار.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم حبب إليهم الإيمان وزينه في قلوبهم، وتقبل أعمالهم بالقبول الحسن والرضا.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم احفظهم من بين أيديهم ومن خلفهم، وعن أيمانهم وعن شمائلهم، ومن فوقهم، ومن تحتهم.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اكفني بحلالك عن حرامك واغنني بفضلك عمن سواك.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللَّهُمَّ قَنِّعْنى بِمَا رَزَقْتَنِى، وَبَارِكْ لِى فِيهِ، وَاخْلُفْ عَلَى كُلِّ غَائِبَةٍ
+                    لِى بِخَيْر.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم يا كريم، يا منان، ارزقنا الرزق الواسع المبارك فيه، حلالاً طيباً كما تحب وترضا.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إني أسألك بأعظم اسمٍ سميت به نفسك، أن تفتح لي أبواب الرزق كله، وترزقني الخير كله عاجله
+                    وآجله.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">يا كريم، يا كثير الجود والكرم، أنت الغني ونحن الفقراء، ارزقنا الرزق الحلال الطيب المبارك.
+                </div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">ربِّ اشرَح لي صَدري* وَيَسِّر لي أَمري* وَاحلُل عُقدَةً مِن لِساني* يَفقَهوا قَولي.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم يا معلم موسى علمني، ويا مفهم سليمان فهمني، وآتني من حكمة لقمان، يا رحمن.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إني أسألك باسمك الأعظم، أن ترزقني فهم النبيين، وحفظ المرسلين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إني استودعك ما قرأت وما حفظت، وما درست وما فهمت، ردَّه إليَّ عند حاجتي إليه.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إني فوضت أمري كله إليك، لا ملجاٌ ولا منجا منك إلا إليك.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">يا جامع الناس، ليوم لا ريب فيه، رد إليَّ ضالتي.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اغدق بكرمك عليَّ بكل نجاح.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم سخر لي خلقك كله، يا ذا الجلال والإكرام.</div>
+            </div>
+        </div>
+
+        <a href="#" class="azkar-title" onclick="toggleSurah(event,'s3')">ادعية طلب التوفيق</a>
+        <div class="content" id="s3">
+            <div class="azkar-item">
+                <div class="azkar-text">اللَّهُمَّ لا مَانِعَ لِما أعْطَيْتَ، ولَا مُعْطِيَ لِما مَنَعْتَ، ولَا يَنْفَعُ ذَا الجَدِّ
+                    مِنْكَ الجد</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إني أعوذُ بكَ منَ الهمِّ والحزَنِ، وأعوذُ بكَ منَ العجزِ والكسلِ، وأعوذُ بكَ منَ
+                    الجُبنِ والبخلِ؛ وأعوذُ بكَ مِن غلبةِ الدَّينِ وقهرِ الرجالِ</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمَّ مالكَ الملكِ تُؤتي الملكَ مَن تشاء، وتنزعُ الملكَ ممن تشاء، وتُعِزُّ مَن تشاء،
+                    وتذِلُّ مَن تشاء، بيدِك الخيرُ إنك على كلِّ شيءٍ قدير، رحمنُ الدنيا والآخرةِ ورحيمُهما، تعطيهما من تشاء، وتمنعُ
+                    منهما من تشاء، ارحمْني رحمةً تُغنيني بها عن رحمةِ مَن سواك</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم أَغْنِني من الفقرِ واقضِ عني الدَّينَ وتوفّني في عبادتِك وجهادٍ في سبيلِك</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللَّهمَّ إنِّي عَبدُك، وابنُ عبدِك، وابنُ أمتِك، ناصِيَتي بيدِكَ، ماضٍ فيَّ حكمُكَ، عدْلٌ
+                    فيَّ قضاؤكَ، أسألُكَ بكلِّ اسمٍ هوَ لكَ سمَّيتَ بهِ نفسَك، أو أنزلْتَه في كتابِكَ، أو علَّمتَه أحدًا من خلقِك،
+                    أو استأثرتَ بهِ في علمِ الغيبِ عندَك، أن تجعلَ القُرآنَ ربيعَ قلبي، ونورَ صَدري، وجَلاءَ حَزَني، وذَهابَ هَمِّي
+                </div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللّهم إن كان رزقي في السّماء فأنزله، وإن كان في الأرض فأخرجه، وإن كان بعيداً فقرّبه، وإن
+                    كان قريباً فيسّره، وإن كان قليلاً فكثّره، وإن كان كثيراً فبارك لي فيه.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم رب السموات السبع، ورب العرش العظيم، اقض عنا الدين وأغننا من الفقر.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم صل على سيدنا محمد، وعلى آل محمد، يا ذا الجلال والإكرام، يا قاضي الحاجات، يا أرحم
+                    الراحمين، يا حي يا قيوم، لا إله إلا أنت الملك الحق المبين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اكفني وأغنني بحلالك عن حرامك، وأغنني بفضلك عمن سواك.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">يا الله، يا رب، يا حي يا قيوم، يا ذا الجلال والإكرام، أسألك باسمك العظيم الأعظم أن ترزقني
+                    رزقاً واسعاً حلالاً طيباً، برحمتك يا أرحم الراحمين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">حسبنا الله سيؤتينا من فضله إنا إلى الله لراغبون.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم يا رازق السائلين، يا راحم المساكين، ويا ذا القوة المتين، ويا خير الناصرين، يا ولي
+                    المؤمنين، يا غيّاث المستغيثين، إياك نعبد وإيّاك نستعين، اللهم إني أسألك رزقاً واسعاً طيباً من رزقك.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">يا واصل المنقطعين أوصلنا إليك، ويا جابر المنكسرين اجعل حاجتنا إليك، وأغننا بالافتقار إليك،
+                    ولا تفقرنا بالاستغناء عنك.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم أصلحني وارزقني من المال ما يكون سبباً لصلاحي.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم ارزقني مالاً يكون حجة لي لا علي، ويكون سعادة لي في الدنيا والآخرة.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم بركةً في مالي، واجعله حجة لي لا علي.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">رَبِّ إِنِّي لِمَا أَنْزَلْتَ إِلَيَّ مِنْ خَيْرٍ فَقِيرٌ</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم ارزقني وظيفة تعينني على أمر ديني وتكون كفاية لي في رزقي ومالي.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم بارك في سعيي، واجعله في عمل ترضاه وتحبه.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم يا من أمرتنا بالسعي وطلبت منا الأخذ بالأسباب، ارزقني عملاً ليكون سبباً في رزقي.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم أعني وسخر لي عملاً حلالاً من حيث لا أحتسب.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم سخرني لعبادك، اللهم سخرني لقضاء حاجاتهم بعمل يرضيك، ورزق يكفيني.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم يا من ترزق الطير من غير حول منها ولا قوة، ارزقني كما ترزقها وظيفة من غير حول مني ولا
+                    قوة.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اجعل لي مودة ورحمة بزواج مبارك يرضيك.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم ارزقني العفاف والغنى، والزواج الصالح والتقى.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم ارزقني زوجة صالحة، هنية رضية، هينة لينة.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم سخر لنا من يفهمنا، ويحتوينا، وتقر به أعيننا.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم أعني على فتن الدنيا، وقني شرها، وارزقني زواجاً يكفيني، ويضبط شهواتي ويقيني.</div>
+            </div>
+        </div>
+
+        <a href="#" class="azkar-title" onclick="toggleSurah(event,'s4')">ادعية الإمتحان</a>
+        <div class="content" id="s4">
+            <div class="azkar-item">
+                <div class="azkar-text">اللَّهمَّ لا سَهْلَ إلَّا ما جعَلْتَه سَهلًا وأنتَ تجعَلُ الحَزْنَ سَهلًا إذا شِئْتَ</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللَّهُمَّ اجْعَلْ في قَلْبِي نُورًا، وفي بَصَرِي نُورًا، وفي سَمْعِي نُورًا، وعَنْ يَمِينِي
+                    نُورًا، وعَنْ يَسارِي نُورًا، وفَوْقِي نُورًا، وتَحْتي نُورًا، وأَمامِي نُورًا، وخَلْفِي نُورًا، واجْعَلْ لي
+                    نُورًا</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللَّهُمَّ صَلِّ علَى مُحَمَّدٍ، وعلَى آلِ مُحَمَّدٍ، كما صَلَّيْتَ علَى آلِ إبْرَاهِيمَ،
+                    إنَّكَ حَمِيدٌ مَجِيدٌ، اللَّهُمَّ بَارِكْ علَى مُحَمَّدٍ، وعلَى آلِ مُحَمَّدٍ، كما بَارَكْتَ علَى آلِ
+                    إبْرَاهِيمَ، إنَّكَ حَمِيدٌ مَجِيدٌ</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اكفنا ما أهمَّنا، وسهّل أمورنا، وافتح لنا بالحق وأنت خير الفاتحين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم ألهمنا الصواب، وسدِّد يميننا، وبارك لنا في أفهامنا، وأوقاتنا.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمَّ إني أستودعك ما حفظتُ، وما فهمت، فرُدَّهُ إلينا عند الحاجة إليه.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">وَقُل رَّبِّ أَنزِلْنِي مُنزَلًا مُّبَارَكًا وَأَنتَ خَيْرُ الْمُنزِلِينَ</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">وَقُل رَبِّ أَدخِلني مُدخَلَ صِدقٍ وَأَخرِجني مُخرَجَ صِدقٍ وَاجعَل لي مِن لَدُنكَ سُلطانًا
+                    نَصيرًا</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">قالَ رَبِّ اشرَح لي صَدري* وَيَسِّر لي أَمري* وَاحلُل عُقدَةً مِن لِساني* يفقَهوا قَولي
+                </div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">حَسبِيَ اللَّـهُ لا إِلـهَ إِلّا هُوَ عَلَيهِ تَوَكَّلتُ وَهُوَ رَبُّ العَرشِ العَظيمِ</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">لا إلَهَ إلَّا اللَّهُ العَظِيمُ الحَلِيمُ، لا إلَهَ إلَّا اللَّهُ رَبُّ العَرْشِ العَظِيمِ،
+                    لا إلَهَ إلَّا اللَّهُ رَبُّ السَّمَوَاتِ ورَبُّ العَرْشِ الكَرِيمِ</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهُ اللهُ ربِّي، لا أُشرِكُ به شيئًا</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمَّ إنّي أسألك حكمةً، ورُشداً، وسداداً، ومعونةً، وتوفيقاً.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمَّ إنّي أعوذ بك من الزلل، والنسيان، وسوء الفهم، وضعف الحفظ.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ بارك وقتي، وحفظي، وفهمي.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمَّ أنِر بصيرتي، ووفقني لما تحب وترضى.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللَّهمَّ إنِّي أسأَلُكَ عِلمًا نافعًا، ورِزْقًا طيِّبًا، وعمَلًا مُتقَبَّلًا</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللَّهُمَّ اهْدِنِي وَسَدِّدْنِي، وَاذْكُرْ، بالهُدَى هِدَايَتَكَ الطَّرِيقَ، وَالسَّدَادِ،
+                    سَدَادَ السَّهْمِ</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمَّ إنِّي أسألُك من الخيرِ كلِّه عاجلِه وآجلِه ما علِمتُ منه وما لم أعلمُ ، وأعوذُ بك من
+                    الشرِّ كلِّه عاجلِه وآجلِه ما علِمتُ منه وما لم أعلمُ، اللهمَّ إنِّي أسألُك من خيرِ ما سألَك به عبدُك ونبيُّك،
+                    وأعوذُ بك من شرِّ ما عاذ به عبدُك ونبيُّك</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللَّهمَّ إني أعوذُ بك من علمٍ لا ينفعُ، وقلبٍ لا يخشعُ، ودعاءٍ لا يُسمعُ، ونفسٍ لا تشبعُ
+                </div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمَّ إنا نسألكَ عزائمَ مغفرتكَ، ومنجياتِ أمركَ، والسلامةَ من كل إثمٍ، والغنيمةَ من كلِّ
+                    برٍّ، والفوزَ بالجنةِ، والنجاةَ من النارِ</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمَّ انفعْني بما علَّمتني وعلِّمْني ما يَنفعُني وزِدْنِي علمًا والحمدُ للهِ على كلِّ حالٍ
+                    وأعوذُ باللهِ من عذابِ النارِ</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمَّ اصنعني على عينِكَ، واصطنعني لنفسك، واستخدمني لرضاك.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمَّ مكِّن لي، واجعلني من الذين إذا مكَّنتَ لهم؛ أقاموا الصلاة، وآتوا الزكاة، وأَمَروا
+                    بالمعروف، ونَهَوْا عن المنكر.</div>
+            </div>
+        </div>
+
+        <a href="#" class="azkar-title" onclick="toggleSurah(event,'s5')">ادعية لطلب الشفاء</a>
+        <div class="content" id="s5">
+            <div class="azkar-item">
+                <div class="azkar-text">بسمِ اللهِ ثلاثًا وقُلْ سبْعَ مرَّاتٍ: أعوذُ باللهِ وقدرتِه مِن شرِّ ما أجِدُ وأُحاذِرُ
+                </div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">أَذْهِبِ البَاسَ، رَبَّ النَّاسِ، وَاشْفِ أَنْتَ الشَّافِي، لا شِفَاءَ إلَّا شِفَاؤُكَ،
+                    شِفَاءً لا يُغَادِرُ سَقَمًا</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">لا بَأْسَ، طَهُورٌ إنْ شَاءَ اللَّهُ</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمَّ عافِني في بدني، اللهمَّ عافِني في سمعي، اللهمَّ عافِني في بصري</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">ربَّنا اللهُ الذي في السَّماءِ تقدَّس اسمُك أمرُك في السَّماءِ والأرضِ كما رحمتُك في
+                    السَّماءِ فاجعلْ رحمتَكَ في الأرضِ اغفرْ لنا حُوبَنا وخطايانا أنت ربُّ الطَّيِّبينَ أنزِلْ رحمةً وشفاءً من
+                    شفائِك على هذا الوجعِ فيبرأُ</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ إنّي أسألك من عظيم لطفك وكرمك وسترك الجميل أن تشفيه وتمدّه بالصحّة والعافية.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إنا نسألك بأسمائك الحسنى وبصفاتك العلا وبرحمتك التي وسعت كلّ شيء، أن تمنّ علينا
+                    بالشفاء العاجل، وألّا تدع فينا جرحاً إلّا داويته، ولا ألماً إلا سكنته، ولا مرضاً إلا شفيته، وألبسنا ثوب الصحة
+                    والعافية عاجلاً غير آجل، وشافِنا وعافِنا واعف عنا، واشملنا بعطفك ومغفرتك، وتولّنا برحمتك يا أرحم الراحمين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">إلهي أذهب البأس ربّ النّاس، اشف وأنت الشّافي، لا شفاء إلا شفاؤك، شفاءً لا يغادر سقماً، أذهب
+                    البأس ربّ النّاس، بيدك الشّفاء، لا كاشف له إلّا أنت يارب العالمين، اللهم إنّي أسألك من عظيم لطفك وكرمك وسترك
+                    الجميل، أن تشفيه وتمدّه بالصحّة والعافية، لا ملجأ ولا منجا منك إلّا إليك، إنّك على كلّ شيءٍ قدير.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">أسأل الله العظيم ربّ العرش العظيم أن يشفيك.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">ربّ إنّي مسّني الضرّ وأنت أرحم الرّاحمين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ اشفه شفاءً ليس بعده سقماً أبداً، اللهمّ خذ بيده، اللهمّ احرسه بعينيك التّي لا تنام،
+                    واكفه بركنك الّذي لا يرام، واحفظه بعزّك الّذي لا يُضام، واكلأه في الّليل وفي النّهار، وارحمه بقدرتك عليه، أنت
+                    ثقته ورجاؤه، يا كاشف الهم، يا مُفرج الكرب، يا مُجيب دعوة المُضطرين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ ألبسه ثوب الصحّة والعافية عاجلاً غير آجل يا أرحم الراحمين، اللهمّ اشفه، اللهمّ اشفه،
+                    اللهمّ اشفه، اللهمّ آمين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">بسم الله أرقيك من وساوس الصّدر وشتات الأمر، من الأمراض والأوهام، ومن نزغات الشّيطان ومن
+                    الأسقام، ومن الكوابيس ومن مزعجات الأحلام.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">أعوذ بالله السميع العليم من الشيطان الرجيم من نفخه ونفثه وهمزه.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ إنّا نسألك بكلّ اسمٍ لك أن تشفيه.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">يا إلهي، اسمك شفائي، وذكرك دوائي، وقربك رجائي، وحبّك مؤنسي، ورحمتك طبيبي ومعيني في الدّنيا
+                    والآخرة، وإنّك أنت المعطي العليم الحكيم.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">بسم الله أرقي نفسي من كلّ شيء يؤذيني، ومن شر كلّ نفس أو عين حاسد، بسم الله أرقي نفسي الله
+                    يشفيني، ما شاء الله كان، وما لم يشأ لم يكن، ولا حول ولا قوة إلّا بالله، أسأل الله العظيم رب العرش العظيم أن
+                    يشفيك ويشفي مرضى المسلمين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم بعدد من سجد وشكر، نسألك أن تشفي كل مريض شفاءً لا يغادر سقماً، وتعوضهم خيراً عن كل لحظة
+                    وجع وألم، اللهم رد كل مريض إلى أهله سالماً معافاً من كل أذى أو ضر.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم يا سامع دعاء العبد إذا دعاك، يا شافي المريض بقدرتك، اللهم اشفه شفاء لا يغادر سقماً،
+                    اللهم ألبسه لباس الصحة والعافية يارب العالمين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم ألبسنا ثوب الصحة والعافية عاجلاً غير آجل، وشافِنا وعافِنا واعف عنا، واشملنا بعطفك
+                    ومغفرتك، وتولنا برحمتك يا أرحم الراحمين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اشف مرضانا ومرضى المسلمين شفاءً لا يغادر سقماً، اللهم يا من تعيد المريض لصحته، وتستجيب
+                    دُعاء البائس، اشف كل مريض.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم يا مسهّل الشديد، ويا مليّن الحديد، ويا منجز الوعيد، أخرج مرضانا ومرضى المسلمين من حلق
+                    الضيق إلى أوسع الطريق، بك أدفع عن المسلمين ما لا يطيقون، ولا حول ولا قوة إلا بالله العلي العظيم.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">الحمد لله الّذي لا إله إلّا هو، وهو للحمد أهل وهو على كلّ شيءٍ قدير، وسبحان الله ولا إله
+                    إلّا الله والله أكبر، ولا حول ولا قوّة إلّا بالله.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم نسألك بصفاتك العليا التي لا يقدر أحد على وصفها، وبأسمائك الحسنى التي لا يقدر أحد أن
+                    يحصيها، وأسألك بذاتك الجليلة ووجهك الكريم أن تشفي كل مريض، وتعافيه بحولك وقوتك.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">أفوض أمري إلى الله، والله بصير بالعباد، لا إله إلا أنت سبحانك إني كنت من الظالمين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">ربنا الله الذي في السماء، تقدّس اسمك، أمرك في السماء والأرض، كما رحمتك في السماء، اجعل رحمتك
+                    في الأرض، اغفر لنا خطايانا، أنت رب الطيبين، أنزل رحمة من رحمتك، وشفاءً من شفائك على هذا الوجع فيبرأ.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">يا مُفرّج الكرب يا مُجيب دعوة المُضطرين، اللهم ألبس كل مريض ثوب الصحة والعافية عاجلاً غير
+                    آجل يا أرحم الراحمين، اللهم اشفه، اللهم اشفه، اللهم اشفه، اللهم آمين.</div>
+            </div>
+        </div>
+
+        <a href="#" class="azkar-title" onclick="toggleSurah(event,'s6')">ادعية لطلب الزواج</a>
+        <div class="content" id="s6">
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ إنّي أريد أن أتزوّج فقدّر لي من الرّجال أعفّهم فرجاً، وأحفظهم لي في نفسي ومالي،
+                    وأوسعهم رزقاً، وأعظمهم بركةً، وقدّر لي ولداً طيّباً، تجعل له خلقاً صالحاً في حياتي ومماتي.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ زوّجني رجلاً صالحاً تقرّ به عيني، وتقرّ بي عينه، يا ذا الجلال والإكرام.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ يا مسخّر القويّ للضّعيف، ومسخّر الشّياطين، والجنّ، والرّيح، لنبيّنا سليمان، ومسخّر
+                    الطّير والحديد لنبيّنا داود، ومسخّر النّار لنبيّنا إبراهيم، اللهمّ سخّر لي زوجاً يخافك يا ربّ العالمين بحولك،
+                    وقوّتك، وعزّتك، وقدرتك، أنت القادر على ذلك وحدك لا شريك لك، اللهمّ يا حنّان، يا منّان، يا ذا الجلال والإكرام، يا
+                    بديع السّماوات والأرض، يا حيّ يا قيّوم.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ إنّي أسألك بخوفي من أن أقع في الحرام، وبحفظي لجوارحي، وأسألك يا ربّ بصالح أعمالي، أن
+                    ترزقني زوجاً صالحاً يعينني في أمور ديني ودنياي، فإنّك على كلّ شيءٍ قدير.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ اغفر ذنبي، وحصّن فرجي، وطهّر قلبي، اللهمّ ارزقني بالزّوج الّذي هو خيرٌ لي، وأنا خيرٌ
+                    له، في ديننا، ودنيانا، ومعاشنا، وعاقبة أمرنا، عاجله وآجله.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ يا دليل الحائرين، ويا رجاء القاصدين، ويا كاشف الهم، ويا فارج الغمّ، اللهمّ زوّجنا،
+                    واغننا بحلالك عن حرامك، يا الله، يا كريم، يا ربّ العرش المجيد، ارحمنا برحمتك يا أرحم الرّاحمين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ إنّي أسألك باسمك الأعظم، الذي إذا سألك به أحد أجبته، وإذا استغاثك به أحد أغثته، وإذا
+                    استنصرك به أحد استنصرته، أن تزوّجني يا رب، يا أرحم الرّاحمين، يا ذا الجلال والإكرام.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ إنّي أسالك بدعاء ذي النّون يوم دعاك في ظلماتٍ ثلاث: ظلمة الليل، وظلمة البحر، وظلمة
+                    بطن الحوت، فاستجبت له وأنجيته، لا إله إلّا أنت سبحانك إنّي كنت من الظّالمين، لا إله إلّا أنت سبحانك إنّي كنت من
+                    الظّالمين، لا إله إلّا أنت سبحانك إنّي كنت من الظّالمين، اللهمّ ارزقني الزّوج الّذي يخافك، برحمتك يا أرحم
+                    الرّاحمين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ ارزقني بزوجٍ صالح، تقيّ، هنيّ، عاشقٍ لله ورسوله، ناجحٍ في حياته، أكون قرّة عينه
+                    وقلبه، ويكون قرّة قلبي وعيني.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إنّي أسألك بخوفي من أن أقع بالحرام، وبحفظي لجوارحي، وأسألك يا ربّ بصالح أعمالي أن
+                    ترزقني زوجاً صالحاً يعينني في أمور ديني ودنياي فإنّك على كلّ شيء قدير، اللهمّ اغفر ذنبي وحصن فرجي، وطهّر قلبي،
+                    اللهمّ ارزقني بالزّوج الذي هو خير لي وأنا خيرٌ له في ديننا ودنيانا ومعاشنا وعاقبة أمرنا عاجله وآجله، اللهمّ إنّي
+                    أعوذ بك من بواري وتأخّر زواجي وبطئه وقعودي، وأسألك أن ترزقني خيراً ممّا أستحقّ كزوج وممّا آمل، وأن تقنعه وأهله
+                    بي وتقنعني وأهلي به.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ يا مطلع على جميع حالاتنا اقضِ عنّا جميع حاجاتنا، وتجاوز عن جميع سيّئاتنا وزلّاتنا،
+                    وتقبّل جميع حسناتنا وسامحنا، ونسألك ربّنا سبيل نجاتنا في حياتنا ومعادنا، اللهمّ يا مجيب الدّعاء، يا مغيث
+                    المستغيثين، يا راحم الضّعفاء أجب دعوتنا، وعجّل بقضاء حاجاتنا يا أرحم الرّاحمين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ ارزقني الزّوجة الصّالحة التي إن أمرتها أطاعتني، وإن نظرت إليها سرّتني، وإن أقسمت
+                    عليها أبرتني، وإن غبت عنها حفظتني في نفسها ومالي.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم سخّر لي زوج كما سخرت البحر لسيدنا موسى عليه السلام، وألن لي قلبه كما ألنت الحديد
+                    لداوود عليه السلام، فإنه لا ينطق إلا بإذنك، ناصيته في قبضتك وقلبه في يديك تصرفها كيف شئت.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللّهم إنه ليس في السماوات دورات، ولا في الأرض غمرات، ولا في الشجر ورقات، ولا في الأجسام
+                    حركات، ولا في العيون لحظات، ولا في النفوس خطرات، ولا في البحار قطرات، إلا وهي بك عارفات، ولك مشاهدات وعليك
+                    دالات، وبك والهات وفي ملكك متحيرات، فبالقدرة التي سخرت بها أهل السماوت والأرض، سخر لي قلب زوجي إنك على كل شيء
+                    قدير وبالاجابة جدير.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم مالك الملك، تؤتي الملك من تشاء، بيدك الخير إنّك على كلّ شيء قدير، رحمن الدّنيا والآخرة
+                    ورحيمهما، تعطيهما من تشاء، وتمنع منهما من تشاء، ارحمني رحمةً تغنيني بها عن رحمة من سواك، وازرقني زواجًا قريبًا
+                    يكون لنفسي طمأنينة وسكن.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ إنّي أسألك باسمك العليم إنّك عالمٌ بحالي، فبرحمتك يا رب يا رب يا رب زوّجني برجلٍ صالح
+                    يستر عليّ، ويكون قرّة عينٍ لي وأكون قرّة عينٍ له.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم ارزقني زوجاً صالحاً واجعل بيننا من المودة والرحمة أفضلها، وارزقنا الصبر والحلم أكمله،
+                    واجعلنا على منابر من نور، وأسعدني معه وبقربه في الدنيا وفي جنة السرور، واهدنا يا الله لما فيه الخير والصلاح،
+                    وارحمنا برحمتك يا أرحم الراحمين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم بلطيف صنعك في التسخير وخفي لطفك في التيسير الطف بي ويسّر لي أمر الزواج وتمّمه بخير
+                    ولطف، واصرف عني السوء والشر إنك على كل شيء قدير.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ إنّك تقدر ولا أقدر، وتعلم ولا أعلم، وأنت علّام الغيوب والقادر، اللهمّ إن كنت تعلم أنّ
+                    في فلان (فلانة) خيراً فزوّجنيه واقدره لي، وإن كان في غيره خير لي في ديني ودنياي وآخرتي فاقدره لي.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم ارزقني بزوج صالح تقي نقي هني عاشقاً لله ورسوله ناجح في حياته، أكون قرة عينه وقلبه
+                    ويكون قرة عيني وقلبي، اللهم ياجامع الناس ليوم لاريب فيه، اجمع بيني وبين زوج غني بدينه وأخلاقه وماله، فيسعدني
+                    ويفرح قلبي، يا من أمره بين الكاف والنون وإذا أراد شيئاً قال له كن فيكون ارزقني بزوج صالح وذرية صالحة تقر بهم
+                    العيون.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ أظهر محاسني له وأظهر محاسنه لي، واستر عيوبي عنه واستر عيوبه عنّي.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ ارزقني زوجاً واجعله حبيباً حليماً كريماً هيّناً ليّناً معي، اللهمّ اجعله أباً لي في
+                    الحنان، وأخاً لي في الطّاعة، وحبيباً في الفراش، واجعلني أمّاً له في الحنان، وأختاً له في الطّاعة، وحبيبةً له في
+                    الفراش.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ يا مؤلّف القلوب اجمعني بزوجي وألّف بين قلبي وقلبه على محبّتك وطاعتك، اللهمّ اجعلني
+                    نوراً بين عيني زوجي، اللهمّ ارزقني حبّه وارزقه حبّي وارزقنا حبّ وجهك الكريم وطاعتك، اللهمّ اجعلني نوراً بين
+                    عينيه، اللهمّ اعصم قلبه عن المعاصي.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم ارزقني زوجاً صالحاً عابداً واجعله قرة عين لي واجعلني قرة عين له، اللهم أرضه عني وأرضني
+                    عنه، اللهم وازرع محبته في قلبي وازرع محبتي في قلبه، اللهم اجعلني في عينيه أجمل من الحور العين، اللهم اجعل ريحي
+                    عليه عطراً، وريقي عليه عسلاً، وضمتي إليه أحب إليه من الدنيا وما فيها إلا منك يا ذا العزة والجبروت، ومن كتابك،
+                    ونبيك، ودينك، اللهم اجعلني عوناً له على طاعتك واجعله عوناً لي، اللهم اجعله حنوناً عطوفاً حليماً رحيماً كريماً
+                    بماله وعواطفه، اللهم ارزقني معه التوفيق والسعادة والذرية الصالحة، اللهم اشرح صدور أهله لي، واشرح صدري لهم،
+                    وسددني اللهم في كل أفعالي وأقوالي بحولك وقوتك.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ اغفر ذنبه وطهّر قلبه وحصّن فرجه، اللهمّ سخّره لي، وسخّرني له، اللهمّ جمّله في نظري،
+                    وجمّلني في نظره، يا ذا الجلال والإكرام.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">يا رب يا حي يا قيوم أسألك بكل اسم سميت به نفسك، أو أنزلته في كتابك أو علمته أحد من خلقك أو
+                    استأثرت به في علم الغيب عندك، أن ترزقني زوجاً يخافك يا أرحم الراحمين، وأسألك من خيرك أكثر مما أستحق، اللهم عظمني
+                    في قلبه، واجعلني ماء عينه، ودم قلبه، ودفء حياته، وأسعدني ولا تشقيني معه يا أرحم الراحمين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ ارزقني بالزّوج الذي هو خير لي وأنا خيرٌ له في ديننا ودنيانا ومعاشنا وعاقبة أمرنا
+                    عاجله وآجله، اللهمّ إنّي أعوذ بك من بواري وتأخّر زواجي وبطئه وقعودي، وأسألك أن ترزقني خيراً ممّا أستحقّ كزوج
+                    وممّا آمل، وأن تقنعه وأهله بي وتقنعني وأهلي به.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ إليك أشكو ضعف قوّتي، وقلة حيلتي، وهواني على الناس، يا ربّ العالمين، أنت ربّ
+                    المستضعفين، وأنت أرحم الرّاحمين، وأنت ربي، إلى من تكلني إلى بعيد يتجهمني أم عدو ملّكته أمري؟ إن لم يكن بك غضب
+                    عليَّ فلا أبالي غير أنّ عافيتك هي أوسع لي، أعوذ بنور وجهك الذي أشرقت له الظّلمات، وصَلُح عليه أمر الدّنيا و
+                    الآخرة، أن يحلَّ عليّ غضبك، أو أن ينزل بي سخطك، لك العُتبى حتّى ترضى.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ بحقّ قولك: (وَاللَّـهُ يَرْزُقُ مَن يَشَاءُ بِغَيْرِ حِسَابٍ)، وبحقّ قولك: (إِنَّ
+                    اللَّـهَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ)، وقولك الحقّ: (بَدِيعُ بَدِيعُ السَّمَاوَاتِ وَالْأَرْضِ وَإِذَا قَضَىٰ
+                    أَمْرًا فَإِنَّمَا يَقُولُ لَهُ كُن فَيَكُونُ)، اللهمّ اجمع بيننا بالحق، وافتح بيننا بالحق، وأنت الفتّاح العليم،
+                    وقولك: (وَاللَّـهُ جَعَلَ لَكُم مِن أَنفُسِكُم أَزواجًا وَجَعَلَ لَكُم مِن أَزواجِكُم بَنينَ وَحَفَدَةً)، ارزقني
+                    زوجاً تقرّ به عيني وتقرّ بي عينه.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إني عبدك، وابن عبدك وابن أمتك، ناصيتي بيدك، ماضٍ في حكمك، عدلٌ في قضاؤك، أسألك بكل اسم
+                    هو لك سميت به نفسك أو أنزلته في كتابك أو علمته أحدًا من خلقك، أو استأثرت به في علم الغيب عندك، أن تجعل القرآن
+                    ربيع قلبي، ونور صدري، وجلاء حزني، وذهاب همي، اللهم يسر أمري واشرح صدري وارزقني الزواج عاجلًا غير آجل.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ إني أعوذ بك من تأخّر الزواج وبطئه، وأسألك أن ترزقني خيراً ممّا أستحق.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ إنّك تقدر ولا أقدر، وتعلم ولا أعلم، وأنت علّام الغيوب والقادر، اللهمّ إن كنت تعلم أنّ
+                    في فلان (فلانة) خيراً فزوّجنيه واقدره لي، وإن كان في غيره خير لي في ديني ودنياي وآخرتي فاقدره لي.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ يا مطلع على جميع حالاتنا اقضِ عنّا جميع حاجاتنا، وتجاوز عن جميع سيّئاتنا وزلّاتنا،
+                    وتقبّل جميع حسناتنا وسامحنا، ونسألك ربّنا سبيل نجاتنا في حياتنا ومعادنا، اللهمّ يا مجيب الدّعاء، يا مغيث
+                    المستغيثين، يا راحم الضّعفاء أجب دعوتنا، وعجّل بقضاء حاجاتنا يا أرحم الرّاحمين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ يا دليل الحائرين، ويا رجاء القاصدين، ويا كاشف الهم، ويا فارج الغم، اللهمّ زوّجنا
+                    واغننا بحلالك عن حرامك يا الله يا كريم يا ربّ العرش المجيد ارحمنا برحمتك يا أرحم الرّاحمين، اللهمّ إنّي أسألك
+                    باسمك العليم إنّك عالمٌ بحالي، فبرحمتك يا رب يا رب يا رب زوّجني برجلٍ صالح يستر عليّ، ويكون قرّة عينٍ لي وأكون
+                    قرّة عينٍ له.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمّ إنّي أسالك بدعاء ذي النّون يوم دعاك في ظلماتٍ ثلاث: ظلمة الليل، وظلمة البحر، وظلمة
+                    بطن الحوت فاستجبت له وأنجيته، لا إله إلّا أنت سبحانك إنّي كنت من الظّالمين، لا إله إلّا أنت سبحانك إنّي كنت من
+                    الظّالمين، لا إله إلّا أنت سبحانك إنّي كنت من الظّالمين، اللهمّ ارزقنا الزّوج الذي يخافك، ولا يعذّبني برحمتك يا
+                    أرحم الرّاحمين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">أنت الأوّل فليس قبلك شيء، وأنت الآخر فليس بعدك شيء، وأنت الظّاهر فليس فوقك شيء، وأنت الباطن
+                    فليس دونك شيء، يسر لي أمري وارزقني زواجًا قريبًا يا الله.</div>
+            </div>
+        </div>
+
+        <a href="#" class="azkar-title" onclick="toggleSurah(event,'s7')">دعاء للوالدين</a>
+        <div class="content" id="s7">
+        <div class="azkar-item">
+            <div class="azkar-text">اللهم لا تجعل لوالديّ ذنبًا إلا غفرته، ولا همًا إلا فرجته، ولا حاجةً من حوائج الدنيا هي لك
+                رضًا ولهما فيها صلاح إلا قضيتها، اللهم ولا تجعل لهما حاجة عند أحد غيرك.</div>
+        </div>
+        <div class="azkar-item">
+            <div class="azkar-text">اللهم اغفر لأمي وأبي وارحمهما كما ربياني صغيـرًا، اللهم يا باسط اليدين بالعطايا، ابسط على
+                والديّ من فضلك العظيم وجودك الواسع ما تشرح به صدرهما لعبادتك وطاعتك والأنس بك والعمل بما يرضيك، وبارك لهما في
+                عمرهما بركةً تهنئهما بها في معيشتهما، وتلبسهما بها ثوب العافية في قلبهما وروحهما وعقلهما وجسدهما، وأغنهما من
+                فضلك، وأعنهما في حلّهما وترحالهما وذهابهما وإيابهما، وأطل في عمرهما مع العافية في صحتهما ودينهما، واجعل اللهم
+                آخر كلامهما من الدنيا لا إله إلا الله محمد رسول الله.</div>
+        </div>
+        <div class="azkar-item">
+            <div class="azkar-text">اللهم إنّك كريم عفو تحب العفو فاعف عن والداي، اللهم اجعل أبي وأمي ممن تقول لهما النار: اعبرا
+                فإنّ نوركما أطفأ ناري، وتقول لهما الجنة: أقبلا فقد اشتقت إليكما قبل أن أراكما، اللهم اجعلهما في ضمانك وأمانك
+                وإحسانك.</div>
+        </div>
+        <div class="azkar-item">
+            <div class="azkar-text">اللهم يا من قلت وقولك الحق: "وبالوالدين إحسانا" إنا نسألك رضاك ثم رضا الوالدين، اللهم اغفر
+                لوالدينا، وارحم والدينا، وتجاوز عن والدينا الأحياء منهم والأموات، اللهم اجعلنا من أحب الناس إلى والدينا، ومِن
+                أقرب الأبناء لهما، وأكرمنا بحسن السؤال لهما والحرص عليهما، اللهم لا تشغلنا عنهم لا بمال ولا بزوجات ولا بأولاد،
+                اللهم ارزقنا برهم في حياتهم وبعد وفاتهم.</div>
+        </div>
+        <div class="azkar-item">
+            <div class="azkar-text">اللهمَّ اغفر لوالديّ جميع ما مضى من ذنوبهم، واعصمهما فيما بقي من عمرهم، وارزقهما عملًا زكيًا
+                ترضى به عنهما.</div>
+        </div>
+        <div class="azkar-item">
+            <div class="azkar-text">اللهم ارزق والدي الجنة بلا حساب ولا سابق عذاب.</div>
+        </div>
+        <div class="azkar-item">
+            <div class="azkar-text">اللهم اجعل والديّ من الضاحكين المستبشرين الغارسين من ثمار جنتك الشاربين من حوض نبيّك
+                والمحظوظين بشفاعتك يا أرحم الراحمين.</div>
+        </div>
+        <div class="azkar-item">
+            <div class="azkar-text">اللهم اجزِ أمي وأبي بكل دقيقة مرّت عليهما في مرضهما وعلى كل ألم وتعب أصابهما رفعةً في الجنة،
+                يا رب اجعل الفردوس الأعلى دارهما ومستقرّهما ومسكنهما، واجمعنا بهم يا رب، واستجب هذا الدعاء لأمي وأبي يا رب.
+            </div>
+        </div>
+        <div class="azkar-item">
+            <div class="azkar-text">اللهم ارزق والديّ الجنة وما يقربهما إليها مِن قول أو عمل، وباعد بينها وبين النار وبين ما
+                يقرّبهما إليها مِن قولٍ أو عمل، اللهم اجعلهما من الذاكرين لك، الشاكرين لك، الطائعين لك اللهم أسعدهما بتقواك.
+            </div>
+        </div>
+        <div class="azkar-item">
+            <div class="azkar-text">اللهم أقر أعين والديّ بما يتمنياه لنا في الدنيا، اللهم اجعل أوقاتهما بذكرك معمورة، اللهم
+                أسعدهما بتقواك، اللهم أرزقهما عيشًا قارًّا، ورزقًا دارًّا وعملًا بارًّا.</div>
+        </div>
+        <div class="azkar-item">
+            <div class="azkar-text">اللهم يا ذا الجلال والإكرام يا حي يا قيوم ندعوك باسمك الأعظم الذي إذا دعيت به أجبت، أن تبسط
+                على والديّ من بركاتك ورحمتك ورزقك، اللهم ألبسهما العافية حتى يسعدا بمعيشتها، واختم لهما بالمغفرة حتى لا تضرهما
+                الذنوب، اللهم اكفهما كل هول دون الجنة، حتى يبلغاها برحمتك يا أرحم الراحمين.</div>
+        </div>
+        <div class="azkar-item">
+            <div class="azkar-text">اللهم اجعل أوسع رزق والدي عند كبر سنهما، اللهم واغفر لهما جميع ما مضى من ذنوبهما، واعصمهما
+                فيما بقي من عمرهما، وارزقهما عملاً زاكياً ترضى به عنهما، اللهم تقبل توبتهما وأجب دعوتهما، اللهم إنا نعوذ بك أن
+                تردهما إلى أرذل العمر، اللهم واختم بالحسنات أعمالهما، اللهم وأعنا على برهما، حتى يرضيا عنا فترضى، اللهم أعنا على
+                الإحسان إليهما في كبرهما.</div>
+        </div>
+        <div class="azkar-item">
+            <div class="azkar-text">اللهم أرضي والدينا علينا، اللهم لا تتوفّاهما إلا وهما راضيان عنا تمام الرضا، اللهم وأعنا على
+                خدمتهما كما ينبغي لهما علينا، اللهم اجعلنا بارّين طائعين لهما، اللهم ارزقنا رضاهما، ونعوذ بك من عقوقهما، اللهم
+                ارزقنا رضاهما، ونعوذ بك من عقوقهما، اللهم ارزقنا رضاهما، ونعوذ بك من عقوقهما. اللهم اغفر لجسد حَمَلَنَا تسعة
+                أشهر وهن على وهن، وفرّقت عظامه وتشقق جلده، فحرمناه الراحة والنوم، وامتصصنا من عافيته ما يكفي لأمراضه، ثم خرجنا
+                منه بشق الأنفس ربي بارك بوالداتي. اللهم لا تجعلنا ممن يعقّون فنعق، أو ممن يهجرون فنهجر، اللهم وفّقنا ووفّق
+                أزواجنا وأولادنا لبرّ والدينا وارزق والدينا حب أزواجنا وأولادنا، اللهم مَن كان بين والدينا مهمومًا ففرّج همه،
+                ومن كان منهم مديونًا ففكّ دينه، ومن كان منهم مريضًا، فرد إليه عافيته، اللهم اجعل والدينا من أسعد السعداء، اللهم
+                لا تجمع لهم بين حزن الدنيا وشقاء الآخرة برحمتك يا أرحم الراحمين، اللهم رحماك يالله وارزقنا وإيهام حسن الخاتمة،
+                اللهم لا تحزنا بوالدينا، اللهم اجعلنا ذخرًا لوالدينا يا رب العالمين بعد وفاتهم بصلاحنا وصلاتنا وصدقاتنا، اللهم
+                وأقر أعينهما بما يتمنياه لنا في الدنيا. اللهم تقبل توبة والدي وأجب دعوتهما، اللهم إنا نعوذ بك أن تردهما إلى أرذل
+                العمر، اللهم واختم بالحسنات أعمالهما، اللهم اجعل أمي وأبي من السبعين ألفاً الذين يدخلون الجنة بلا حساب ولا عذاب.
+            </div>
+        </div>
+        <div class="azkar-item">
+            <div class="azkar-text">اللهم اجعل أمي وأبي في ضمانك وأمانك وإحسانك. اللهم اجعل والديّ من الذاكرين لك الشاكرين لك
+                الطائعين لك المنيبين لك. اللهم احفظ والديّ بحفظك، ولا تريني فيهما مكروهًا. اللهم اجعل والديّ من أهل الجنة، وحم
+                أجسادهم عن النار. ربي أكرم والديّ في الدنيا والآخرة. ربي آتي أمي وأبي ثواب الدنيا وحسن ثواب الآخرة. ربي أغني
+                والديك من فضلك العظيم، وأكرمهم يا عزيز يا كريم.</div>
+        </div>
+        <div class="azkar-item">
+            <div class="azkar-text">اللهم اجعل أبي سيدًا من أسياد الجنّة واجعل أمي سيدةً من سيدات الجنة، اللهم واجعل الحوض
+                موردًا لهما، والرسول شافعًا لهما، واجعل ظلّك ظلًا لهما، والسندس لباسًا لهما. اللهم إنّ والديّ قد أحسنا إلي منذ
+                يوم ولادتي حتى يوم فراقهما؛ فاللهم بحق هذا الإحسان ارحمهما واغفر لهما وأدخلهما الجنة برحمتك يا أرحم الراحمين.
+                اللهم اغفر لوالديّ وأرحمهما، وعافهما واعف عنهما وأكرم نزلهما، ووسّع مدخلهما واغسلهما بالماء والثلج والبرد،
+                ونقّهما من الخطايا كما ينقّى الثوب الأبيض من الدنس، وأبدلهما دارًا خيرًا من دارهما، وأهلًا خيرًا من أهلهما،
+                وأدخلهما الجنة بغير حساب، وأعذهما من عذاب القبر، اللهم واجعل قبرهما روضةً من رياض الجنة، ولا تجعله حفرةً من حفر
+                النار، اللهم مد لهما في قبرهما مد بصرهما، اللهم أنزل على قبرهما الضياء والنور والفسحة والسرور، اللهم أفسح لهما
+                في قبرهما، ونوّر لهما فيه برحمتك يا أرحم الرحمين.</div>
+        </div>
+        </div>
+
+        <a href="#" class="azkar-title" onclick="toggleSurah(event,'s8')">أدعية الهداية</a>
+        <div class="content" id="s8">
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إني أسألك باسمك الأعظم الذي إذا دعيت به أجبت، وإذا سألت به أعطيت، أن تهدني هداية لا
+                    يعقبها ضلال.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">يا الله يا الله يا الله أدعوك وأنا متضرع، أن ترزقني الهداية وتصلح حالي. اهدني إلى سبيل
+                    الرشاد يا الله، اللهم اهدني اللهم اهدني اللهم اهدني.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إني سلمت أمري إليك، ووجهت وجهي إليك، رغبةً في هدايتك، فالّلهم اهدني.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إني أدعوك خوفًا منك، وطمعًا في كرمك، أن تجعلني صالحًا، وترضى عني وتهدِني.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">يا الله كرّهني بكل عمل يغضبك، واهدني لفعل ما يرضيك عني.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم خذ بيدي، واجعلني من المهتدين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اجعلني ممن يسارع لفعل الخيرات، وارزقني الهداية.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم ثبتني على طاعتك، وانظر إليّ بعين رحمتك، واهدني سبيلك.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم يا مقلب القلوب، ثبت قلبي على طاعتك، وارزقني هدايتك.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اجعل لي في كل خطوة هداية ورحمة.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إني أسألك هداية ترد بها الفتن عنا، وتصلح بها حالنا.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اجعل ألسنتنا عامرة بذكرك، وقلوبنا بخشيتك، واهدنِا.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اجعلنا ممن نظرت إليه فرحمته، وسمعت دعاءه فأجبته، ورأيته ضالًا فهديته.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اهدِني وسدد خطاي، واجعل لي من لدنك سلطانًا نصيرًا.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إني أسألك رحمةً من عندك، تهدي بها قلبي، وتسعد بها حياتي.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إني أسألك الجنة وما قرب إليها من قول أو عمل، وأعوذ بك من النار وما قرب إليها من قول أو
+                    عمل، وأسألك الهداية والصلاح.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">أسألك يا الله بكل اسم هو لك، سميت به نفسك، أو علّمته أحدًا من خلقك، أو استأثرت به في علم
+                    الغيب عندك، أن تهدِني إلى صراطك المستقيم.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم خذ بيدي، واهدِني إلى الصراط المستقيم وقوّمني إذا اعوججت.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">يا الله يا كريم، أرشدني إلى صراطك المستقيم.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إني فوضت أمري إليك، اللهم أعنّي، وساعدني، واهدني إلى صراطك المستقيم.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">يا الله إني أرجوك، وأتوسل إليك، أن تهديني إلى الصراط المستقيم.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إني أسألك سؤال المضطر، أن تهدِني إلى الصراط المستقيم، وتنجيني من كل عمل يغضبك.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اهدِني إلى صراطك المستقيم، واجعلني من التوابين والمتطهرين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم ثبّتني واهدِني إلى صراطك المستقيم.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إني أسألك أن تهدِ سمعي وبصري وفؤادي إلى الصراط المستقيم.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم يا وهاب، هبني هدايةً إلى صراطك المستقيم.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">أسألك يا الله أن ترشدني إلى صراطك المستقيم، وترضى عني.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">يا الله يا ذا الجلال والإكرام، أكرمني بالهداية إلى الطريق المستقيم.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اجعل عملي خالصاً لوجهك الكريم واهدِني صراطك المستقيم.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اغفر للمسلمين والمسلمات، والمؤمنين والمؤمنات، واهدهم إلى الطريق الصحيح.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">يا الله يا رحمن ارزق المسلمين والمسلمات هدايةً من عندك تقربهم منك، وتبعدهم عن معصيتك.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم كن عونًا لمن يطلب رحمتك ومغفرتك من المسلمين والمسلمات، واهدهم وثبت قلوبهم على طاعتك.
+                </div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">يا رب قوِّم من ضلّ عن سبيلك من المسلمين والمسلمات وخذ بأيديهم واهدِهم.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اهدِ المسلمين والمسلمات هدايةً تنجيهم من المعاصي والذنوب.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم خذ بأيدي المسلمين والمسلمات واجعلهم من الصالحين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إني أسألك التقى والعفاف والهداية لجميع المسلمين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">يا الله أكرم المسلمين والمسلمات بالهداية والثبات على طاعتك.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إني أدعوك باسمك الأعز الأكرم الذي إذا دُعيتَ به أجبت أن تهدِ قلوب المسلمين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم يا عزيز يا جبار اجعل عيون المسلمين تخشع من تقواك، واهدهم هدايةً لا يضلّون بعدها أبداً.
+                </div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم يا كريم اهدِ المسلمين والمسلمات، وارزقهم حب الطاعات والدوام عليها.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اشرح صدور المسلمين واهدِهم سبيل الرشاد.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">يا الله يا بديع السماوات والأرض، أسألك الهداية لجميع المسلمين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">ربنا يا مالك الملك، اشرح صدور المسلمين واهدِهم أجمعين.</div>
+            </div>
+        </div>
+
+        <a href="#" class="azkar-title" onclick="toggleSurah(event,'s9')">أدعية لراحة البال</a>
+        <div class="content" id="s9">
+            <div class="azkar-item">
+                <div class="azkar-text">لا إلهَ إلا اللهُ العظيمُ الحليمُ لا إلهَ إلا اللهُ ربُّ العرشِ العظيمِ لا إلهَ إلا اللهُ
+                    ربُّ السمواتِ والأرضِ وربُّ العرشِ الكريمِ قال يزيدٌ : ربُّ السمواتِ السبعِ وربُّ العرشِ الكريمِ.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهُ اللهُ ربي، لا أُشركُ به شيئًا.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمَّ إني عبدُك وابنُ عبدِك وابنُ أَمَتِك ناصيتي بيدِك ماضٍ فيَّ حكمُك عَدْلٌ فيَّ قضاؤُك
+                    أسألُك بكلِّ اسمٍ هو لك سميتَ به نفسَك أو أنزلتَه في كتابِك أو علَّمتَه أحدًا مِنْ خلقِك أو استأثرتَ به في علمِ
+                    الغيبِ عندَك أنْ تجعلَ القرآنَ ربيعَ قلبي ونورَ صدري وجلاءَ حُزْني وذَهابَ هَمِّي.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">روي عن أبيّ بن كعب أنّه قال: كان رسولُ اللهِ صلَّى اللهُ عليه وسلَّمَ إذا ذهب ثُلُثَا الليلِ
+                    قام فقال يا أيُّها الناسُ اذكُروا اللهَ اذكروا اللهَ جاءتِ الراجفةُ تَتْبَعُها الرادِفَةُ جاء الموتُ بما فيه جاء
+                    الموتُ بما فيه قال أُبَيٌّ قلْتُ يا رسولَ اللهِ إِنَّي أُكْثِرُ الصلاةَ عليْكَ فكم أجعَلُ لكَ من صلاتِي فقال ما
+                    شِئْتَ قال قلتُ الربعَ قال ما شئْتَ فإِنْ زدتَّ فهو خيرٌ لكَ قلتُ النصفَ قال ما شئتَ فإِنْ زدتَّ فهو خيرٌ لكَ
+                    قال قلْتُ فالثلثينِ قال ما شئْتَ فإِنْ زدتَّ فهو خيرٌ لكَ قلتُ أجعلُ لكَ صلاتي كلَّها قال : إذًا تُكْفَى همَّكَ
+                    ويغفرْ لكَ ذنبُكَ.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمَّ إني أسألُك العفوَ والعافيةَ في الدنيا والآخرةِ اللهمَّ إني أسألُك العفوَ والعافيةَ
+                    في دِيني ودنيايَ وأهلي ومالي اللهمَّ استُرْ عوراتي وآمِنْ روعاتي واحفظني من بين يدي ومن خلفي وعن يميني وعن شمالي
+                    ومن فوقي وأعوذُ بك أن أُغْتَالَ من تحتي.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">دَعَواتُ المَكروبِ: اللَّهمَّ رَحمَتَكَ أرْجو، فلا تَكِلْني إلى نَفْسي طَرْفةَ عَيْنٍ،
+                    أصْلِحْ لي شَأْني كُلَّهُ، لا إلهَ إلَّا أنتَ.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">دعوةُ ذي النُّونِ إذ هوَ في بَطنِ الحوتِ : لَا إِلَهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي
+                    كُنْتُ مِنَ الظَّالِمِينَ.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمَّ إنِّي أسْألُكَ بأنَّ لكَ الحَمدَ لا إلَهَ إلَّا أنتَ، المنَّانُ، بَديعُ السَّمواتِ
+                    والأرْضِ، ذا الجَلالِ والإكْرامِ، يا حَيُّ يا قَيُّومُ، إنِّي أسألُكَ.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">قُلِ اللَّهمَّ اكفِني بحلالِك عن حرامِك واغنِني بفضلِك عمَّن سواك.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهمَّ مالكَ الملكِ تُؤتي الملكَ مَن تشاءُ، وتنزعُ الملكَ ممن تشاءُ، وتُعِزُّ مَن تشاءُ،
+                    وتذِلُّ مَن تشاءُ، بيدِك الخيرُ إنك على كلِّ شيءٍ قديرٌ. رحمنُ الدنيا والآخرةِ ورحيمُهما، تعطيهما من تشاءُ،
+                    وتمنعُ منهما من تشاءُ، ارحمْني رحمةً تُغنيني بها عن رحمةِ مَن سواك.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">ربّ إنيّ أسألك أن تريحَ قلبي وفكري وأن تصرف عني شتات العقل والتفكير، ربّ إنّ في قلبي أموراً
+                    لا يعرفها سواك فحققها لي يا رحيم، ربّ كن معي في أصعب الظروف وأريني عجائب قدرتك في أصعب الأيام.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إنا نسألك زيادة في الدين وبركة في العمر، وصحة في الجسد وسعة في الرزق، وتوبة قبل الموت
+                    وشهادة عند الموت، ومغفرة بعد الموت وعفواً عند الحساب، وأماناً من العذاب ونصيباً من الجنة، وارزقنا النظر إلى وجهك
+                    الكريم.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم يا مسهل الشديد ويا ملين الحديد، ويا منجز الوعيد، ويا من هو كل يوم في أمر جديد، أخرجني
+                    من حلق الضيق إلى أوسع الطريق، بك أدفع ما لا أطيق، ولا حول ولا قوة إلا بالله العلي العظيم.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إليك مددت يدي، وفيما عندك عظمت رغبتي، فاقبل توبتي، وارحم ضعف قوتي، واغفر خطيئتي، واقبل
+                    معذرتي، واجعل لي من كل خير نصيباً، وإلى كل خير سبيلاً برحمتك يا أرحم الراحمين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم أنت الحليم فلا تعجل، وأنت الجواد فلا تبخل، وأنت العزيز فلا تذل، وأنت المنيع فلا ترام،
+                    وأنت المجير فلا تضام، وأنت على كل شيء قدير.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم لا تحرمنا سعة رحمتك، وسبوغ نعمتك، وشمول عافيتك، وجزيل عطائك، ولا تمنع عني هباتك لسوء
+                    ما عندي، ولا تجازني بقبيح عملي، ولا تصرف وجهك الكريم عني برحمتك يا أرحم الراحمين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إني أعوذ بك من فتن الدنيا، اللّهم قوّ إيماني.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم بشرني بالخير كما بشرت يعقوب بيوسف، وبشرني بالفرح كما بشرت زكريا بيحيى.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إني أسألك يا فارج الهم، ويا كاشف الغم، يا مجيب دعوة المضطرين، يا رحمن الدنيا، يا رحيم
+                    الآخرة، ارحمني برحمتك.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم ارزقني الرضى وراحة البال، اللهم لا تكسر لي ظهرًا ولا تصعب لي حاجة ولا تعظم عليّ أمرًا،
+                    اللهم لا تحني لي قامة ولا تكشف لي سترًا.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إن عصيتك جهرًا فاغفر لي، وإن عصيتك سرّاً فاسترني، اللهم لا تجعل مصيبتي في ديني، ولا
+                    تجعل الدنيا أكبر همّي، اللهم لا تجعل ابتلائي في جسدي ولا في مالي ولا في أهلي.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم استر عورتي و اقبل عثرتي، واحفظني من بين يدي ومن خلفي، وعن يميني وعن شمالي، ومن فوقي
+                    ومن تحتي، ولا تجعلني من الغافلين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إني أسألك الصبر عند القضاء، ومنازل الشهداء، وعيش السعداء، والنصر على الأعداء، ومرافقة
+                    الأنبياء، يا رب العالمين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">يا حي يا قيوم، يا نور يا قدوس، يا حي يا الله، يا رحمن اغفر لي الذنوب التي تحل النقم، واغفر
+                    لي الذنوب التي تُورث الندم، واغفر لي الذنوب التي تحبس القِسم، واغفر لي الذنوب التي تهتِك العِصم، واغفر لي الذنوب
+                    التي تقطع الرجاء، واغفر لي الذنوب التي تُعجّل الفناء، واغفر لي الذنوب التي ترد الدعاء، واغفر لي الذنوب التي تمسك
+                    غيث السماء، واغفر لي الذنوب التي تُظلم الهواء، واغفر لي الذنوب التي تكشِف الغِطاء.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إني أسألك، يا فارج الهم، يا كاشف الغم، مجيب دعوة المضطر، رحمن الدنيا والآخرة ورحيمها،
+                    أسألك أن ترحمني برحمةٍ من عندك تُغنني بها عن رحمة من سواك.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللّهم إني أستغفرك لكل ذنب خطوت إليه برجلي أو مددت إليه يدي، أو تأملته ببصري أو أصغيت إليه
+                    بأذني أو نطق به لساني، أو أتلفت فيه ما رزقتني ثم استرزقتك على عصياني فرزقتني ثم استعنت برزقك على عصيانك فسترته
+                    علي وسألتك الزيادة فلم تحرمني ولا تزال عائداً علي بحلمك وإحسانك يا أكرم الأكرمين.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إني أستغفرك من كل سيئة ارتكبتها في بياض النهار وسواد الليل في ملأ وخلاء وسر وعلانية
+                    وأنت ناظر إلي.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم اكشف عني كل بلوى، يا عالِم كل خفية، يا صارف كل بليّة، أغثني، أدعوك دعاء من اشتدت به
+                    فاقته، وضعُفت قوته، وقلت حيلته، دعاء الغريق المضطر، اللهم ارحمني وأغثني، والطف بي، وتداركني بإغاثتك، اللهم بك
+                    ملاذي.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم أتوسل إليك باسمك الواحد، والفرد الصمد، وباسمك العظيم فرج عني ما أمسيت فيه، وأصبحت فيه،
+                    حتى لا يخامر خاطري وأوهامي غبار الخوف من غيرك، ولا يشغلني أثر الرجاء من سواك، أجرني، أجرني، أجرني، يا الله.
+                </div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم يا كاشف الغم والهموم، ومفرج الكرب العظيم، ويا من إذا أراد شيئًا يقول له: كُن فيكون،
+                    رباه رباه أحاطت بي الذنوب والمعاصي، فلا أجد الرحمة والعناية من غيرك، فأمدني بها.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم ربّ جبريل وميكائيل وإسرافيل وعزرائيل، اعصمني من فتن الدنيا ووفقني لما تحب وترضى،
+                    وثبتني بالقول الثابت في الحياة الدنيا وفي الآخرة ولا تضلني بعد إذ هديتني وكن لي عوناً ومعيناً وحافظاً وناصراً.
+                </div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إني أسألك في صلاتي ودعائي بركة تطهر بها قلبي، وتكشف بها كربي، وتغفر بها ذنبي وتصلح بها
+                    أمري، وتغني بها فقري، وتذهب بها شري، وتكشف بها همي وغمي، وتشفي بها سقمي، وتقضي بها ديني، وتجلو بها حزني، وتجمع
+                    بها شملي، وتبيض بها وجهي.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إني أستغفرك من كل فريضة أوجبتها علي في آناء الليل والنهار تركتها خطأ أو عمداً أو
+                    نسياناً أو جهلاً، وأستغفرك من كل سنة من سنن سيد المرسلين وخاتم النبيين سيدنا محمد صلى الله وآله وسلم تركتها غفلة
+                    أو سهواً أو نسياناً أو تهاوناً أو جهلاً أو قلة مبالاة بها، أستغفر الله وأتوب إلى الله مما يكره قولاً وفعلاً
+                    وباطناً وظاهراً.</div>
+            </div>
+            <div class="azkar-item">
+                <div class="azkar-text">اللهم إني أستغفرك لكل ذنب خطوت إليه برجلي أو مددت إليه يدي، أو تأملته ببصري أو أصغيت إليه
+                    بأذني أو نطق به لساني، أو أتلفت فيه ما رزقتني ثم استرزقتك على عصياني فرزقتني ثم استعنت برزقك على عصيانك فسترته
+                    علي وسألتك الزيادة فلم تحرمني ولا تزال عائداً علي بحلمك وإحسانك يا أكرم الأكرمين.</div>
+            </div>
+        </div>
+
+<a href="#" class="azkar-title" onclick="toggleSurah(event,'s10')">أدعية متنوعة</a>
+<div class="content" id="s10">
+        <div class="azkar-item">
+    <div class="azkar-text">رَبِّ اغْفِرْ لي خَطِيئَتي وجَهْلِي، وإسْرَافِي في أمْرِي كُلِّهِ، وما أنْتَ أعْلَمُ به مِنِّي، اللَّهُمَّ اغْفِرْ لي خَطَايَايَ، وعَمْدِي وجَهْلِي وهَزْلِي، وكُلُّ ذلكَ عِندِي، اللَّهُمَّ اغْفِرْ لي ما قَدَّمْتُ وما أخَّرْتُ، وما أسْرَرْتُ وما أعْلَنْتُ، أنْتَ المُقَدِّمُ وأَنْتَ المُؤَخِّرُ، وأَنْتَ علَى كُلِّ شيءٍ قَدِيرٌ</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">اللَّهُمَّ أَصْلِحْ لي دِينِي الذي هو عِصْمَةُ أَمْرِي، وَأَصْلِحْ لي دُنْيَايَ الَّتي فِيهَا معاشِي، وَأَصْلِحْ لي آخِرَتي الَّتي فِيهَا معادِي، وَاجْعَلِ الحَيَاةَ زِيَادَةً لي في كُلِّ خَيْرٍ، وَاجْعَلِ المَوْتَ رَاحَةً لي مِن كُلِّ شَرٍّ</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">اللهمَّ إني عبدُك، وابن عبدِك، وابن أَمَتِك، ناصيتي بيدِك، ماضٍ فيَّ حكمُك، عدلٌ فيَّ قضاؤُك، أسألُك بكلِّ اسمٍ هو لك سميتَ به نفسَك، أو علَّمتَه أحدًا من خلقِك، أو أنزلتَه في كتابِك، أو استأثرتَ به في علمِ الغيبِ عندَك، أن تجعلَ القرآنَ ربيعَ قلبي، ونور صدري، وجلاء حزني، وذهاب همِّي</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">اللَّهُمَّ إنِّي أَعُوذُ بكَ مِنَ العَجْزِ، وَالْكَسَلِ، وَالْجُبْنِ، وَالْبُخْلِ، وَالْهَرَمِ، وَعَذَابِ القَبْرِ، اللَّهُمَّ آتِ نَفْسِي تَقْوَاهَا، وَزَكِّهَا أَنْتَ خَيْرُ مَن زَكَّاهَا، أَنْتَ وَلِيُّهَا وَمَوْلَاهَا، اللَّهُمَّ إنِّي أَعُوذُ بكَ مِن عِلْمٍ لا يَنْفَعُ، وَمِنْ قَلْبٍ لا يَخْشَعُ، وَمِنْ نَفْسٍ لا تَشْبَعُ، وَمِنْ دَعْوَةٍ لا يُسْتَجَابُ لَهَا</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">اللَّهُمَّ أعُوذُ برِضَاكَ مِن سَخَطِكَ، وبِمُعَافَاتِكَ مِن عُقُوبَتِكَ، وأَعُوذُ بكَ مِنْكَ لا أُحْصِي ثَنَاءً عَلَيْكَ أنْتَ كما أثْنَيْتَ علَى نَفْسِكَ</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِن لَّدُنكَ رَحْمَةً</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">رَبَّنَا آتِنَا مِن لَّدُنكَ رَحْمَةً وَهَيِّئْ لَنَا مِنْ أَمْرِنَا رَشَدًا</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِن ذُرِّيَّتِي رَبَّنَا وَتَقَبَّلْ دُعَاءِ</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">اللَّهُمَّ إنِّي أَسْأَلُكَ الهُدَى وَالتُّقَى، وَالْعَفَافَ وَالْغِنَى</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">رَبِّ أَعِنِّي ولا تُعِنْ عليَّ وانصرني ولا تنصر عليَّ وامكَرْ لي ولا تمكُرْ عليَّ واهدني ويَسِّرْ الهُدَى إليَّ وانصرني على من بَغَى عليَّ، ربِّ اجعلني لك شكَّارًا لك ذكَّارًا لك رهَّابًا لك مطواعًا إليك مخبتًا لك أوَّاهًا منيبًا ربِّ تقبل توبَتي، واغسلْ حوبتي وأَجِبْ دعوتي وثَبِّتْ حُجَّتِي واهْدِ قلبي وسَدِّدْ لساني واسْلُلْ سخيمةَ قلبي</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">ربَّنا اغفر لنا ذنوبنا، وكفِّرعنَّا سيِّئاتنا وتوفَّنا مع الأبرار</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">رَّبَّنَا إِنَّنَا سَمِعْنَا مُنَادِيًا يُنَادِي لِلْإِيمَانِ أَنْ آمِنُوا بِرَبِّكُمْ فَآمَنَّا رَبَّنَا فَاغْفِرْ لَنَا ذُنُوبَنَا وَكَفِّرْ عَنَّا سَيِّئَاتِنَا وَتَوَفَّنَا مَعَ الْأَبْرَارِ</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">رَبَّنَا اغْفِرْ لَنَا وَلِإِخْوَانِنَا الَّذِينَ سَبَقُونَا بِالْإِيمَانِ وَلَا تَجْعَلْ فِي قُلُوبِنَا غِلًّا لِّلَّذِينَ آمَنُوا رَبَّنَا إِنَّكَ رَءُوفٌ رَّحِيمٌ</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">اللَّهُمَّ أنْتَ رَبِّي لا إلَهَ إلَّا أنْتَ، خَلَقْتَنِي وأنا عَبْدُكَ، وأنا علَى عَهْدِكَ ووَعْدِكَ ما اسْتَطَعْتُ، أعُوذُ بكَ مِن شَرِّ ما صَنَعْتُ، أبُوءُ لكَ بنِعْمَتِكَ عَلَيَّ، وأَبُوءُ لكَ بذَنْبِي فاغْفِرْ لِي؛ فإنَّه لا يَغْفِرُ الذُّنُوبَ إلَّا أنْتَ</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">رَبِّ اغْفِرْ لي خَطِيئَتي وجَهْلِي، وإسْرَافِي في أمْرِي كُلِّهِ، وما أنْتَ أعْلَمُ به مِنِّي، اللَّهُمَّ اغْفِرْ لي خَطَايَايَ، وعَمْدِي وجَهْلِي وهَزْلِي، وكُلُّ ذلكَ عِندِي، اللَّهُمَّ اغْفِرْ لي ما قَدَّمْتُ وما أخَّرْتُ، وما أسْرَرْتُ وما أعْلَنْتُ، أنْتَ المُقَدِّمُ وأَنْتَ المُؤَخِّرُ، وأَنْتَ علَى كُلِّ شيءٍ قَدِيرٌ</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">اللهمَّ إنِّي ظلمت نفسي ظلمًا كثيرًا ولا يغفر الذُّنوب إلَّا أنت، فاغفر لي مغفرةً من عندك وارحمني إنَّك أنت الغفور الرَّحيم</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">اللَّهُمَّ اغْفِرْ لي ما قَدَّمْتُ وَما أَخَّرْتُ، وَما أَسْرَرْتُ وَما أَعْلَنْتُ، وَما أَسْرَفْتُ، وَما أَنْتَ أَعْلَمُ به مِنِّي، أَنْتَ المُقَدِّمُ وَأَنْتَ المُؤَخِّرُ، لا إلَهَ إلَّا أَنْتَ</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">اللَّهمَّ إنِّي أسألُكَ يا اللَّهُ بأنَّكَ الواحدُ الأحدُ الصَّمدُ، الَّذي لم يَلِدْ ولم يولَدْ ولم يَكُنْ لَهُ كُفُوًا أَحَدٌ، أن تغفِرَ لي ذُنوبي، إنَّكَ أنتَ الغَفورُ الرَّحيمُ</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">اللهم إنا نسألُكَ مُوجِباتِ رحمتِك، وعزائمَ مَغْفِرَتِكَ، والسلامةَ من كلِّ إثمٍ، و الغنيمةَ من كلِّ بِرٍّ، والفوزَ بالجنةِ، والنجاةَ من النارِ</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">يا حيُّ يا قيُّومُ برحمتِكِ أستغيثُ، أصلِحْ لِي شأنِي كلَّهُ، ولا تكِلْنِي إلى نفسِي طرْفةَ عيْنٍ</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">اللَّهُمَّ أَصْلِحْ لي دِينِي الذي هو عِصْمَةُ أَمْرِي، وَأَصْلِحْ لي دُنْيَايَ الَّتي فِيهَا معاشِي، وَأَصْلِحْ لي آخِرَتي الَّتي فِيهَا معادِي، وَاجْعَلِ الحَيَاةَ زِيَادَةً لي في كُلِّ خَيْرٍ، وَاجْعَلِ المَوْتَ رَاحَةً لي مِن كُلِّ شَرٍّ</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">اللَّهمَّ لا سَهلَ إلَّا ما جَعَلتَه سَهلًا، وأنتَ تَجعَلُ الحَزْنَ إذا شِئتَ سَهلًا</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">لا إِله إِلَّا أَنتَ سُبْحَانَكَ إِنِّي كُنتُ مِنَ الظَّالِمِينَ</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">لا إلهَ إلَّا اللهُ العظيمُ الحليمُ، لا إلهَ إلَّا اللهُ ربُّ العالمين ربُّ العرشِ الكريمِ، لا إلهَ إلَّا اللهُ ربُّ السَّماواتِ والأرضِ وربُّ العرشِ العظيمِ</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">اللَّهمَّ رحمتَك أَرجو فلا تَكِلني إلى نَفسِي طرفةَ عينٍ، وأصلِح لي شَأني كلَّه لا إلَه إلَّا أنتَ</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">اللَّهُمَّ مُصَرِّفَ القُلُوبِ صَرِّفْ قُلُوبَنَا علَى طَاعَتِكَ</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">ربِّ اغفِرْ لي خطيئتي يومَ الدِّينَ</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">اللهمَّ إنَّي أعوذُ بك من شرِّ سمْعي، ومن شرِّ بصري، ومن شرِّ لساني، ومن شرِّ قلْبي، ومن شرِّ منيَّتي</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">اللَّهمَّ إني أعوذُ بكَ من مُنكراتِ الأخلاقِ والأعمالِ والأَهواءِ والأدواءِ</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">اللهم انفَعْني بما علَّمتَني وعلِّمْني ما ينفَعُني وزِدْني عِلمًا</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">اللَّهُمَّ اغْفِرْ لي وَارْحَمْنِي وَاهْدِنِي وَارْزُقْنِي</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">اللَّهمَّ إنِّي أعوذُ بِك من شرِّ ما عَمِلتُ، ومن شرِّ ما لم أعمَلْ</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">اللَّهُمَّ إنِّي أَعُوذُ بكَ مِن زَوَالِ نِعْمَتِكَ، وَتَحَوُّلِ عَافِيَتِكَ، وَفُجَاءَةِ نِقْمَتِكَ، وَجَمِيعِ سَخَطِكَ</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">اللَّهُمَّ اهْدِنِي وَسَدِّدْنِي</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">اللَّهُمَّ إنِّي أَسْأَلُكَ الهُدَى وَالتُّقَى، وَالْعَفَافَ وَالْغِنَى</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">كانَ رَسولُ اللَّهِ -صَلَّى اللهُ عليه وسلَّمَ- يَتَعَوَّذُ مِن جَهْدِ البَلَاءِ، ودَرَكِ الشَّقَاءِ، وسُوءِ القَضَاءِ، وشَمَاتَةِ الأعْدَاءِ</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">اللَّهُمَّ إنِّي أعُوذُ بكَ مِنَ العَجْزِ والكَسَلِ، والجُبْنِ والبُخْلِ والهَرَمِ، وأَعُوذُ بكَ مِن عَذابِ القَبْرِ، وأَعُوذُ بكَ مِن فِتْنَةِ المَحْيا والمَماتِ</div>
+</div>
+<div class="azkar-item">
+    <div class="azkar-text">اللَّهُمَّ آتِنَا في الدُّنْيَا حَسَنَةً وفي الآخِرَةِ حَسَنَةً، وَقِنَا عَذَابَ النَّارِ</div>
+</div>
+</div>
+    </div>
+</section>
+
+
+
+<footer style="background: #121212; padding: 20px; text-align: center; font-family: 'Arial', sans-serif;">
+  <a href="https://moaaz-testing.netlify.app/" target="_blank" style="color: #555; text-decoration: none; font-size: 14px; transition: all 0.3s ease;">
+    Designed and developed by <span style="color: #2a7ae2; font-weight: 600;">Moaaz Ashraf</span>
+  </a>
+</footer>
+</body>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getDatabase, ref, get, update } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+    // ✅ إعداد Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyCmCecvEhU5Q2SaLzngnAM6AX9qeNOJE98",
+        authDomain: "praynotify.firebaseapp.com",
+        databaseURL: "https://praynotify-default-rtdb.firebaseio.com/",
+        projectId: "praynotify",
+        storageBucket: "praynotify.appspot.com",
+        messagingSenderId: "825282016133",
+        appId: "1:825282016133:web:2c3d64ddf1024ddadc8aec",
+        measurementId: "G-DKLRSZDEEY"
+    };
+
+    // ✅ تهيئة Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const duaVisitsRef = ref(db, "page_visits/dua");
+
+    // ✅ تحديث عدد زيارات صفحة الأدعية ككائن
+    get(duaVisitsRef).then(snapshot => {
+        let visits = { count: 1 };
+        if (snapshot.exists()) {
+            let data = snapshot.val();
+            visits.count = (data.count || 0) + 1;  // زيادة العدد داخل الكائن
+        }
+        return update(duaVisitsRef, visits);
+    }).catch(error => console.error("❌ خطأ في تحديث زيارات الأدعية:", error));
+</script>
+
+</html>

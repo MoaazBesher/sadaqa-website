@@ -1,0 +1,257 @@
+/* e:\Sites\sadaqaSite\css\components.css */
+
+/* Typography */
+.heading-brand {
+    font-family: var(--font-heading);
+    color: var(--clr-primary);
+    text-shadow: 0 0 15px var(--clr-primary-glow);
+    font-weight: normal;
+    text-align: center;
+}
+
+.text-gradient {
+    background: var(--grad-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Cards */
+.glass-card {
+    background: var(--clr-bg-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    backdrop-filter: var(--backdrop-blur);
+    -webkit-backdrop-filter: var(--backdrop-blur);
+    box-shadow: var(--shadow-soft);
+    transition: all var(--trans-base);
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--clr-primary), transparent);
+    opacity: 0;
+    transition: opacity var(--trans-base);
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--clr-primary);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 20px var(--clr-primary-mute);
+}
+
+.glass-card:hover::before {
+    opacity: 0.6;
+}
+
+/* Interactive Card Variant */
+.interactive-card {
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.card-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--clr-primary-mute);
+    color: var(--clr-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    transition: all var(--trans-base);
+}
+
+.interactive-card:hover .card-icon {
+    background: var(--clr-primary);
+    color: var(--clr-bg-base);
+    transform: scale(1.1);
+    box-shadow: var(--shadow-glow);
+}
+
+/* Buttons */
+.btn-primary {
+    background: var(--grad-primary);
+    color: var(--clr-bg-base);
+    border: none;
+    border-radius: var(--radius-pill);
+    padding: 0.75rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--trans-base);
+    box-shadow: var(--shadow-glow);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px var(--clr-primary-glow);
+}
+
+.btn-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--clr-bg-surface-elevated);
+    border: 1px solid var(--clr-border);
+    color: var(--clr-primary);
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: all var(--trans-base);
+}
+
+.btn-icon:hover {
+    background: var(--clr-primary-mute);
+    border-color: var(--clr-primary);
+    transform: rotate(5deg) scale(1.05);
+}
+
+/* Sidebar & Navigation */
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: -320px;
+    width: 300px;
+    background: rgba(5, 5, 5, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 1002;
+    transition: right var(--trans-base);
+    border-left: 1px solid var(--clr-border);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar.active {
+    right: 0;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+}
+
+.sidebar-header {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--clr-border-light);
+}
+
+.sidebar-menu {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    color: var(--clr-text-main);
+    font-family: var(--font-ui);
+    font-size: 1.1rem;
+    border-radius: var(--radius-md);
+    transition: all var(--trans-base);
+    border: 1px solid transparent;
+}
+
+.sidebar-link i {
+    color: var(--clr-primary);
+    font-size: 1.25rem;
+    width: 24px;
+    text-align: center;
+    transition: transform var(--trans-fast);
+}
+
+.sidebar-link:hover {
+    background: var(--clr-bg-surface-elevated);
+    border-color: var(--clr-border);
+    transform: translateX(-5px);
+    color: var(--clr-primary);
+}
+
+.sidebar-link:hover i {
+    transform: scale(1.2);
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 1001;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--trans-base);
+}
+
+.overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Input Fields */
+.input-elegant {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: var(--clr-bg-surface-elevated);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-md);
+    color: var(--clr-text-main);
+    font-size: 1rem;
+    outline: none;
+    transition: all var(--trans-base);
+    resize: vertical;
+}
+
+.input-elegant:focus {
+    border-color: var(--clr-primary);
+    box-shadow: 0 0 15px var(--clr-primary-mute);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 0.6s var(--trans-base) forwards;
+}
+
+/* Generate animation delays for staggered items */
+.animate-fade-in:nth-child(1) { animation-delay: 0.1s; }
+.animate-fade-in:nth-child(2) { animation-delay: 0.2s; }
+.animate-fade-in:nth-child(3) { animation-delay: 0.3s; }
+.animate-fade-in:nth-child(4) { animation-delay: 0.4s; }
+.animate-fade-in:nth-child(5) { animation-delay: 0.5s; }
+.animate-fade-in:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 10px var(--clr-primary-mute); }
+    50% { box-shadow: 0 0 25px var(--clr-primary-glow); }
+}

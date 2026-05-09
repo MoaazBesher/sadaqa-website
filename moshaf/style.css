@@ -1,0 +1,465 @@
+/* Reset and base styles */
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --primary: #ffd700;
+    --primary-dark: #e6c200;
+    --primary-light: rgba(255, 215, 0, 0.15);
+    --bg-dark: #0a0c0f;
+    --bg-card: #14181c;
+    --bg-card-hover: #1a1f24;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b7c0;
+    --text-muted: #6c757d;
+    --border-color: rgba(255, 215, 0, 0.1);
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.4);
+    --shadow-gold: 0 8px 24px rgba(255, 215, 0, 0.15);
+    --gradient-gold: linear-gradient(135deg, var(--primary) 0%, #b8860b 100%);
+    --gradient-dark: linear-gradient(135deg, #14181c 0%, #1e2328 100%);
+    --border-radius-sm: 8px;
+    --border-radius-md: 12px;
+    --border-radius-lg: 20px;
+    --border-radius-xl: 28px;
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Amiri', serif;
+    line-height: 1.8;
+    background-color: var(--bg-dark);
+    color: var(--text-secondary);
+    direction: rtl;
+    text-align: center;
+    overflow-x: hidden;
+    position: relative;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255, 215, 0, 0.02) 0%, transparent 30%),
+        radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.02) 0%, transparent 40%);
+}
+
+@font-face {
+    font-family: 'Thuluth';
+    src: url('arfonts-decotype-thuluth-ii.ttf') format('truetype');
+}
+
+/* Header Styles */
+.islamic-header {
+    text-align: center;
+    padding: 30px 20px 20px;
+    font-size: clamp(2rem, 5vw, 3rem);
+    background: transparent;
+    color: var(--primary);
+    margin-bottom: 20px;
+    font-family: 'Thuluth', 'Cairo', sans-serif;
+    position: relative;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    animation: fadeInDown 0.8s ease;
+}
+
+.islamic-header::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    border-radius: 2px;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Main section */
+section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Search Bar Styles */
+#searchBar {
+    padding: 15px 25px;
+    font-size: 1.2rem;
+    width: min(90%, 500px);
+    margin: 20px auto 30px;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    border-radius: 50px;
+    background: var(--gradient-dark);
+    color: var(--text-primary);
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    outline: none;
+    transition: all var(--transition-normal);
+    font-family: 'Cairo', sans-serif;
+    backdrop-filter: blur(10px);
+}
+
+#searchBar:focus {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-gold);
+    transform: translateY(-2px);
+}
+
+#searchBar::placeholder {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+/* Download Button Styles */
+.download-button {
+    display: block;
+    width: min(90%, 300px);
+    padding: 15px 25px;
+    margin: 20px auto 30px;
+    background: var(--gradient-gold);
+    color: var(--bg-dark);
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: var(--shadow-gold);
+    transition: all var(--transition-normal);
+    font-family: 'Cairo', sans-serif;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.download-button::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.download-button:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.download-button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(255, 215, 0, 0.4);
+    background: linear-gradient(135deg, #e6c200 0%, #a57c0a 100%);
+}
+
+/* Surah List Grid */
+#surahList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Surah Items */
+.azkar-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 20px;
+    background: var(--gradient-dark);
+    color: var(--primary);
+    text-decoration: none;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+    min-height: 70px;
+    font-family: 'Cairo', sans-serif;
+    backdrop-filter: blur(10px);
+}
+
+.azkar-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gradient-gold);
+    border-radius: 4px 0 0 4px;
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+}
+
+.azkar-item:hover {
+    transform: translateY(-5px) scale(1.02);
+    background: var(--bg-card-hover);
+    border-color: var(--primary);
+    box-shadow: var(--shadow-gold);
+}
+
+.azkar-item:hover::before {
+    opacity: 1;
+}
+
+.azkar-item:active {
+    transform: translateY(-2px) scale(1.01);
+}
+
+/* Content (Surah Text) Styles */
+.content {
+    display: none;
+    padding: 30px;
+    background: var(--gradient-dark);
+    color: var(--text-primary);
+    border-radius: var(--border-radius-lg);
+    border-right: 4px solid var(--primary);
+    text-align: center;
+    margin: 20px auto;
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    font-weight: normal;
+    width: 95%;
+    max-width: 900px;
+    box-shadow: var(--shadow-lg);
+    line-height: 2.2;
+    grid-column: 1 / -1;
+    animation: fadeIn 0.5s ease;
+    border: 1px solid var(--border-color);
+    position: relative;
+}
+
+.content::before {
+    content: "﴿";
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: var(--primary);
+    font-size: 2rem;
+    opacity: 0.3;
+    font-family: 'Amiri', serif;
+}
+
+.content::after {
+    content: "﴾";
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    color: var(--primary);
+    font-size: 2rem;
+    opacity: 0.3;
+    font-family: 'Amiri', serif;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Loading animation for surah items */
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.azkar-item {
+    animation: cardAppear 0.5s ease backwards;
+}
+
+/* Staggered animation for grid items */
+@for $i from 1 through 114 {
+    .azkar-item:nth-child(#{$i}) {
+        animation-delay: #{$i * 0.03}s;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .islamic-header {
+        font-size: 2rem;
+        padding: 20px 15px 15px;
+    }
+
+    section {
+        padding: 0 10px;
+    }
+
+    #searchBar {
+        width: 95%;
+        padding: 12px 20px;
+        font-size: 1.1rem;
+    }
+
+    .download-button {
+        width: 95%;
+        padding: 12px 20px;
+        font-size: 1.1rem;
+    }
+
+    #surahList {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .azkar-item {
+        padding: 12px 15px;
+        font-size: 1rem;
+        min-height: 60px;
+    }
+
+    .content {
+        padding: 20px 15px;
+        font-size: 1.1rem;
+        line-height: 2;
+        width: 98%;
+    }
+    
+    .content::before,
+    .content::after {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .islamic-header {
+        font-size: 1.8rem;
+    }
+
+    #surahList {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .azkar-item {
+        padding: 10px;
+        font-size: 0.95rem;
+        min-height: 50px;
+    }
+
+    .content {
+        padding: 15px 10px;
+        font-size: 1rem;
+        line-height: 1.9;
+    }
+
+    #searchBar {
+        font-size: 1rem;
+        padding: 10px 15px;
+    }
+
+    .download-button {
+        font-size: 1rem;
+        padding: 10px 15px;
+    }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 5px;
+    border: 2px solid var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* Selection Styling */
+::selection {
+    background: var(--primary);
+    color: var(--bg-dark);
+}
+
+/* Empty state for search */
+#surahList:empty::after {
+    content: "لا توجد نتائج للبحث";
+    display: block;
+    text-align: center;
+    color: var(--text-muted);
+    padding: 40px;
+    font-size: 1.2rem;
+    grid-column: 1 / -1;
+}
+
+/* Footer Styles - matching main site */
+footer {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 25px 20px;
+    text-align: center;
+    margin-top: 50px;
+    border-top: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+}
+
+footer a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all var(--transition-normal);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'Cairo', sans-serif;
+}
+
+footer a:hover {
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+footer a span {
+    color: #2a7ae2;
+    font-weight: 600;
+    transition: color var(--transition-normal);
+}
+
+footer a:hover span {
+    color: var(--primary);
+}

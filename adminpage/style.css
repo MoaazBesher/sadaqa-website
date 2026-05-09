@@ -1,0 +1,402 @@
+html {
+    scroll-behavior: smooth;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Amiri', serif;
+    line-height: 1.8;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light gray text */
+    direction: rtl;
+    text-align: center; /* جعل جميع العناصر في المنتصف */
+    overflow-x: hidden; /* يمنع التمدد الزائد أفقيًا */
+    position: relative;
+}
+
+.container {
+    max-width: 100%;
+    padding: 0 15px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.update-box {
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #120f0f;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgb(42, 149, 26);
+    color: #59de11;
+    text-align: right;
+    font-weight: bold;
+}
+.update-content {
+    background-color: #333;
+    /* لون الخلفية */
+    padding: 10px;
+    border-radius: 5px;
+    color: #e0e0e0;
+    /* لون النص */
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+#update-content textarea {
+    width: calc(100% - 10px);
+    /* ضمان أنه لا يتجاوز حدود الصندوق */
+    height: 50px;
+    /* تصغير الارتفاع */
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    resize: none;
+    background: #444;
+    color: #ffd700;
+    font-size: 0.85rem;
+    box-shadow: inset 0 0 3px rgba(255, 215, 0, 0.3);
+    display: block;
+    /* منع التمدد الأفقي */
+}
+
+#visitor-stats {
+    position: fixed !important;
+    bottom: 15px !important; /* جعله قريب قليلًا من الحافة السفلية */
+    left: 15px !important; /* جعله قريب قليلًا من الحافة اليسرى */
+    background: rgba(0, 0, 0, 0.7) !important; /* خلفية سوداء شفافة قليلاً */
+    color: #FFD700 !important; /* لون النص ذهبي ليكون واضحًا */
+    padding: 8px 15px !important; /* تقليل المساحة الداخلية */
+    border-radius: 8px !important; /* زوايا مستديرة قليلاً */
+    font-size: 14px !important; /* تصغير حجم الخط قليلاً */
+    font-weight: bold !important;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5) !important; /* ظل خفيف */
+    border: 1px solid rgba(255, 255, 255, 0.2) !important; /* إطار خفيف */
+    z-index: 1000 !important; /* ضمان ظهوره فوق باقي العناصر */
+}
+
+
+
+
+@font-face {
+    font-family: 'Thuluth';
+    src: url('arfonts-decotype-thuluth-ii.ttf') format('truetype');
+}
+
+.islamic-header {
+    text-align: center;
+    padding: 10px; /* تصغير الترويسة */
+    font-size: 2.7rem; /* جعل الخط أصغر */
+    background: none; /* إزالة المربع الخلفي */
+    color: #ffd700;
+    margin-bottom: 10px;
+    box-shadow: none; /* إزالة الظل */
+    font-family: 'Thuluth', sans-serif;
+}
+.animated-title {
+    animation: fadeInUp 1.5s ease-in-out;
+    font-size: 1.8rem;
+    margin-top: 10px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #212121;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(255, 215, 0, 0.2);
+}
+nav button {
+    color: #ffd700;
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: color 0.3s, background-color 0.3s;
+}
+nav button:hover {
+    color: #fff;
+}
+nav button.active {
+    background-color: #ffd700;
+    color: #121212;
+    border-radius: 5px;
+}
+
+
+
+
+
+section {
+        max-width: 90%;
+        margin: 0 auto 0 5%; /* تعديل إضافي لتحريكها أكثر إلى اليسار */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+	
+        .edit-button {
+            background-color: #090909;
+            /* لون ذهبي */
+            color: #09f338;
+            /* لون النص أسود */
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 6px rgba(28, 137, 18, 0.3);
+            display: block;
+            margin: 15px auto;
+            /* توسيط الزر */
+        }
+    
+        .edit-button:hover {
+            background-color: #e6c200;
+            /* لون أغمق عند التحويل */
+            box-shadow: 0 6px 10px rgba(255, 215, 0, 0.5);
+            transform: scale(1.05);
+            /* تكبير بسيط عند التحويل */
+        }
+    
+        .edit-button:active {
+            transform: scale(0.95);
+            /* تقليل الحجم عند الضغط */
+        }
+
+.button {
+    background-color: #ffd700;
+    color: #121212;
+    border-radius: 5px;
+}
+.button:hover {
+    background-color: #e6c200;
+}
+
+#suggestion-box {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    background: #252525;
+    color: #e0e0e0;
+    padding: 10px;
+    border-radius: 8px;
+    width: 180px; /* تقليل العرض ليكون متناسقًا */
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(255, 215, 0, 0.2);
+    font-size: 1rem;
+}
+
+
+
+
+#suggestion-box:hover {
+    transform: scale(1.05);
+    background-color: #333;
+}
+
+#suggestion-box textarea {
+    width: calc(100% - 10px); /* ضمان أنه لا يتجاوز حدود الصندوق */
+    height: 50px; /* تصغير الارتفاع */
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    resize: none;
+    background: #444;
+    color: #ffd700;
+    font-size: 0.85rem;
+    box-shadow: inset 0 0 3px rgba(255, 215, 0, 0.3);
+    display: block; /* منع التمدد الأفقي */
+}
+
+#suggestion-box button {
+    background: #ffd700;
+	width: 100%;
+    padding: 5px;
+    font-size: 0.85rem;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+#suggestion-box button:hover {
+    background: #FFC107;
+}
+
+@media (max-width: 768px) {
+    #suggestion-box {
+        width: 150px; /* تقليل الحجم أكثر في الشاشات الصغيرة */
+        right: 10px;
+        bottom: 10px;
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    #suggestion-box textarea {
+        height: 40px; /* تقليل ارتفاع مربع النص */
+        font-size: 0.8rem;
+    }
+
+    #suggestion-box button {
+        font-size: 0.8rem;
+        padding: 4px;
+    }
+}
+	
+    header {
+        font-size: 1.5rem;
+        padding: 15px;
+    }
+    nav button {
+        font-size: 0.9rem;
+    }
+	
+	
+	
+	 section {
+        max-width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+.sidebar {
+    z-index: 1100 !important;
+    width: 220px;
+    height: 90vh !important; /* التأكد من أن الارتفاع أكبر ويؤثر */
+    position: fixed;
+    top: 10% !important; /* تقليل المسافة من الأعلى لجعلها تمتد أكثر */
+    left: -250px;
+    background: rgba(33, 33, 33, 0.8);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    padding-top: 20px;
+    transition: 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0 10px 10px 0;
+    overflow-y: auto !important; /* إضافة التمرير إذا كان المحتوى أكبر من المساحة */
+}
+
+
+
+.sidebar button {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: transparent;
+    border: none;
+    color: #ffd700;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+.sidebar button:hover {
+    background-color: rgba(255, 215, 0, 0.7); /* تأثير شفافية عند التمرير */
+    color: #121212;
+    border-radius: 5px;
+}
+
+.menu-btn {
+    position: fixed;
+    top: 20px;
+    left: 10px; /* انقل زر الفتح إلى اليسار */
+    background-color: rgba(33, 36, 33, 0.8);
+    color: #121212;
+    border: none;
+    font-size: 1.5rem;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1001;
+}
+
+.sidebar.active {
+    left: 0; /* عندما يكون السايد بار مفتوحًا، تحركه إلى اليسار */
+    pointer-events: auto;
+}
+
+
+
+#notify-location-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(33, 36, 33, 0.8);
+    color: #121212;
+    border: none;
+    font-size: 1rem;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1001; /* تأكد أنه فوق كل العناصر */
+    transition: background 0.3s ease;
+}
+
+#notify-location-btn:hover {
+    background-color: #e6c200;
+}
+
+#notify-location-btn:active {
+    background-color: #caa000;
+}
+
+
+
+.notify-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(33, 36, 33, 0.8);
+    color: #121212;
+    border: none;
+    font-size: 1rem;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1001;
+    transition: background 0.3s ease;
+}
+
+.notify-btn:hover {
+    background-color: #BAD668;
+}
+
+
+.toggle-section {
+    display: none;
+}
+
+.section-title {
+    background: rgb(0, 0, 0);
+        /* خلفية سوداء */
+        color: #00FF00;
+        /* خط أخضر */
+        border-radius: 8px;
+        padding: 15px;
+        min-width: 200px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        box-shadow: 0px 0px 10px rgba(0, 255, 0, 0.3);
+        /* ظل خفيف */
+        border: 1px solid rgba(0, 255, 0, 0.5);
+        /* إطار أخضر رفيع */
+}

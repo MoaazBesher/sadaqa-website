@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أذكار الصباح | صدقة جارية</title>
+    
+    <link rel="icon" type="image/x-icon" href="../resources/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- New Design System -->
+    <link rel="stylesheet" href="../css/global.css">
+    <style>
+        .audio-player-container { text-align: center; margin-bottom: 2rem; position: relative; }
+        .audio-player { display: none; background: var(--clr-bg-surface-elevated); padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--clr-border); box-shadow: var(--shadow-soft); max-width: 400px; margin: 1.5rem auto 0; }
+        .audio-player.active { display: block; animation: fadeIn 0.4s ease; }
+        .player-controls { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1rem; }
+        .progress-container { height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; cursor: pointer; margin-bottom: 1rem; position: relative; }
+        .progress-bar { height: 100%; background: var(--grad-primary); width: 0%; border-radius: 3px; transition: width 0.1s linear;}
+        .player-time { display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--clr-text-muted); font-family: monospace; }
+        .volume-control { display: flex; align-items: center; gap: 0.75rem; margin-top: 1rem; }
+        .volume-slider { flex: 1; accent-color: var(--clr-primary); }
+
+        .azkar-list { display: flex; flex-direction: column; gap: 1.5rem; }
+        .azkar-item { cursor: pointer; transition: all var(--trans-base); text-align: right; }
+        .azkar-item.completed { filter: opacity(0.5) grayscale(1); pointer-events: none; transform: scale(0.98); }
+        .azkar-text { font-size: 1.3rem; line-height: 1.8; color: var(--clr-text-main); margin-bottom: 1.5rem; }
+        .azkar-count-wrapper { display: flex; justify-content: flex-end; }
+        .azkar-count { display: inline-flex; align-items: center; justify-content: center; width: 60px; height: 60px; font-size: 1.25rem; font-weight: bold; background: var(--clr-primary-mute); color: var(--clr-primary); border: 2px solid var(--clr-border); border-radius: 50%; transition: all var(--trans-base); font-family: var(--font-ui); }
+        .azkar-item:hover .azkar-count { background: var(--clr-primary); color: var(--clr-bg-base); transform: scale(1.1); box-shadow: var(--shadow-glow); }
+    </style>
+</head>
+<body>
+    <div class="container animate-fade-in">
+        <header class="islamic-header" style="margin-top: 3rem; margin-bottom: 2rem; text-align: center;">
+            <h1 class="heading-brand text-gradient" style="font-size: 3rem; margin-bottom: 0.5rem;">أذكار الصباح</h1>
+        </header>
+
+        <div class="audio-player-container">
+            <button class="btn-primary" id="playAzkarBtn" style="padding: 1rem 2rem;">
+                <i class="fas fa-play-circle"></i> تشغيل الأذكار الصوتية
+            </button>
+            <div class="audio-player" id="audioPlayer">
+                <div class="player-controls">
+                    <button class="btn-icon" id="prevBtn" style="width: 2.5rem; height: 2.5rem; font-size: 1rem;"><i class="fas fa-step-backward"></i></button>
+                    <button class="btn-icon" id="playPauseBtn" style="background: var(--clr-primary); color: var(--clr-bg-base);"><i class="fas fa-play"></i></button>
+                    <button class="btn-icon" id="nextBtn" style="width: 2.5rem; height: 2.5rem; font-size: 1rem;"><i class="fas fa-step-forward"></i></button>
+                </div>
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="player-time">
+                    <span id="currentTime">0:00</span>
+                    <span id="duration">0:00</span>
+                </div>
+                <div class="volume-control">
+                    <i class="fas fa-volume-up" id="volumeIcon" style="color: var(--clr-primary);"></i>
+                    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.01" value="1">
+                </div>
+            </div>
+        </div>
+
+        <section id="morning-azkar" style="display: block; max-width: 800px; margin: 0 auto 4rem;">
+            <div class="azkar-list">
+                <!-- Using template structure to fill below -->
+                <div class="glass-card azkar-item">
+                    <div class="azkar-text">اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ</div>
+                    <div class="azkar-count-wrapper"><div class="azkar-count" data-max="1">0 / 1</div></div>
+                </div>
+                <div class="glass-card azkar-item">
+                    <div class="azkar-text">قُلۡ هُوَ ٱللَّهُ أَحَدٌ (1) ٱللَّهُ ٱلصَّمَدُ (2) لَمۡ يَلِدۡ وَلَمۡ يُولَدۡ (3) وَلَمۡ يَكُن لَّهُۥ كُفُوًا أَحَدُۢ (4)</div>
+                    <div class="azkar-count-wrapper"><div class="azkar-count" data-max="3">0 / 3</div></div>
+                </div>
+                <div class="glass-card azkar-item">
+                    <div class="azkar-text">قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ* مِن شَرِّ مَا خَلَقَ* وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ* وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ* وَمِن شَرِّ حَاسِدٍ إِذَا حَسَد</div>
+                    <div class="azkar-count-wrapper"><div class="azkar-count" data-max="3">0 / 3</div></div>
+                </div>
+                <div class="glass-card azkar-item">
+                    <div class="azkar-text">قُلْ أَعُوذُ بِرَبِّ النَّاسِ* مَلِكِ النَّاسِ* إِلَٰهِ النَّاسِ* مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ* الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ* مِنَ الْجِنَّةِ وَالنَّاسِ</div>
+                    <div class="azkar-count-wrapper"><div class="azkar-count" data-max="3">0 / 3</div></div>
+                </div>
+                <div class="glass-card azkar-item">
+                    <div class="azkar-text">أَصْـبَحْنا وَأَصْـبَحَ المُـلْكُ لله وَالحَمدُ لله، لا إلهَ إلاّ اللّهُ وَحدَهُ لا شَريكَ لهُ، لهُ المُـلكُ ولهُ الحَمْـد، وهُوَ على كلّ شَيءٍ قدير، رَبِّ أسْـأَلُـكَ خَـيرَ ما في هـذا اليوم وَخَـيرَ ما بَعْـدَه، وَأَعـوذُ بِكَ مِنْ شَـرِّ ما في هـذا اليوم وَشَرِّ ما بَعْـدَه، رَبِّ أَعـوذُ بِكَ مِنَ الْكَسَـلِ وَسـوءِ الْكِـبَر، رَبِّ أَعـوذُ بِكَ مِنْ عَـذابٍ في النّـارِ وَعَـذابٍ في القَـبْر</div>
+                    <div class="azkar-count-wrapper"><div class="azkar-count" data-max="1">0 / 1</div></div>
+                </div>
+                <div class="glass-card azkar-item">
+                    <div class="azkar-text">اللَّهمَّ بِكَ أصبَحنا، وبِكَ أمسَينا، وبِكَ نحيا وبِكَ نموتُ وإليكَ النشور</div>
+                    <div class="azkar-count-wrapper"><div class="azkar-count" data-max="1">0 / 1</div></div>
+                </div>
+                <div class="glass-card azkar-item">
+                    <div class="azkar-text">لهمَّ أَنْتَ رَبِّي لا إِلَهَ إلا أَنْتَ،خَلَقْتَنِي وَأَنَا عَبْدُكَ، وأَنَا عَلَى عَهْدِكَ ووعْدكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ،أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ،وَأَبُوءُ لَكَ بِذَنْبِي،فَاغْفِرْ لِي،فَإِنَّهُ لا يَغْفِرُ الذُّنُوبَ إلا أَنْتَ</div>
+                    <div class="azkar-count-wrapper"><div class="azkar-count" data-max="1">0 / 1</div></div>
+                </div>
+                <div class="glass-card azkar-item">
+                    <div class="azkar-text">اللهم إني أصبحتُ أُشهدك، وأُشهد حملةَ عرشك، وملائكتك، وجميع خلقك، أنَّك أنت الله، لا إله إلا أنت، وأنَّ محمدًا عبدك ورسولك</div>
+                    <div class="azkar-count-wrapper"><div class="azkar-count" data-max="4">0 / 4</div></div>
+                </div>
+                <div class="glass-card azkar-item">
+                    <div class="azkar-text">اللهم ما أصبح بي من نعمةٍ فمنك وحدك، لا شريكَ لك، فلك الحمد، ولك الشُّكر</div>
+                    <div class="azkar-count-wrapper"><div class="azkar-count" data-max="1">0 / 1</div></div>
+                </div>
+                <div class="glass-card azkar-item">
+                    <div class="azkar-text">اللَّهمَّ عافِني في بدَني اللَّهمَّ عافِني في سمعي اللَّهمَّ عافِني في بصري لا إلهَ إلَّا أنت، اللَّهمَّ إنِّي أعوذُ بِكَ منَ الكُفْرِ والفقرِ اللَّهمَّ إنِّي أعوذُ بكَ من عذابِ القبرِ لا إلهَ إلَّا أنت</div>
+                    <div class="azkar-count-wrapper"><div class="azkar-count" data-max="3">0 / 3</div></div>
+                </div>
+                <div class="glass-card azkar-item">
+                    <div class="azkar-text">حَسْبِيَ اللَّهُ لا إِلَهَ إِلا هُوَ عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ</div>
+                    <div class="azkar-count-wrapper"><div class="azkar-count" data-max="7">0 / 7</div></div>
+                </div>
+                <div class="glass-card azkar-item">
+                    <div class="azkar-text">اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَافِيَةَ فِي الدُّنْيَا وَالآخِرَةِ، اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي دِينِي وَدُنْيَايَ وَأَهْلِي وَمَالِي، اللَّهُمَّ استُرْ عَوْرَاتي، وآمِنْ رَوْعَاتي، اللَّهمَّ احْفَظْنِي مِنْ بَينِ يَدَيَّ، ومِنْ خَلْفي، وَعن يَميني، وعن شِمالي، ومِن فَوْقِي، وأعُوذُ بِعَظَمَتِكَ أنْ أُغْتَالَ مِنْ تَحتي</div>
+                    <div class="azkar-count-wrapper"><div class="azkar-count" data-max="1">0 / 1</div></div>
+                </div>
+                <div class="glass-card azkar-item">
+                    <div class="azkar-text">اللهم فاطر السموات والأرض، عالم الغيب والشهادة رب كل شيء ومليكه أشهد أن لا إله إلا أنت، أعوذ بك من شر نفسي وشر الشيطان وشركه، وأن أقترف على نفسي سوءً أو أجره إلى مسلم</div>
+                    <div class="azkar-count-wrapper"><div class="azkar-count" data-max="1">0 / 1</div></div>
+                </div>
+                <div class="glass-card azkar-item">
+                    <div class="azkar-text">بسم الله الذي لا يضر مع اسمه شيء في الأرض ولا في السماء وهو السميع العليم</div>
+                    <div class="azkar-count-wrapper"><div class="azkar-count" data-max="3">0 / 3</div></div>
+                </div>
+                <div class="glass-card azkar-item">
+                    <div class="azkar-text">رضيت بالله ربًا، وبالإسلام دينًا، وبمحمد رسولًا</div>
+                    <div class="azkar-count-wrapper"><div class="azkar-count" data-max="3">0 / 3</div></div>
+                </div>
+                <div class="glass-card azkar-item">
+                    <div class="azkar-text">يا حي يا قيوم، برحمتك أستغيث، أصلح لي شأني كله، ولا تكلني إلى نفسي طرفة عين<br> اصبحنا واصبح الملك لله رب العالمين<br> اللهم اني اسألك خير هذا اليوم فتحه ونصره ونوره وبركته وهداه واعوذ بك من شر ما فيه وشر ما بعده</div>
+                    <div class="azkar-count-wrapper"><div class="azkar-count" data-max="1">0 / 1</div></div>
+                </div>
+                <div class="glass-card azkar-item">
+                    <div class="azkar-text">أَصبَحْنا على فِطرةِ الإسلامِ، وكَلِمةِ الإخلاصِ، ودِينِ نَبيِّنا محمَّدٍ صلَّى اللهُ عليه وسلَّمَ، وعلى مِلَّةِ أبِينا إبراهيمَ، حَنيفًا مُسلِمًا، وما كان مِنَ المُشرِكينَ</div>
+                    <div class="azkar-count-wrapper"><div class="azkar-count" data-max="1">0 / 1</div></div>
+                </div>
+                <div class="glass-card azkar-item">
+                    <div class="azkar-text">سبحان الله وبحمده</div>
+                    <div class="azkar-count-wrapper"><div class="azkar-count" data-max="100">0 / 100</div></div>
+                </div>
+                <div class="glass-card azkar-item">
+                    <div class="azkar-text">لا إلهَ إلاَّ اللَّه وحْدهُ لاَ شَرِيكَ لهُ، لَهُ المُلْكُ، ولَهُ الحمْدُ، وَهُو عَلَى كُلِّ شَيءٍ قَدِيرٌ</div>
+                    <div class="azkar-count-wrapper"><div class="azkar-count" data-max="100">0 / 100</div></div>
+                </div>
+                <div class="glass-card azkar-item">
+                    <div class="azkar-text">سُبحانَ اللهِ وبحَمْدِه عَدَدَ خَلْقِه، ورِضا نَفْسِه، وزِنةَ عَرْشِه، ومِدادَ كَلِماتِه</div>
+                    <div class="azkar-count-wrapper"><div class="azkar-count" data-max="3">0 / 3</div></div>
+                </div>
+                <div class="glass-card azkar-item">
+                    <div class="azkar-text">اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلًا مُتَقَبَّلًا</div>
+                    <div class="azkar-count-wrapper"><div class="azkar-count" data-max="1">0 / 1</div></div>
+                </div>
+                <div class="glass-card azkar-item">
+                    <div class="azkar-text">اللهم صل وسلم على نبينا محمد ﷺ</div>
+                    <div class="azkar-count-wrapper"><div class="azkar-count" data-max="10">0 / 10</div></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module">
+        import { initSharedUI } from '../js/components.js';
+        import { mainDb } from '../js/firebase-config.js';
+        import { ref, get, update } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+        initSharedUI();
+
+        // Firebase Visit tracking
+        const visitsRef = ref(mainDb, "page_visits/morning_azkar");
+        get(visitsRef).then(snapshot => {
+            let visits = { count: 1 };
+            if (snapshot.exists()) {
+                let data = snapshot.val();
+                visits.count = (data.count || 0) + 1;
+            }
+            update(visitsRef, visits);
+        }).catch(console.error);
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Counter Logic
+            document.querySelectorAll('.azkar-item').forEach(itemElement => {
+                const countElement = itemElement.querySelector('.azkar-count');
+                const maxCount = parseInt(countElement.dataset.max, 10);
+                let currentCount = 0;
+
+                itemElement.addEventListener('click', () => {
+                    if (currentCount < maxCount) {
+                        currentCount++;
+                        countElement.textContent = `${currentCount} / ${maxCount}`;
+                        
+                        // Add some haptic/visual feedback
+                        countElement.animate([
+                            { transform: 'scale(1)' },
+                            { transform: 'scale(1.2)' },
+                            { transform: 'scale(1)' }
+                        ], { duration: 200 });
+
+                        if (currentCount === maxCount) {
+                            itemElement.classList.add('completed');
+                        }
+                    }
+                });
+            });
+
+            // Audio Player Logic
+            const playAzkarBtn = document.getElementById('playAzkarBtn');
+            const audioPlayer = document.getElementById('audioPlayer');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const progressContainer = document.getElementById('progressContainer');
+            const progressBar = document.getElementById('progressBar');
+            const currentTimeEl = document.getElementById('currentTime');
+            const durationEl = document.getElementById('duration');
+            const volumeIcon = document.getElementById('volumeIcon');
+            const volumeSlider = document.getElementById('volumeSlider');
+            
+            const audioFile = "morning-azkar.mp3";
+            let isPlaying = false;
+            let audio = new Audio();
+            
+            playAzkarBtn.addEventListener('click', function() {
+                audioPlayer.classList.toggle('active');
+                if (!audioPlayer.classList.contains('active') && isPlaying) {
+                    pauseAudio();
+                }
+            });
+            
+            function loadAudio() {
+                audio.src = audioFile;
+                audio.load();
+                audio.addEventListener('loadedmetadata', function() {
+                    durationEl.textContent = formatTime(audio.duration);
+                });
+            }
+            
+            function togglePlayPause() { isPlaying ? pauseAudio() : playAudio(); }
+            
+            function playAudio() {
+                audio.play();
+                isPlaying = true;
+                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+            
+            function pauseAudio() {
+                audio.pause();
+                isPlaying = false;
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            }
+            
+            function restartAudio() {
+                audio.currentTime = 0;
+                if (!isPlaying) playAudio();
+            }
+            
+            function forwardAudio() {
+                audio.currentTime = Math.min(audio.currentTime + 15, audio.duration);
+            }
+            
+            function updateProgress() {
+                let progressPercent = (audio.currentTime / audio.duration) * 100;
+                progressBar.style.width = `${progressPercent}%`;
+                currentTimeEl.textContent = formatTime(audio.currentTime);
+            }
+            
+            function setProgress(e) {
+                const width = this.clientWidth;
+                const clickX = e.offsetX;
+                audio.currentTime = (clickX / width) * audio.duration;
+            }
+            
+            function setVolume() {
+                audio.volume = volumeSlider.value;
+                if (audio.volume == 0) volumeIcon.className = 'fas fa-volume-mute';
+                else if (audio.volume < 0.5) volumeIcon.className = 'fas fa-volume-down';
+                else volumeIcon.className = 'fas fa-volume-up';
+            }
+            
+            function formatTime(seconds) {
+                if (isNaN(seconds)) return "0:00";
+                let mins = Math.floor(seconds / 60);
+                let secs = Math.floor(seconds % 60);
+                return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            }
+            
+            playPauseBtn.addEventListener('click', togglePlayPause);
+            prevBtn.addEventListener('click', restartAudio);
+            nextBtn.addEventListener('click', forwardAudio);
+            audio.addEventListener('timeupdate', updateProgress);
+            progressContainer.addEventListener('click', setProgress);
+            volumeSlider.addEventListener('input', setVolume);
+            
+            loadAudio();
+        });
+    </script>
+</body>
+</html>

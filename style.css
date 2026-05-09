@@ -1,0 +1,837 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Amiri', serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    direction: rtl;
+    line-height: 1.7;
+    overflow-x: hidden;
+    position: relative;
+}
+
+@font-face {
+    font-family: 'Thuluth';
+    src: url('arfonts-decotype-thuluth-ii.ttf') format('truetype');
+}
+
+/* Header Styles */
+.islamic-header {
+    text-align: center;
+    padding: 1.5rem 1rem 0.5rem;
+    background: linear-gradient(180deg, rgba(18,18,18,1) 0%, rgba(30,30,30,1) 100%);
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.islamic-header::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ffd700, transparent);
+}
+
+.animated-title a {
+    font-family: 'Thuluth', 'Cairo', sans-serif;
+    font-size: 3rem;
+    color: #ffd700;
+    text-decoration: none;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.animated-title a:hover {
+    transform: scale(1.05);
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+}
+
+.header-subtitle {
+    color: #b9b9b9;
+    font-size: 1rem;
+    margin-top: 0.3rem;
+    letter-spacing: 1px;
+}
+
+/* Menu Button */
+.menu-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #252525;
+    border: none;
+    color: #ffd700;
+    font-size: 1.3rem;
+    cursor: pointer;
+    z-index: 1001;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-btn:hover {
+    background: #333;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 300px;
+    height: 100vh;
+    background: #1a1a1a;
+    z-index: 1002;
+    transition: right 0.3s ease;
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
+    border-right: 1px solid rgba(255, 215, 0, 0.1);
+    overflow-y: auto;
+}
+
+.sidebar.active {
+    right: 0;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: #252525;
+    border-bottom: 1px solid #ffd700;
+}
+
+.sidebar-header h3 {
+    color: #ffd700;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.close-sidebar {
+    background: none;
+    border: none;
+    color: #ffd700;
+    font-size: 1.3rem;
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.close-sidebar:hover {
+    background: rgba(255, 215, 0, 0.2);
+    transform: rotate(90deg);
+}
+
+.sidebar-menu {
+    padding: 15px;
+}
+
+.sidebar-menu button {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 6px 0;
+    background: #252525;
+    border: none;
+    border-radius: 10px;
+    color: #e0e0e0;
+    font-size: 1rem;
+    font-family: 'Cairo', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid transparent;
+}
+
+.sidebar-menu button i {
+    color: #ffd700;
+    width: 22px;
+    font-size: 1.1rem;
+}
+
+.sidebar-menu button:hover {
+    background: #333;
+    border-color: #ffd700;
+    transform: translateX(-5px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    display: none;
+    backdrop-filter: blur(3px);
+}
+
+.overlay.active {
+    display: block;
+}
+
+/* App Download Bar - جديد (صغير وبسيط) */
+.app-download-bar {
+    max-width: 600px;
+    margin: 0.5rem auto 1.5rem;
+    padding: 0.5rem 1.2rem;
+    background: rgba(30, 30, 30, 0.8);
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    backdrop-filter: blur(5px);
+    width: fit-content;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.app-download-bar i {
+    color: #ffd700;
+    font-size: 1rem;
+}
+
+.app-download-bar span {
+    color: #b9b9b9;
+}
+
+.bar-link {
+    color: #ffd700;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.bar-link:hover {
+    text-decoration: underline;
+    color: #e6c200;
+}
+
+.separator {
+    color: #555;
+    margin: 0 5px;
+}
+
+/* --- تعديلات وإضافات جديدة للترتيب --- */
+
+/* بطاقة "الموقع صدقة جارية على روح كل من" - تم إعطاؤها كلاس منفصل لتوسيطها */
+.info-card-top {
+    max-width: 800px; /* عرض مناسب */
+    margin: 1.5rem auto; /* توسيط أفقي وتحديد مسافة علوية وسفلية */
+    padding: 1.5rem;
+    background: linear-gradient(145deg, #1e1e1e, #252525);
+    border-radius: 18px;
+    text-align: center;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+/* تذكرة اليوم - تم تعديلها لتصبح عنصرًا منفردًا في المنتصف */
+.daily-ticket {
+    max-width: 800px;
+    margin: 1.5rem auto; /* توسيط أفقي */
+    padding: 1.5rem;
+    background: linear-gradient(145deg, #1e1e1e, #252525);
+    border-radius: 18px;
+    text-align: center;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.ticket-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+.ticket-header i {
+    color: #ffd700;
+    font-size: 1.5rem;
+}
+
+.ticket-header h3 {
+    color: #ffd700;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.ticket-content {
+    color: #e0e0e0;
+    font-size: 1.1rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    border-right: 3px solid #ffd700;
+}
+
+/* تنسيقات رأس بطاقة المعلومات (مشتركة) */
+.info-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.info-header i {
+    color: #ffd700;
+    font-size: 1.3rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.info-header h3 {
+    color: #ffd700;
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+.names-list p {
+    font-size: 1.2rem;
+    margin: 0.4rem 0;
+    color: #e0e0e0;
+}
+
+.names-list .prayer {
+    color: #ffd700;
+    font-size: 1rem;
+    margin-top: 0.8rem;
+    font-style: italic;
+}
+
+/* Cards Section (أقسام الموقع) */
+.cards-section {
+    max-width: 1300px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.section-title {
+    text-align: center;
+    color: #ffd700;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.section-title i {
+    font-size: 1.6rem;
+    color: #ffd700;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #b9b9b9;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    padding: 0.5rem;
+}
+
+.card {
+    background: linear-gradient(145deg, #1e1e1e, #252525);
+    border-radius: 18px;
+    padding: 1.8rem 1.2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top right, rgba(255, 215, 0, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 25px rgba(255, 215, 0, 0.15);
+    border-color: #ffd700;
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 215, 0, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.card:hover .card-icon {
+    background: #ffd700;
+    transform: scale(1.1);
+}
+
+.card-icon i {
+    font-size: 1.8rem;
+    color: #ffd700;
+    transition: all 0.3s ease;
+}
+
+.card:hover .card-icon i {
+    color: #121212;
+}
+
+.card h3 {
+    color: #ffd700;
+    font-size: 1.3rem;
+    margin-bottom: 0.6rem;
+}
+
+.card p {
+    color: #b9b9b9;
+    margin-bottom: 1.2rem;
+    font-size: 0.9rem;
+}
+
+.card-link {
+    color: #ffd700;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.card:hover .card-link {
+    opacity: 1;
+    gap: 8px;
+}
+
+/* Share Container */
+.share-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: linear-gradient(145deg, #1e1e1e, #252525);
+    border-radius: 18px;
+    text-align: center;
+}
+
+.share-container h3 {
+    color: #ffd700;
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.share-box {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.share-box input {
+    flex: 1;
+    min-width: 200px;
+    padding: 12px 15px;
+    background: #333;
+    border: 1px solid #ffd700;
+    border-radius: 50px;
+    color: #ffd700;
+    font-size: 0.9rem;
+    text-align: center;
+    font-family: 'Cairo', sans-serif;
+}
+
+.share-box input:focus {
+    outline: none;
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
+}
+
+.share-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #ffd700;
+    border: none;
+    color: #121212;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.share-btn:hover {
+    background: #e6c200;
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+}
+
+/* Suggestion Section */
+.suggestion-section {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1.8rem;
+    background: linear-gradient(145deg, #1e1e1e, #252525);
+    border-radius: 18px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.suggestion-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 1.2rem;
+}
+
+.suggestion-header i {
+    color: #ffd700;
+    font-size: 1.5rem;
+}
+
+.suggestion-header h3 {
+    color: #ffd700;
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+.suggestion-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.suggestion-form textarea {
+    width: 100%;
+    height: 100px;
+    padding: 12px;
+    background: #333;
+    border: 1px solid #ffd700;
+    border-radius: 12px;
+    color: #ffd700;
+    font-size: 0.95rem;
+    font-family: 'Amiri', serif;
+    resize: vertical;
+}
+
+.suggestion-form textarea:focus {
+    outline: none;
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
+}
+
+.suggestion-form button {
+    padding: 10px 25px;
+    background: #ffd700;
+    border: none;
+    border-radius: 50px;
+    color: #121212;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    align-self: center;
+    min-width: 130px;
+}
+
+.suggestion-form button:hover {
+    background: #e6c200;
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+}
+
+/* Stats Container */
+.stats-container {
+    max-width: 800px;
+    margin: 2rem auto; /* توسيط وتحديد مسافة علوية وسفلية */
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(145deg, #1e1e1e, #252525);
+    border-radius: 18px;
+    padding: 1rem;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.stat-item i {
+    color: #ffd700;
+    font-size: 1.2rem;
+}
+
+.stat-label {
+    color: #b9b9b9;
+    font-size: 0.85rem;
+}
+
+.stat-value {
+    color: #ffd700;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Popup */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    backdrop-filter: blur(5px);
+}
+
+.popup-box {
+    background: linear-gradient(145deg, #1e1e1e, #252525);
+    padding: 2rem;
+    border-radius: 25px;
+    text-align: center;
+    max-width: 380px;
+    width: 90%;
+    border: 1px solid #ffd700;
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
+}
+
+.popup-icon {
+    font-size: 2.5rem;
+    color: #ffd700;
+    margin-bottom: 0.8rem;
+}
+
+.popup-box h3 {
+    color: #ffd700;
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+}
+
+.popup-box p {
+    color: #b9b9b9;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.popup-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.popup-btn {
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.download-btn {
+    background: #ffd700;
+    color: #121212;
+}
+
+.download-btn:hover {
+    background: #e6c200;
+    transform: scale(1.05);
+}
+
+.continue-btn {
+    background: #333;
+    color: #ffd700;
+    border: 1px solid #ffd700;
+}
+
+.continue-btn:hover {
+    background: #404040;
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+    background: #0a0a0a;
+    padding: 1.2rem;
+    text-align: center;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(255, 215, 0, 0.1);
+}
+
+footer a {
+    color: #555;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+footer a:hover {
+    color: #ffd700;
+}
+
+footer a span {
+    color: #2a7ae2;
+    font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .animated-title a {
+        font-size: 2.2rem;
+    }
+    
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .popup-buttons {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 260px;
+    }
+    
+    .app-download-bar {
+        font-size: 0.8rem;
+        padding: 0.4rem 1rem;
+        flex-wrap: wrap;
+    }
+
+    /* تعديلات responsive للعناصر الجديدة */
+    .info-card-top,
+    .daily-ticket,
+    .share-container,
+    .suggestion-section,
+    .stats-container {
+        width: 95%; /* لجعلها تأخذ عرضًا مناسبًا على الشاشات الصغيرة */
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 1.5rem 1rem;
+    }
+    
+    .share-box input {
+        min-width: 180px;
+    }
+    
+    .stat-item {
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .stats-container {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .stat-item {
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .app-download-bar {
+        flex-direction: column;
+        gap: 5px;
+        border-radius: 15px;
+        padding: 0.6rem;
+    }
+    
+    .separator {
+        display: none;
+    }
+}

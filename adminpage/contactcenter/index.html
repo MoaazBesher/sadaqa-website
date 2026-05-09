@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin contact center</title>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #222;
+            color: #FFF;
+            text-align: center;
+            direction: rtl;
+        }
+
+        .users-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 15px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        button {
+                        background: #16c91c;
+                        color: white;
+                        cursor: pointer;
+                }
+                 input,
+                button {
+                        width: 90%;
+                        padding: 10px;
+                        margin-top: 10px;
+                        border: none;
+                        border-radius: 5px;
+                }
+
+                input {
+                        background: #333;
+                        color: white;
+                }
+        .user-button {
+            background: #16c91c;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 90%;
+            margin: 5px 0;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .chat-container {
+            display: none;
+            max-width: 600px;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        #chat-box {
+            height: 300px;
+            overflow-y: scroll;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 5px;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            max-width: 70%;
+            word-wrap: break-word;
+            display: block;
+        }
+
+        .user-message {
+            background: rgba(0, 255, 0, 0.2);
+            color: #16c91c;
+            text-align: right;
+            align-self: flex-end;
+        }
+
+        .admin-message {
+            background: rgba(0, 0, 255, 0.2);
+            color: #4CAFFF;
+            text-align: left;
+            align-self: flex-start;
+        }
+
+        .timestamp {
+            display: block;
+            font-size: 12px;
+            color: #bbb;
+            margin-top: 5px;
+        }
+    </style>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import { getDatabase, ref, onValue, push } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
+
+        // Firebase config
+        const firebaseConfig = {
+            apiKey: "AIzaSyC4oftdyQWGkvXcHtPsPGwhNcDmT5DbLBM",
+            authDomain: "messages-c55e5.firebaseapp.com",
+            databaseURL: "https://messages-c55e5-default-rtdb.firebaseio.com/",
+            projectId: "messages-c55e5",
+            storageBucket: "messages-c55e5.firebasestorage.app",
+            messagingSenderId: "1059208392289",
+            appId: "1:1059208392289:web:71db387185d3296efb4420",
+            measurementId: "G-T82GHZ2M9T"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        const usersContainer = document.getElementById("users-container");
+        const chatContainer = document.getElementById("chat-container");
+        const chatBox = document.getElementById("chat-box");
+        const messageInput = document.getElementById("message-input");
+        const sendBtn = document.getElementById("send-btn");
+        let currentUser = "";
+
+       // تخزين توقيت آخر مرة فتح فيها الأدمن الشات لكل مستخدم
+        window.lastOpenedChats = JSON.parse(localStorage.getItem("lastOpenedChats")) || {};
+
+        // مراقبة الرسائل الجديدة
+        onValue(ref(db, "messages"), (snapshot) => {
+            const users = new Set();
+            const lastMessages = {}; // تخزين أحدث رسالة لكل مستخدم
+
+            snapshot.forEach((childSnapshot) => {
+                const data = childSnapshot.val();
+                if (data.senderId !== "admin") {
+                    users.add(data.senderId);
+                    lastMessages[data.senderId] = data.timestamp; // أحدث رسالة لكل مستخدم
+                }
+            });
+
+            usersContainer.innerHTML = "";
+            const sortedUsers = [...users].sort((a, b) => lastMessages[b] - lastMessages[a]); // ترتيب حسب آخر رسالة
+            sortedUsers.forEach(user => {
+                const button = document.createElement("button");
+                button.classList.add("user-button");
+                button.textContent = user;
+
+                // لو فيه رسالة جديدة لم تُقرأ، ضيف العلامة الزرقاء
+                const lastOpened = window.lastOpenedChats[user] || 0;
+                const hasUnreadMessage = lastMessages[user] > lastOpened;
+                if (hasUnreadMessage) {
+                    button.style.position = "relative";
+                    button.innerHTML += " <span style='position: absolute; top: 5px; right: 10px; width: 12px; height: 12px; background: blue; border-radius: 50%; box-shadow: 0 0 5px blue;'></span>";
+                }
+
+                button.addEventListener("click", () => {
+                    loadChat(user);
+                    window.lastOpenedChats[user] = Date.now(); // تحديث وقت فتح الشات
+                    localStorage.setItem("lastOpenedChats", JSON.stringify(window.lastOpenedChats)); // حفظ البيانات محليًا
+                });
+
+                usersContainer.prepend(button); // ترتيب الشات حسب آخر رسالة جديدة
+            });
+        });
+
+
+        // تحميل الشات لمستخدم معين
+        function loadChat(user) {
+            currentUser = user;
+            chatContainer.style.display = "block";
+            chatBox.innerHTML = "";
+            onValue(ref(db, "messages"), (snapshot) => {
+                chatBox.innerHTML = "";
+                snapshot.forEach((childSnapshot) => {
+                    const data = childSnapshot.val();
+                    if (data.senderId === user || data.receiverId === user) {
+                        const msgElement = document.createElement("div");
+                        msgElement.classList.add("message", data.senderId === "admin" ? "admin-message" : "user-message");
+                        msgElement.innerHTML = `<strong>${data.senderId}:</strong> ${data.message}<span class='timestamp'>${new Date(data.timestamp).toLocaleString()}</span>`;
+                        chatBox.appendChild(msgElement);
+                    }
+                });
+                chatBox.scrollTop = chatBox.scrollHeight;
+            });
+        }
+
+        // إرسال رسالة من الأدمن
+        sendBtn.addEventListener("click", async () => {
+            const message = messageInput.value.trim();
+            if (message !== "" && currentUser !== "") {
+                push(ref(db, "messages"), {
+                    senderId: "admin",
+                    receiverId: currentUser,
+                    siteId: "websiteA",
+                    message: message,
+                    timestamp: Date.now()
+                });
+                messageInput.value = "";
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="users-container" id="users-container">
+        <h2>Users</h2>
+    </div>
+    <div class="chat-container" id="chat-container">
+        <h2>Chat with <span id="chat-username"></span></h2>
+        <div id="chat-box"></div>
+        <input type="text" id="message-input" placeholder="Write your message">
+        <button id="send-btn">Send</button>
+    </div>
+</body>
+
+</html>

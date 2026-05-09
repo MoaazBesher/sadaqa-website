@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrayNotify - متجر التطبيق</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #0d5bb8;
+            --secondary: #4caf50;
+            --accent: #fbbc04;
+            --light: #f8f9fa;
+            --dark: #202124;
+            --gray: #5f6368;
+            --card-bg: #ffffff;
+            --background: #f0f4f8;
+            --header-bg: linear-gradient(135deg, #1a2b6d, #2c3e8c);
+        }
+        
+        body {
+            background: var(--background);
+            color: var(--dark);
+            line-height: 1.6;
+            background-image: radial-gradient(circle at 10% 20%, rgba(28, 58, 122, 0.05) 0%, rgba(240, 244, 248, 0) 90%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: var(--header-bg);
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .logo i {
+            font-size: 2rem;
+            color: #4CAF50;
+        }
+        
+        .app-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .header-stats {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        /* App Details Section */
+        .app-details {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 40px 0;
+        }
+        
+        .app-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 900px;
+            padding: 40px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .app-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+        
+        .app-icon-large {
+            width: 140px;
+            height: 140px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3.5rem;
+            margin: 0 auto 25px;
+            box-shadow: 0 8px 20px rgba(26, 115, 232, 0.3);
+            transition: transform 0.3s;
+        }
+        
+        .app-icon-large:hover {
+            transform: scale(1.05);
+        }
+        
+        .app-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+        
+        .app-developer {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .app-description {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+            color: var(--gray);
+            font-size: 1.05rem;
+        }
+        
+        /* Features Section - All Features Visible */
+        .features-section {
+            margin: 40px 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .feature-card {
+            background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+            padding: 30px 20px;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+            font-size: 1.3rem;
+        }
+        
+        .feature-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        .download-section {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        .download-btn {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 6px 15px rgba(26, 115, 232, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 auto 15px;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(26, 115, 232, 0.5);
+        }
+        
+        .download-count {
+            color: var(--gray);
+            font-size: 1rem;
+        }
+        
+        .count-number {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        
+        /* Screenshots Section */
+        .screenshots-section {
+            margin: 50px 0;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+        
+        .app-screenshots {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 20px 10px;
+            margin: 0 auto;
+            max-width: 1000px;
+        }
+        
+        .screenshot {
+            width: 220px;
+            height: 400px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 1rem;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .screenshot:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 16px 16px 0 0;
+        }
+        
+        .screenshot-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: var(--gray);
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .screenshot-placeholder i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Comments Section */
+        .comments-section {
+            background: var(--card-bg);
+            border-radius: 20px;
+            margin: 50px 0;
+            padding: 40px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+        
+        .comments-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .comment-form {
+            margin-bottom: 40px;
+            background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+            padding: 25px;
+            border-radius: 14px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .comment-form h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .comment-form textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            resize: vertical;
+            min-height: 120px;
+            margin-bottom: 15px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        .comment-form textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        
+        .comment-form button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+        
+        .comment-form button:hover {
+            background: var(--primary-dark);
+        }
+        
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .comment {
+            padding: 20px;
+            border-radius: 14px;
+            background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .comment:hover {
+            transform: translateY(-3px);
+        }
+        
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        
+        .comment-author {
+            font-weight: bold;
+            color: var(--dark);
+        }
+        
+        .comment-date {
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+        
+        .comment-text {
+            line-height: 1.7;
+            color: var(--dark);
+        }
+        
+        .no-comments {
+            text-align: center;
+            padding: 30px;
+            color: var(--gray);
+            font-style: italic;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--header-bg);
+            color: white;
+            padding: 50px 0 30px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            color: #4CAF50;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .header-stats {
+                justify-content: center;
+            }
+            
+            .app-card {
+                padding: 30px 20px;
+            }
+            
+            .app-icon-large {
+                width: 120px;
+                height: 120px;
+                font-size: 3rem;
+            }
+            
+            .app-title {
+                font-size: 1.8rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .comments-section {
+                padding: 30px 20px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+        
+        /* Animation for download button */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 1.5s infinite;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-praying-hands"></i>
+                    <span class="app-name">PrayNotify</span>
+                </div>
+                <div class="header-stats">
+                    <div class="stat">
+                        <div class="stat-number" id="downloadCount">0</div>
+                        <div class="stat-label">تحميل</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- App Details Section -->
+    <div class="container">
+        <div class="app-details">
+            <div class="app-card">
+                <div class="app-icon-large">
+                    <i class="fas fa-pray"></i>
+                </div>
+                <h1 class="app-title">PrayNotify - مواقيت الصلاة</h1>
+                <p class="app-developer">مطور بواسطة: تقنية الصلاة</p>
+                
+                <p class="app-description">
+                    تطبيق PrayNotify هو الحل الأمثل لمتابعة أوقات الصلاة بدقة عالية. يتميز التطبيق بتنبيهات قبل وقت الصلاة، واتجاه القبلة، وتقويم هجري، ومواقيت الصلاة حسب موقعك الجغرافي. تم تصميم التطبيق ليكون سهل الاستخدام مع الحفاظ على الدقة في جميع الوظائف.
+                </p>
+                
+                <!-- Features Section - All Features Visible -->
+                <div class="features-section">
+                    <h2 class="section-title">مميزات التطبيق</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <h3>تنبيهات الصلاة</h3>
+                            <p>إشعارات قبل الصلاة بوقت كافٍ مع إمكانية التخصيص حسب احتياجاتك. يمكنك ضبط الوقت المناسب للإشعارات لكل صلاة.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-compass"></i>
+                            </div>
+                            <h3>اتجاه القبلة</h3>
+                            <p>تحديد دقيق لاتجاه القبلة باستخدام البوصلة الإلكترونية المتكاملة مع الخرائط. يعمل في أي مكان في العالم.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <h3>تقويم هجري</h3>
+                            <p>عرض التواريخ الهجرية والميلادية مع المناسبات الإسلامية الهامة. يمكنك تصفح الأشهر والسنين بسهولة.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h3>حسب الموقع</h3>
+                            <p>مواقيت الصلاة الدقيقة حسب موقعك الحالي أو أي مدينة تختارها. يدعم آلاف المدن حول العالم.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="download-section">
+                    <button class="download-btn pulse" id="downloadBtn">
+                        <i class="fas fa-download"></i>
+                        تحميل التطبيق
+                    </button>
+                    <div class="download-count">
+                        تم التحميل <span class="count-number" id="downloadCountText">0</span> مرة
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Screenshots Section -->
+        <div class="screenshots-section">
+            <h2 class="section-title">لقطات من التطبيق</h2>
+            <div class="app-screenshots">
+                <div class="screenshot" id="screenshot1">
+                    <div class="screenshot-placeholder">
+                        <i class="fas fa-camera"></i>
+                        <span>لقطة الشاشة الرئيسية</span>
+                        <small>انقر لتحميل الصورة</small>
+                    </div>
+                </div>
+                <div class="screenshot" id="screenshot2">
+                    <div class="screenshot-placeholder">
+                        <i class="fas fa-camera"></i>
+                        <span>شاشة مواقيت الصلاة</span>
+                        <small>انقر لتحميل الصورة</small>
+                    </div>
+                </div>
+                <div class="screenshot" id="screenshot3">
+                    <div class="screenshot-placeholder">
+                        <i class="fas fa-camera"></i>
+                        <span>شاشة اتجاه القبلة</span>
+                        <small>انقر لتحميل الصورة</small>
+                    </div>
+                </div>
+                <div class="screenshot" id="screenshot4">
+                    <div class="screenshot-placeholder">
+                        <i class="fas fa-camera"></i>
+                        <span>شاشة الإعدادات</span>
+                        <small>انقر لتحميل الصورة</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Comments Section -->
+        <div class="comments-section">
+            <h2 class="section-title">آراء المستخدمين</h2>
+            
+            <div class="comment-form">
+                <h3>أضف تعليقك</h3>
+                <textarea id="commentInput" placeholder="شاركنا رأيك حول التطبيق..."></textarea>
+                <button id="submitComment">نشر التعليق</button>
+            </div>
+            
+            <div class="comments-list" id="commentsList">
+                <!-- سيتم ملء التعليقات ديناميكياً من Firebase -->
+                <div class="no-comments">لا توجد تعليقات بعد. كن أول من يعلق!</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عن التطبيق</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-info-circle"></i> الميزات</a></li>
+                        <li><a href="#"><i class="fas fa-code-branch"></i> الإصدارات</a></li>
+                        <li><a href="#"><i class="fas fa-shield-alt"></i> سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>الدعم</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-question-circle"></i> الأسئلة الشائعة</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
+                        <li><a href="#"><i class="fas fa-bug"></i> الإبلاغ عن مشكلة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>تابعنا</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fab fa-twitter"></i> تويتر</a></li>
+                        <li><a href="#"><i class="fab fa-facebook"></i> فيسبوك</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> إنستغرام</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; ٢٠٢٣ PrayNotify. جميع الحقوق محفوظة.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, set, get, push, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCmCecvEhU5Q2SaLzngnAM6AX9qeNOJE98",
+            authDomain: "praynotify.firebaseapp.com",
+            databaseURL: "https://praynotify-default-rtdb.firebaseio.com",
+            projectId: "praynotify",
+            storageBucket: "praynotify.firebasestorage.app",
+            messagingSenderId: "825282016133",
+            appId: "1:825282016133:web:2c3d64ddf1024ddadc8aec",
+            measurementId: "G-DKLRSZDEEY"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Elements
+        const downloadBtn = document.getElementById('downloadBtn');
+        const downloadCount = document.getElementById('downloadCount');
+        const downloadCountText = document.getElementById('downloadCountText');
+        const commentInput = document.getElementById('commentInput');
+        const submitComment = document.getElementById('submitComment');
+        const commentsList = document.getElementById('commentsList');
+        
+        // Screenshot Elements
+        const screenshot1 = document.getElementById('screenshot1');
+        const screenshot2 = document.getElementById('screenshot2');
+        const screenshot3 = document.getElementById('screenshot3');
+        const screenshot4 = document.getElementById('screenshot4');
+
+        // مسارات الصور الافتراضية - يمكنك تغييرها حسب احتياجك
+        const defaultImagePaths = {
+            screenshot1: '', // ضع المسار هنا
+            screenshot2: '', // ضع المسار هنا
+            screenshot3: '', // ضع المسار هنا
+            screenshot4: ''  // ضع المسار هنا
+        };
+
+        // تحميل الصور من المسارات المحددة
+        function loadScreenshotImages() {
+            // إذا كانت هناك مسارات محددة، قم بتحميل الصور
+            if (defaultImagePaths.screenshot1) {
+                screenshot1.style.backgroundImage = `url(${defaultImagePaths.screenshot1})`;
+                screenshot1.innerHTML = '';
+            }
+            
+            if (defaultImagePaths.screenshot2) {
+                screenshot2.style.backgroundImage = `url(${defaultImagePaths.screenshot2})`;
+                screenshot2.innerHTML = '';
+            }
+            
+            if (defaultImagePaths.screenshot3) {
+                screenshot3.style.backgroundImage = `url(${defaultImagePaths.screenshot3})`;
+                screenshot3.innerHTML = '';
+            }
+            
+            if (defaultImagePaths.screenshot4) {
+                screenshot4.style.backgroundImage = `url(${defaultImagePaths.screenshot4})`;
+                screenshot4.innerHTML = '';
+            }
+        }
+
+        // Screenshot Upload Functionality
+        function setupScreenshotUpload(screenshotElement, id) {
+            screenshotElement.addEventListener('click', function() {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'image/*';
+                
+                input.onchange = function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(event) {
+                            screenshotElement.style.backgroundImage = `url(${event.target.result})`;
+                            screenshotElement.innerHTML = '';
+                            
+                            // حفظ الصورة في localStorage
+                            localStorage.setItem(`screenshot-${id}`, event.target.result);
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                };
+                
+                input.click();
+            });
+            
+            // تحميل الصورة المحفوظة من localStorage إذا كانت موجودة
+            const savedImage = localStorage.getItem(`screenshot-${id}`);
+            if (savedImage) {
+                screenshotElement.style.backgroundImage = `url(${savedImage})`;
+                screenshotElement.innerHTML = '';
+            }
+        }
+        
+        // إعداد رفع الصور للقطات الشاشة
+        setupScreenshotUpload(screenshot1, 1);
+        setupScreenshotUpload(screenshot2, 2);
+        setupScreenshotUpload(screenshot3, 3);
+        setupScreenshotUpload(screenshot4, 4);
+        
+        // تحميل الصور من المسارات الافتراضية عند تحميل الصفحة
+        window.addEventListener('load', loadScreenshotImages);
+
+        // Download counter functionality
+        downloadBtn.addEventListener('click', () => {
+            // زيادة العداد بمجرد بدء التحميل
+            const downloadsRef = ref(database, 'app/downloads');
+            
+            get(downloadsRef).then((snapshot) => {
+                let currentCount = snapshot.val() || 0;
+                currentCount++;
+                
+                set(downloadsRef, currentCount).then(() => {
+                    downloadCount.textContent = currentCount;
+                    downloadCountText.textContent = currentCount;
+                    // محاكاة بدء التحميل
+                    downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التحميل...';
+                    downloadBtn.disabled = true;
+                    downloadBtn.classList.remove('pulse');
+                    
+                    setTimeout(() => {
+                        downloadBtn.innerHTML = '<i class="fas fa-download"></i> تحميل التطبيق';
+                        downloadBtn.disabled = false;
+                        downloadBtn.classList.add('pulse');
+                        alert('تم بدء تحميل التطبيق! سيتم تثبيته تلقائياً عند اكتمال التحميل.');
+                    }, 3000);
+                });
+            });
+        });
+
+        // Load initial download count
+        const downloadsRef = ref(database, 'app/downloads');
+        onValue(downloadsRef, (snapshot) => {
+            const count = snapshot.val() || 0;
+            downloadCount.textContent = count;
+            downloadCountText.textContent = count;
+        });
+
+        // Comments functionality
+        submitComment.addEventListener('click', () => {
+            const commentText = commentInput.value.trim();
+            
+            if (commentText) {
+                const commentsRef = ref(database, 'app/comments');
+                const newCommentRef = push(commentsRef);
+                
+                set(newCommentRef, {
+                    text: commentText,
+                    author: 'مستخدم',
+                    date: new Date().toLocaleDateString('ar-EG')
+                }).then(() => {
+                    commentInput.value = '';
+                });
+            } else {
+                alert('يرجى كتابة تعليق قبل الإرسال');
+            }
+        });
+
+        // Load comments
+        const commentsRef = ref(database, 'app/comments');
+        onValue(commentsRef, (snapshot) => {
+            const commentsData = snapshot.val();
+            commentsList.innerHTML = '';
+            
+            if (commentsData) {
+                // تحويل البيانات إلى مصفوفة وعكسها لعرض أحدث التعليقات أولاً
+                const commentsArray = Object.values(commentsData);
+                commentsArray.reverse().forEach(comment => {
+                    const commentElement = document.createElement('div');
+                    commentElement.className = 'comment';
+                    commentElement.innerHTML = `
+                        <div class="comment-header">
+                            <div class="comment-author">${comment.author}</div>
+                            <div class="comment-date">${comment.date}</div>
+                        </div>
+                        <div class="comment-text">${comment.text}</div>
+                    `;
+                    commentsList.appendChild(commentElement);
+                });
+            } else {
+                commentsList.innerHTML = '<div class="no-comments">لا توجد تعليقات بعد. كن أول من يعلق!</div>';
+            }
+        });
+    </script>
+</body>
+</html>

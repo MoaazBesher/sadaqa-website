@@ -1,0 +1,24 @@
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Generated files
+folder_tree.txt
+filetree.txt
+
+# Environment
+.env
+.env.local

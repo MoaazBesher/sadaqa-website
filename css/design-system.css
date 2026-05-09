@@ -1,0 +1,46 @@
+/* e:\Sites\sadaqaSite\css\design-system.css */
+:root {
+    /* Color Palette - Premium Dark */
+    --clr-bg-base: #050505;
+    --clr-bg-surface: #0a0a0a;
+    --clr-bg-surface-elevated: #111111;
+    
+    --clr-primary: #ffd700;
+    --clr-primary-glow: rgba(255, 215, 0, 0.4);
+    --clr-primary-mute: rgba(255, 215, 0, 0.1);
+    
+    --clr-accent: #10b981; /* Emerald/Islamic green accent */
+    --clr-accent-mute: rgba(16, 185, 129, 0.15);
+    
+    --clr-text-main: #f8fafc;
+    --clr-text-muted: #94a3b8;
+    
+    --clr-border: rgba(255, 215, 0, 0.15);
+    --clr-border-light: rgba(255, 255, 255, 0.05);
+
+    /* Gradients */
+    --grad-primary: linear-gradient(135deg, var(--clr-primary), #b8860b);
+    --grad-surface: linear-gradient(145deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    --grad-glow: radial-gradient(circle at 50% 0%, var(--clr-primary-mute), transparent 70%);
+
+    /* Typography */
+    --font-heading: 'Thuluth', 'Cairo', sans-serif;
+    --font-body: 'Amiri', serif;
+    --font-ui: 'Cairo', sans-serif;
+
+    /* Shadows & Effects */
+    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0 0 20px var(--clr-primary-glow);
+    --backdrop-blur: blur(12px);
+
+    /* Radii */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-pill: 999px;
+
+    /* Transitions */
+    --trans-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --trans-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --trans-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}

@@ -1,0 +1,64 @@
+/* e:\Sites\sadaqaSite\css\global.css */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Amiri:wght@400;700&display=swap');
+@import url('design-system.css');
+@import url('components.css');
+
+@font-face {
+    font-family: 'Thuluth';
+    src: url('../arfonts-decotype-thuluth-ii.ttf') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--clr-bg-base);
+    color: var(--clr-text-main);
+    direction: rtl;
+    line-height: 1.7;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 3rem;
+}
+
+/* Base glowing background */
+body::before {
+    content: "";
+    position: fixed;
+    top: -20vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 60vh;
+    background: var(--grad-glow);
+    pointer-events: none;
+    z-index: -1;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+button, input, textarea {
+    font-family: var(--font-ui);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
