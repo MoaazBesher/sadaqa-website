@@ -69,6 +69,25 @@ export function initSharedUI() {
     document.getElementById('close-sidebar').addEventListener('click', toggleMenu);
     overlay.addEventListener('click', toggleMenu);
 
+    // Highlight current page link and prevent reload on click
+    const normalizePath = (p) => p.replace(/\/index\.html$/, '').replace(/\/$/, '') || '/';
+    const currentNorm = normalizePath(window.location.pathname.toLowerCase());
+    
+    const links = sidebar.querySelectorAll('.sidebar-link');
+    links.forEach(link => {
+        try {
+            const linkUrl = new URL(link.href, window.location.origin);
+            if (normalizePath(linkUrl.pathname.toLowerCase()) === currentNorm) {
+                link.classList.add('active-sidebar-link');
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                });
+            }
+        } catch(e) {}
+    });
+
     // Export link utilities
     window.copySiteLink = function(link) {
         navigator.clipboard.writeText(link || "https://sadaqa-mainpage.netlify.app/");
@@ -86,4 +105,29 @@ export function initSharedUI() {
             alert("⚠️ خاصية المشاركة غير مدعومة في هذا المتصفح.");
         }
     };
+
+    // 4. Inject Footer
+    if (!document.getElementById('shared-footer')) {
+        const footer = document.createElement('footer');
+        footer.id = 'shared-footer';
+        footer.style.position = 'fixed';
+        footer.style.bottom = '0';
+        footer.style.left = '0';
+        footer.style.right = '0';
+        footer.style.zIndex = '900';
+        footer.style.background = 'rgba(10, 10, 10, 0.8)';
+        footer.style.backdropFilter = 'blur(10px)';
+        footer.style.WebkitBackdropFilter = 'blur(10px)';
+        footer.style.borderTop = '1px solid var(--clr-border-light, #333)';
+        footer.style.textAlign = 'center';
+        footer.style.padding = '0.75rem';
+        footer.innerHTML = `
+            <a href="https://moaazbesher.netlify.app/" target="_blank" style="text-decoration:none; color:var(--clr-text-muted, #aaa); transition: color 0.3s; display: inline-flex; align-items: center; gap: 5px; font-family: 'Cairo', sans-serif; font-size: 0.95rem; direction: ltr;">
+                Designed and developed by <span style="color: var(--clr-primary, #2a7ae2); font-weight: 700;">Moaaz Besher</span>
+            </a>
+        `;
+        
+        document.body.appendChild(footer);
+        document.body.style.paddingBottom = '4rem';
+    }
 }

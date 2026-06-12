@@ -207,6 +207,7 @@
             }
         });
     </script>
+    <link rel="stylesheet" href="../../css/global.css">
 </head>
 
 <body>
@@ -219,6 +220,11 @@
         <input type="text" id="message-input" placeholder="Write your message">
         <button id="send-btn">Send</button>
     </div>
+
+    <script type="module">
+        import { initSharedUI } from '../../js/components.js';
+        initSharedUI();
+    </script>
 </body>
 
 </html>

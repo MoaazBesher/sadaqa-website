@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css"> 
 
+    <link rel="stylesheet" href="../css/global.css">
 </head>
 <body>
     <!-- Header -->
@@ -133,14 +134,7 @@
     </div>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-<footer style=" text-align: center; font-family: 'Arial', sans-serif;">
-  <a href="https://moaaz-testing.netlify.app/" target="_blank" style="color: #555; text-decoration: none; font-size: 14px; transition: all 0.3s ease;">
-    Designed and developed by <span style="color: #c3ccd7; font-weight: 600;">Moaaz Ashraf</span>
-  </a>
-</footer>
+    
         </div>
     </footer>
 
@@ -342,6 +336,11 @@
                 commentsList.innerHTML = '<div class="no-comments">لا توجد تعليقات بعد. كن أول من يعلق!</div>';
             }
         });
+    </script>
+
+    <script type="module">
+        import { initSharedUI } from '../js/components.js';
+        initSharedUI();
     </script>
 </body>
 </html>
