@@ -40,6 +40,7 @@ export function initSharedUI() {
             <a href="${basePath}moshaf/index.html" class="sidebar-link"><i class="fas fa-quran"></i> المصحف</a>
             <a href="${basePath}masbaha/index.html" class="sidebar-link"><i class="fa-solid fa-repeat"></i> المسبحة الإلكترونية</a>
             <br>
+            <a href="${basePath}downloadpage/index.html" class="sidebar-link"><i class="fas fa-download"></i> تحميل التطبيق</a>
             <a href="${basePath}index.html" class="sidebar-link" style="border-top: 1px solid var(--clr-border-light)"><i class="fas fa-home"></i> الرئيسية</a>
         </div>
     `;
