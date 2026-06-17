@@ -6,7 +6,6 @@
 @font-face {
     font-family: 'Thuluth';
     src: url('../arfonts-decotype-thuluth-ii.ttf') format('truetype');
-    font-display: swap;
 }
 
 * {
