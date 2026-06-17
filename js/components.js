@@ -26,7 +26,7 @@ export function initSharedUI() {
     sidebar.innerHTML = `
         <div class="sidebar-header">
             <h3 class="heading-brand" style="font-size: 1.8rem; margin:0;">القائمة</h3>
-            <button class="btn-icon" id="close-sidebar" style="width: 2.5rem; height: 2.5rem; font-size: 1rem;">
+            <button class="btn-icon" id="close-sidebar" aria-label="إغلاق القائمة" style="width: 2.5rem; height: 2.5rem; font-size: 1rem;">
                 <i class="fas fa-times"></i>
             </button>
         </div>
@@ -56,6 +56,7 @@ export function initSharedUI() {
         menuBtn.style.zIndex = '1000';
         menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
         menuBtn.id = 'open-sidebar';
+        menuBtn.setAttribute('aria-label', 'فتح القائمة');
         document.body.appendChild(menuBtn);
     }
     const openBtn = document.getElementById('open-sidebar');
