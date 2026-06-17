@@ -4,19 +4,107 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
 
 <url>
   <loc>https://sadaqa-mainpage.netlify.app/</loc>
-  <lastmod>2025-11-04T17:45:16+00:00</lastmod>
+  <lastmod>2023-10-01T00:00:00+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>https://sadaqa-mainpage.netlify.app/downloadpage/</loc>
-  <lastmod>2025-11-04T17:45:16+00:00</lastmod>
+  <loc>https://sadaqa-mainpage.netlify.app/doaa/</loc>
   <priority>0.80</priority>
 </url>
-
+<url>
+  <loc>https://sadaqa-mainpage.netlify.app/eveningazkar/</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sadaqa-mainpage.netlify.app/masbaha/</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sadaqa-mainpage.netlify.app/morningazkar/</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sadaqa-mainpage.netlify.app/moshaf/</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sadaqa-mainpage.netlify.app/praytimes/</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sadaqa-mainpage.netlify.app/sonan/</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sadaqa-mainpage.netlify.app/quran/</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://sadaqa-mainpage.netlify.app/quran/abdelbaset/</loc>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://sadaqa-mainpage.netlify.app/quran/alijaber/</loc>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://sadaqa-mainpage.netlify.app/quran/daghestani/</loc>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://sadaqa-mainpage.netlify.app/quran/elafasi/</loc>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://sadaqa-mainpage.netlify.app/quran/elghamdy/</loc>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://sadaqa-mainpage.netlify.app/quran/elhosary/</loc>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://sadaqa-mainpage.netlify.app/quran/elkatami/</loc>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://sadaqa-mainpage.netlify.app/quran/elmenshawy/</loc>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://sadaqa-mainpage.netlify.app/quran/elsodes/</loc>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://sadaqa-mainpage.netlify.app/quran/fares/</loc>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://sadaqa-mainpage.netlify.app/quran/islamsobhy/</loc>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://sadaqa-mainpage.netlify.app/quran/khaledjalel/</loc>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://sadaqa-mainpage.netlify.app/quran/maher/</loc>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://sadaqa-mainpage.netlify.app/quran/yasser/</loc>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://sadaqa-mainpage.netlify.app/download.html</loc>
+  <priority>0.50</priority>
+</url>
+<url>
+  <loc>https://sadaqa-mainpage.netlify.app/downloadpage/</loc>
+  <priority>0.50</priority>
+</url>
 
 </urlset>
